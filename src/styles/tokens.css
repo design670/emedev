@@ -1,0 +1,92 @@
+/* ==========================================================================
+   EME Dev — Design tokens
+   Paleta cerrada: negro #0A0A0A · blanco #FFFFFF · lima #FDF48B
+   Las profundidades se construyen solo con opacidades de esos tres colores.
+   ========================================================================== */
+:root {
+  /* 12 · Color */
+  --ink: #0a0a0a;
+  --paper: #ffffff;
+  --lime: #fdf48b;
+  --ink-rgb: 10 10 10;
+  --paper-rgb: 255 255 255;
+  --lime-rgb: 253 244 139;
+
+  --ink-80: rgb(var(--ink-rgb) / 0.8);
+  --ink-64: rgb(var(--ink-rgb) / 0.64);
+  --ink-48: rgb(var(--ink-rgb) / 0.48);
+  --ink-12: rgb(var(--ink-rgb) / 0.12);
+  --ink-06: rgb(var(--ink-rgb) / 0.06);
+  --ink-04: rgb(var(--ink-rgb) / 0.04);
+  --paper-72: rgb(var(--paper-rgb) / 0.72);
+  --paper-56: rgb(var(--paper-rgb) / 0.56);
+  --paper-40: rgb(var(--paper-rgb) / 0.4);
+  --paper-14: rgb(var(--paper-rgb) / 0.14);
+  --paper-08: rgb(var(--paper-rgb) / 0.08);
+  --paper-04: rgb(var(--paper-rgb) / 0.04);
+  --lime-24: rgb(var(--lime-rgb) / 0.24);
+  --lime-12: rgb(var(--lime-rgb) / 0.12);
+
+  /* Superficie gris claro = negro al 4 % sobre blanco */
+  --surface: #f5f5f5;
+
+  /* 01 · Tipografía (Inter Tight, la misma familia de la referencia Kitpro) */
+  --font: 'Inter Tight Variable', 'Inter Tight', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* 02 · Escala tipográfica fluida (1440 → 375) */
+  --fs-display: clamp(3.1rem, 1.6rem + 6.4vw, 8.4rem);
+  --fs-h2: clamp(2.35rem, 1.5rem + 3.6vw, 5.4rem);
+  --fs-h3: clamp(1.5rem, 1.15rem + 1.3vw, 2.4rem);
+  --fs-h4: clamp(1.2rem, 1.05rem + 0.55vw, 1.55rem);
+  --fs-lead: clamp(1.1rem, 1rem + 0.45vw, 1.4rem);
+  --fs-body: 1.0625rem;
+  --fs-small: 0.9375rem;
+  --fs-label: 0.75rem;
+
+  --lh-tight: 0.94;
+  --lh-heading: 1.02;
+  --lh-body: 1.55;
+  --ls-display: -0.055em;
+  --ls-heading: -0.04em;
+  --ls-label: 0.08em;
+
+  /* 03 · Espaciado (base 4px) */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 3rem;
+  --s-8: 4rem;
+  --s-9: 6rem;
+  --s-10: 8rem;
+  --section-y: clamp(5.5rem, 3rem + 9vw, 11rem);
+
+  /* 04 · Anchos y 05 · Grid */
+  --max-w: 1440px;
+  --max-text: 38rem;
+  --gutter: clamp(1rem, 0.4rem + 3vw, 3.5rem);
+  --cols: 12;
+  --col-gap: clamp(1rem, 0.6rem + 1.4vw, 2rem);
+
+  /* 06 · Radios — se usan con mesura */
+  --r-xs: 6px;
+  --r-sm: 12px;
+  --r-md: 20px;
+  --r-lg: 28px;
+  --r-pill: 999px;
+
+  /* 10 · Transiciones */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);
+  --t-fast: 180ms;
+  --t-base: 360ms;
+  --t-slow: 720ms;
+
+  --header-h: 76px;
+  color-scheme: light;
+}
+
+/* 11 · Breakpoints de referencia (en media queries):
+   xl ≥1280 · lg ≥1024 · md ≥768 · sm <768 · xs <420 */
