@@ -1,9 +1,9 @@
 import { ArrowRight } from 'lucide-react';
 import { partners } from '../data/content';
 import { RevealText } from './ui';
+import { PartnerIcon } from './PartnerIcon';
 
-/* Los sellos se muestran como espacios tipográficos hasta tener los archivos
-   oficiales de cada programa de partners. */
+/* Sellos de partner con el ícono oficial de cada marca. */
 export function Trust() {
   return (
     <section className="trust section on-surface" aria-labelledby="trust-title">
@@ -19,11 +19,10 @@ export function Trust() {
           </a>
         </div>
         <ul className="seals" data-reveal="stagger" aria-label="Sellos y alianzas">
-          {partners.map((p, i) => (
+          {partners.map((p) => (
             <li className="seal" key={p}>
-              <span className="seal__idx">{String(i + 1).padStart(2, '0')}</span>
+              <PartnerIcon name={p} className="seal__icon" />
               <span className="seal__name">{p}</span>
-              <span className="seal__ph t-label">Logo oficial</span>
             </li>
           ))}
         </ul>

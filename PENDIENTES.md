@@ -23,8 +23,9 @@ Ya no quedan corchetes en el sitio: todo lo que faltaba se llenó con datos de e
 ## Archivos que faltan
 
 - [ ] Logo oficial de EME Dev (hoy hay un wordmark provisional en `Logo`, `ui.tsx`)
-- [ ] Logos oficiales de clientes de desarrollo (Cajacopi, Constructora H3 y los que se confirmen)
-- [ ] Logos oficiales de los seis sellos de partner
+- [x] Logos oficiales de Cajacopi (cajacopi.com) y Brilla (gascaribe.com) en la franja del Hero (public/clientes)
+- [ ] Logos de Constructora H3, Almar y Monark: no tienen sitio oficial verificable en internet; siguen como texto hasta recibir los archivos
+- [x] Íconos oficiales de los seis sellos de partner (Simple Icons, en src/components/PartnerIcon.tsx). Confirmar que EME Dev tiene cada membresía/certificación antes de publicar
 - [ ] Imágenes 001–017 (ver mapa en Notas), incluidas las capturas reales de Achieve Apex (008) y Get Transcribe (009)
 - [ ] Imagen Open Graph `og-image.png` (1200×630) en `public/`
 
@@ -37,4 +38,4 @@ Ya no quedan corchetes en el sitio: todo lo que faltaba se llenó con datos de e
 - **SEO:** título y descripción cambian por página con JavaScript. Para que Google y los buscadores de IA lean cada página sin ejecutar JS, conviene prerenderizar las rutas en el build (siguiente paso técnico).
 - Recursos: los seis artículos aparecen como «Próximamente» hasta que estén escritos.
 - Casos: los filtros por industria y solución funcionan con los cuatro casos de ejemplo.
-- Industria Corporativo: logos de Almar, Brilla, PRB, FIU, Cajacopi, Monark, B-inner, Secosa en texto.
+- Industria Corporativo: logos oficiales de Brilla, PRB (ProBarranquilla), FIU y Cajacopi ya puestos; Almar, Monark, B-inner y Secosa siguen en texto porque no tienen sitio oficial verificable (pedir archivos).

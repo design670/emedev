@@ -107,8 +107,8 @@ export function Hero() {
         </p>
         <ul className="clients__list">
           {clients.map((c, i) => (
-            <li key={i} className={c.startsWith('[') ? 'is-ph' : ''}>
-              {c.startsWith('[') ? <span className="ph">{c}</span> : <span>{c}</span>}
+            <li key={i}>
+              {c.logo ? <img className="clients__logo" src={c.logo} alt={c.name} loading="lazy" /> : <span>{c.name}</span>}
             </li>
           ))}
         </ul>

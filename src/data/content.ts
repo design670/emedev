@@ -105,7 +105,22 @@ export const navLinks = [
 export const DIAGNOSTICO_HREF = '/dev/diagnostico';
 
 // Datos de ejemplo (provisionales): reemplazar por la información real antes de publicar.
-export const clients = ['Cajacopi', 'Constructora H3', 'Brilla', 'Almar', 'Monark'];
+// Logos oficiales descargados de los sitios de cada marca (public/clientes). Sin logo: se muestra el nombre.
+// Logos oficiales por nombre de cliente (archivos en public/clientes).
+export const clientLogos: Record<string, string> = {
+  Cajacopi: '/clientes/cajacopi.svg',
+  Brilla: '/clientes/brilla.png',
+  PRB: '/clientes/probarranquilla.svg',
+  FIU: '/clientes/fiu.png',
+};
+
+export const clients: { name: string; logo?: string }[] = [
+  { name: 'Cajacopi', logo: '/clientes/cajacopi.svg' },
+  { name: 'Constructora H3' },
+  { name: 'Brilla', logo: '/clientes/brilla.png' },
+  { name: 'Almar' },
+  { name: 'Monark' },
+];
 
 export const metrics = [
   { value: 120, prefix: '+', suffix: '', label: 'proyectos de software entregados' },

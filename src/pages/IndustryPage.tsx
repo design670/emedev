@@ -1,3 +1,4 @@
+import { clientLogos } from '../data/content';
 import { industryPages, type IndustryPage as I } from '../data/pages';
 import { PageHero, NumberedList, Callout, FeaturedCase, RelatedLinks, BlockHead } from '../components/page/blocks';
 import { CTASection } from '../components/CTASection';
@@ -55,7 +56,13 @@ export function IndustryPage({ page }: { page: I }) {
             <BlockHead index="04" label="Clientes" title={['Clientes', 'corporativos.']} id="ilogos-title" />
             <ul className="ilogos__grid" data-reveal="stagger">
               {page.logos.map((l) => (
-                <li key={l}>{l}</li>
+                <li key={l}>
+                  {clientLogos[l] ? (
+                    <img className="ilogos__img" src={clientLogos[l]} alt={l} loading="lazy" />
+                  ) : (
+                    l
+                  )}
+                </li>
               ))}
             </ul>
           </div>

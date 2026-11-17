@@ -1,5 +1,6 @@
 import { ArrowUpRight } from 'lucide-react';
 import { services, industries, partners, contact, DIAGNOSTICO_HREF } from '../data/content';
+import { PartnerIcon } from './PartnerIcon';
 import { Logo } from './ui';
 
 const unit = [
@@ -75,7 +76,10 @@ export function Footer() {
 
         <ul className="footer__seals" aria-label="Sellos de partner">
           {partners.map((p) => (
-            <li key={p}>{p}</li>
+            <li key={p}>
+              <PartnerIcon name={p} />
+              {p}
+            </li>
           ))}
         </ul>
 

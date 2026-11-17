@@ -184,7 +184,6 @@ export function NumberedList({
         <ol className="nlist__items" data-reveal="stagger">
           {items.map((it, i) => (
             <li key={i}>
-              <span className="nlist__num">{String(i + 1).padStart(2, '0')}</span>
               <p>
                 <WithPlaceholders text={it} />
               </p>

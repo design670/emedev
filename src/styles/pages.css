@@ -172,19 +172,11 @@
 }
 .nlist__items li {
   display: grid;
-  grid-template-columns: 3.5rem 1fr;
-  gap: var(--s-4);
   padding: var(--s-5) 0;
   border-bottom: 1px solid var(--ink-12);
   font-size: clamp(1.1rem, 1rem + 0.4vw, 1.35rem);
   letter-spacing: -0.015em;
   line-height: 1.35;
-}
-.nlist__num {
-  font-size: var(--fs-label);
-  letter-spacing: var(--ls-label);
-  color: var(--ink-48);
-  padding-top: 0.5em;
 }
 
 /* ---------- Casos de uso ---------- */
@@ -394,21 +386,17 @@
 }
 .iproblem {
   display: grid;
-  align-content: space-between;
+  align-content: start;
   gap: var(--s-7);
   min-height: 240px;
   padding: var(--s-5);
   border-top: 1px solid var(--ink);
 }
-.iproblem:nth-child(even) {
-  margin-top: var(--s-7);
-}
 .iproblem__num {
   font-size: clamp(2.5rem, 2rem + 2vw, 4rem);
   line-height: 1;
   letter-spacing: -0.06em;
-  color: var(--ink-12);
-  -webkit-text-stroke: 1px var(--ink-48);
+  color: var(--ink);
 }
 .iproblem p {
   font-size: 1.125rem;
@@ -429,6 +417,15 @@
   font-weight: 600;
   letter-spacing: -0.03em;
   color: var(--ink-64);
+}
+.ilogos__img {
+  display: block;
+  width: auto;
+  max-width: 62%;
+  height: 34px;
+  object-fit: contain;
+  filter: brightness(0);
+  opacity: 0.72;
 }
 
 /* ---------- Casos: filtros y listado ---------- */
@@ -586,8 +583,41 @@
   grid-template-columns: minmax(0, 2fr) minmax(0, 6fr) minmax(0, 4fr);
   column-gap: var(--col-gap);
   row-gap: var(--s-4);
-  padding: var(--s-7) 0;
+  padding: var(--s-7) var(--s-5);
   border-bottom: 1px solid var(--ink-12);
+  border-radius: var(--r-lg);
+  transition:
+    background-color var(--t-base) var(--ease-out),
+    color var(--t-base) var(--ease-out);
+}
+.stage .muted,
+.stage__num,
+.stage__time {
+  transition:
+    color var(--t-base) var(--ease-out),
+    background-color var(--t-base) var(--ease-out),
+    -webkit-text-stroke-color var(--t-base) var(--ease-out);
+}
+/* Al pasar el cursor, la etapa se vuelve negra */
+@media (hover: hover) {
+  .stage:hover {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .stage:hover .muted {
+    color: var(--paper-56);
+  }
+  .stage:hover .stage__num {
+    color: var(--paper);
+    -webkit-text-stroke-color: var(--paper);
+  }
+  .stage:hover .stage__time {
+    background: var(--paper);
+    color: var(--ink);
+  }
+  .stage:hover .stage__gets {
+    color: var(--ink);
+  }
 }
 .stage__num {
   font-size: clamp(3rem, 2rem + 3vw, 5.5rem);
@@ -774,6 +804,9 @@
   gap: 8px;
 }
 .tcerts__list li {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   padding: 12px 18px;
   border-radius: var(--r-pill);
   background: var(--paper);
@@ -1044,9 +1077,6 @@
   .tnums__grid,
   .ilogos__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .iproblem:nth-child(even) {
-    margin-top: 0;
   }
   .stage {
     grid-template-columns: 5rem 1fr;

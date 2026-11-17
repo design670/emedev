@@ -42,7 +42,6 @@ export function FAQAccordion({
                     aria-controls={pid}
                     onClick={() => setOpen(isOpen ? null : i)}
                   >
-                    <span className="faq__num">{String(i + 1).padStart(2, '0')}</span>
                     <span className="faq__q">{f.q}</span>
                     <span className="faq__icon" aria-hidden="true" />
                   </button>

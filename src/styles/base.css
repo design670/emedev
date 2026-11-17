@@ -389,3 +389,10 @@ a {
     flex: none;
   }
 }
+
+/* Ícono de marca de los sellos de partner */
+.partner-icon {
+  flex: none;
+  width: auto;
+  height: 15px;
+}

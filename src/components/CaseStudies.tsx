@@ -1,4 +1,5 @@
-import { ArrowUpRight } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { ArrowLeft, ArrowRight, ArrowUpRight } from 'lucide-react';
 import { cases } from '../data/content';
 import { Button, SectionHeading, WithPlaceholders } from './ui';
 import { ImagePlaceholder } from './ServiceVisual';
@@ -6,7 +7,7 @@ import type { ServiceKey } from '../data/content';
 
 type Case = (typeof cases)[number];
 
-export function CaseStudyCard({ c, size }: { c: Case; visual?: ServiceKey; size: 'lg' | 'sm' }) {
+export function CaseStudyCard({ c, size }: { c: Case; visual?: ServiceKey; size: 'lg' | 'sm' | 'slide' }) {
   return (
     <article className={`case case--${size}`} data-reveal="up">
       <a href={c.href} className="case__link" data-cursor-label="VER CASO" aria-label={`Ver el caso completo de ${c.client}`}>
@@ -49,7 +50,34 @@ export function CaseStudyCard({ c, size }: { c: Case; visual?: ServiceKey; size:
 }
 
 export function CaseStudies() {
-  const visuals: ServiceKey[] = ['erp', 'agentes', 'apps'];
+  const track = useRef<HTMLDivElement>(null);
+  const [edge, setEdge] = useState({ start: true, end: false });
+
+  const update = () => {
+    const el = track.current;
+    if (!el) return;
+    setEdge({ start: el.scrollLeft <= 4, end: el.scrollLeft + el.clientWidth >= el.scrollWidth - 4 });
+  };
+
+  useEffect(() => {
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, []);
+
+  const go = (dir: 1 | -1) => {
+    const el = track.current;
+    if (!el) return;
+    const max = el.scrollWidth - el.clientWidth;
+    const stops = [...el.querySelectorAll<HTMLElement>('.case')].map((c) => Math.min(c.offsetLeft - el.offsetLeft, max));
+    const cur = el.scrollLeft;
+    const target =
+      dir > 0
+        ? (stops.find((x) => x > cur + 4) ?? max)
+        : ([...stops].reverse().find((x) => x < cur - 4) ?? 0);
+    el.scrollTo({ left: target, behavior: 'smooth' });
+  };
+
   return (
     <section className="cases section on-light" id="casos" aria-labelledby="cases-title">
       <div className="container">
@@ -61,17 +89,23 @@ export function CaseStudies() {
             parts={['Resultados que puedes', { t: 'verificar.', cls: 'mark' }]}
           />
           <div className="cases__cta" data-reveal="up">
+            <div className="cases__nav">
+              <button className="circle-btn" onClick={() => go(-1)} disabled={edge.start} aria-label="Caso anterior">
+                <ArrowLeft strokeWidth={1.5} />
+              </button>
+              <button className="circle-btn" onClick={() => go(1)} disabled={edge.end} aria-label="Caso siguiente">
+                <ArrowRight strokeWidth={1.5} />
+              </button>
+            </div>
             <Button href="/dev/casos" variant="ink">
               Ver todos los casos
             </Button>
           </div>
         </div>
-        <div className="cases__grid">
-          <CaseStudyCard c={cases[0]} visual={visuals[0]} size="lg" />
-          <div className="cases__col">
-            <CaseStudyCard c={cases[1]} visual={visuals[1]} size="sm" />
-            <CaseStudyCard c={cases[2]} visual={visuals[2]} size="sm" />
-          </div>
+        <div className="cases__track" ref={track} onScroll={update} aria-label="Casos destacados" tabIndex={0}>
+          {cases.map((c) => (
+            <CaseStudyCard key={c.id} c={c} size="slide" />
+          ))}
         </div>
       </div>
     </section>

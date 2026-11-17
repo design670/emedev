@@ -1,3 +1,4 @@
+import { PartnerIcon } from '../components/PartnerIcon';
 import { useState, type FormEvent } from 'react';
 import { ArrowUpRight, Check } from 'lucide-react';
 import { processPage, securityPage, teamPage, resourcesPage, diagnosticPage } from '../data/pages';
@@ -193,7 +194,10 @@ export function TeamPage() {
           </BlockHead>
           <ul className="tcerts__list" data-reveal="stagger">
             {teamPage.certs.map((c) => (
-              <li key={c}>{c}</li>
+              <li key={c}>
+                <PartnerIcon name={c} />
+                {c}
+              </li>
             ))}
           </ul>
         </div>
