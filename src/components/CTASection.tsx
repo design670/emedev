@@ -24,13 +24,13 @@ export function CTASection() {
             <a href={`mailto:${contact.email}`}>{contact.email}</a>
           </div>
           <Button href={DIAGNOSTICO_HREF} variant="ink" className="cta__btn">
-            Agenda un diagnóstico sin costo
+            Diagnóstico gratis
           </Button>
           <a
             ref={badge}
             href={DIAGNOSTICO_HREF}
             className="cta__badge"
-            aria-label="Agenda un diagnóstico sin costo"
+            aria-label="Diagnóstico gratis"
             data-cursor-label="AGENDAR"
             data-reveal="fade"
           >
@@ -47,7 +47,7 @@ export function CTASection() {
             <span className="cta__badge-core">
               <ArrowUpRight strokeWidth={1.5} aria-hidden="true" />
             </span>
-            <span className="cta__badge-label">Agenda un diagnóstico sin costo</span>
+            <span className="cta__badge-label">Diagnóstico gratis</span>
           </a>
         </div>
       </div>

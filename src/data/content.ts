@@ -134,10 +134,10 @@ export const clients: { name: string; logo?: string }[] = [
 ];
 
 export const metrics = [
-  { value: 147, prefix: '+', suffix: '', label: 'proyectos web y de software exitosos' },
-  { value: 15, prefix: '+', suffix: '', label: 'años de experiencia construyendo e implementando tecnología' },
-  { value: 350, prefix: '+', suffix: '', label: 'empresas en las que optimizamos procesos, tiempo y recursos' },
-  { value: 643, prefix: '+', suffix: '', label: 'usuarios utilizan nuestro CRM Apex' },
+  { value: 200, prefix: '+', suffix: '', label: 'Proyectos web' },
+  { value: 65, prefix: '+', suffix: '', label: 'Proyectos de desarrollo a la medida' },
+  { value: 7, prefix: '+', suffix: '', label: 'Aplicaciones móviles' },
+  { value: 2, prefix: '+', suffix: '', label: 'Herramientas propias (Apex y Get Transcribe)' },
 ] as const;
 
 export const companySizes = [
@@ -346,27 +346,90 @@ export const partners = [
 ];
 
 // Testimonios de ejemplo (provisionales): reemplazar por testimonios reales antes de publicar.
-export const testimonials = [
-  ...cases.map((c) => ({
-    id: c.id,
-    quote: c.testimonial.quote,
-    name: c.testimonial.name,
-    role: c.testimonial.role,
-    company: c.client,
-  })),
+/* Testimonios de clientes (los levanta el equipo de EME; textos pendientes entre corchetes).
+   Testimonio en video: agrega video con la ruta de un .mp4 en public/testimonios/
+   o un enlace de YouTube, y opcionalmente poster con una imagen de portada. */
+export type Testimonial = {
+  id: number;
+  company: string;
+  logo?: string;
+  quote: string;
+  name: string;
+  role: string;
+  video?: string;
+  poster?: string;
+};
+
+export const testimonials: Testimonial[] = [
+  {
+    id: 1,
+    company: 'Bicosa',
+    logo: '/clientes/bicosa.png',
+    quote: '[Testimonio pendiente]',
+    name: '[Nombre]',
+    role: '[Cargo]',
+  },
+  {
+    id: 2,
+    company: 'Genial Foods',
+    quote: '[Testimonio pendiente]',
+    name: '[Nombre]',
+    role: '[Cargo]',
+  },
+  {
+    id: 3,
+    company: 'Country Club',
+    logo: '/clientes/country-club.png',
+    quote: '[Testimonio pendiente]',
+    name: '[Nombre]',
+    role: '[Cargo]',
+  },
+  {
+    id: 4,
+    company: 'Quirulaser',
+    logo: '/clientes/quirulaser.png',
+    quote: '[Testimonio pendiente]',
+    name: '[Nombre]',
+    role: '[Cargo]',
+  },
   {
     id: 5,
-    quote: 'Integraron nuestro ERP con la tienda en línea y la facturación electrónica en seis semanas. Dejamos de digitar pedidos dos veces.',
-    name: 'Laura Castaño',
-    role: 'Gerente de operaciones',
-    company: 'Textiles Marea',
+    company: 'Importex',
+    logo: '/clientes/importex.png',
+    quote: '[Testimonio pendiente]',
+    name: '[Nombre]',
+    role: '[Cargo]',
   },
   {
     id: 6,
-    quote: 'Nos entregaron cada dos semanas algo que podíamos probar. Sabíamos en qué iba el proyecto y cuánto costaba en todo momento.',
-    name: 'Felipe Herrera',
-    role: 'Gerente general',
-    company: 'Logística Caribe Express',
+    company: 'CargoNet',
+    logo: '/clientes/cargonet.png',
+    quote: '[Testimonio pendiente]',
+    name: '[Nombre]',
+    role: '[Cargo]',
+  },
+  {
+    id: 7,
+    company: 'Templado',
+    quote: '[Testimonio pendiente]',
+    name: '[Nombre]',
+    role: '[Cargo]',
+  },
+  {
+    id: 8,
+    company: 'Carnes Santacruz',
+    logo: '/clientes/carnes-santacruz.png',
+    quote: '[Testimonio pendiente]',
+    name: '[Nombre]',
+    role: '[Cargo]',
+  },
+  {
+    id: 9,
+    company: 'Watertown',
+    logo: '/clientes/watertown.png',
+    quote: '[Testimonio pendiente]',
+    name: '[Nombre]',
+    role: '[Cargo]',
   },
 ];
 
@@ -401,5 +464,5 @@ export const contact = {
   whatsapp: '+57 304 288 2759',
   whatsappHref: 'https://wa.me/573042882759',
   email: 'comercial@e-me.co',
-  address: 'Calle 107 # 50-69, Barranquilla',
+  address: 'Calle 107 # 50-69, Hotel Sky Collection, oficina 1408, Barranquilla',
 };

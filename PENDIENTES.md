@@ -39,3 +39,8 @@ Ya no quedan corchetes en el sitio: todo lo que faltaba se llenó con datos de e
 - Recursos: los seis artículos aparecen como «Próximamente» hasta que estén escritos.
 - Casos: los filtros por industria y solución funcionan con los cuatro casos de ejemplo.
 - Industria Corporativo: logos oficiales de Brilla, PRB (ProBarranquilla), FIU y Cajacopi ya puestos; Almar, Monark, B-inner y Secosa siguen en texto porque no tienen sitio oficial verificable (pedir archivos).
+
+## Testimonios (los levanta el equipo de EME)
+- [ ] Textos, nombre y cargo de: Bicosa, Genial Foods, Country Club, Quirulaser, Importex, CargoNet, Templado, Carnes Santacruz, Watertown (en `src/data/content.ts` → `testimonials`)
+- [ ] Videos: agregar `video` con un .mp4 en `public/testimonios/` o un enlace de YouTube, y `poster` opcional con la portada
+- [ ] Logos de Genial Foods y Templado (hoy se muestra el nombre)

@@ -534,7 +534,7 @@ export const resourcesPage = {
 };
 
 export const diagnosticPage = {
-  seoTitle: 'Agenda un diagnóstico sin costo | EME Dev',
+  seoTitle: 'Diagnóstico gratis | EME Dev',
   seoDesc:
     'Cuéntanos qué quieres resolver. Agendamos una llamada de 30 minutos, sin costo y sin compromiso.',
   title: 'Cuéntanos qué quieres resolver',

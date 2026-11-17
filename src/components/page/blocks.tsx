@@ -36,7 +36,7 @@ export function PageHero({
   subtitle,
   visual,
   aside,
-  cta = 'Agenda un diagnóstico',
+  cta = 'Diagnóstico gratis',
   ctaHref = DIAGNOSTICO_HREF,
   secondary,
   compact = false,

@@ -638,7 +638,8 @@
 .footer__cols {
   grid-column: 6 / 13;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  /* La columna de contacto toma el ancho del teléfono para que quepa en una línea */
+  grid-template-columns: repeat(3, minmax(0, 1fr)) max-content;
   gap: var(--col-gap);
 }
 .footer__h {
@@ -657,71 +658,34 @@
 .footer__cols a:hover {
   color: var(--lime);
 }
-.footer__seals {
-  margin-top: var(--s-9);
-  padding-top: var(--s-6);
-  border-top: 1px solid var(--paper-08);
-  overflow: hidden;
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
-  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
-}
-.footer__seals-track {
-  display: flex;
-  width: max-content;
-  animation: seals-marquee 36s linear infinite;
-}
-.footer__seals:hover .footer__seals-track {
-  animation-play-state: paused;
-}
-.footer__seals-list {
-  display: flex;
-  flex: none;
-  gap: 12px;
-  padding-right: 12px;
-}
-.footer__seals-list li {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  padding: 14px 24px;
-  border: 1px solid var(--paper-14);
-  border-radius: var(--r-pill);
-  font-size: 1.0625rem;
+/* Número de WhatsApp siempre en una línea */
+.footer__phone {
   white-space: nowrap;
-  color: var(--paper-72);
 }
-.footer__seal-icon {
-  height: 24px;
-}
-@keyframes seals-marquee {
-  to {
-    transform: translateX(-50%);
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .footer__seals {
-    -webkit-mask-image: none;
-    mask-image: none;
-  }
-  .footer__seals-track {
-    width: auto;
-    animation: none !important;
-  }
-  .footer__seals-list {
-    flex-wrap: wrap;
-  }
-  .footer__seals-list[aria-hidden] {
-    display: none;
-  }
+.footer__address {
+  max-width: 24ch;
 }
 .footer__bottom {
+  margin-top: var(--s-9);
+  border-top: 1px solid var(--paper-08);
   display: flex;
   justify-content: space-between;
   gap: var(--s-4);
   flex-wrap: wrap;
   padding-block: var(--s-6);
 }
+/* «EME Dev» gigante como marca de agua detrás de la información */
+.footer > .container {
+  position: relative;
+  z-index: 1;
+}
 .footer__giant {
+  position: absolute;
+  inset-inline: 0;
+  top: 50%;
+  z-index: 0;
+  transform: translateY(-50%);
+  margin: 0;
   font-size: clamp(5rem, 1rem + 22vw, 24rem);
   font-weight: 600;
   letter-spacing: -0.07em;
@@ -729,7 +693,7 @@
   text-align: center;
   color: var(--paper-04);
   white-space: nowrap;
-  margin-bottom: -0.06em;
+  pointer-events: none;
   user-select: none;
 }
 .footer__giant span {
@@ -764,6 +728,9 @@
   .footer__cols {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     row-gap: var(--s-7);
+  }
+  .footer__cols > div:last-child {
+    grid-column: 1 / -1;
   }
   .preloader__meta .t-label {
     max-width: 14ch;

@@ -65,7 +65,7 @@ export function Metrics() {
           />
           <p className="metrics__proof" data-reveal="up">
             <strong>+15 años</strong> de experiencia y más de <strong>349 proyectos</strong> en
-            Latinoamérica y Estados Unidos con soluciones tecnológicas.
+            Latinoamérica y Estados Unidos con soluciones tecnológicas a la medida.
           </p>
         </div>
         <ul className="metrics__grid">
@@ -80,9 +80,6 @@ export function Metrics() {
 
         {/* Clientes de desarrollo */}
         <div className="clients" data-reveal="fade">
-          <p id="clients-title" className="clients__title t-label muted">
-            Clientes de desarrollo
-          </p>
           {/* Cinta infinita: la lista va dos veces para que el bucle no tenga corte */}
           <div className="clients__marquee">
             <div className="clients__track">
@@ -90,7 +87,7 @@ export function Metrics() {
                 <ul
                   key={copy}
                   className="clients__list"
-                  aria-labelledby={copy === 0 ? 'clients-title' : undefined}
+                  aria-label={copy === 0 ? 'Clientes de desarrollo' : undefined}
                   aria-hidden={copy === 1 || undefined}
                 >
                   {clients.map((c) => (

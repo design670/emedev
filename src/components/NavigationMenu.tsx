@@ -105,7 +105,7 @@ export function NavigationMenu({
             onClick={onClose}
             tabIndex={open ? 0 : -1}
           >
-            Agenda un diagnóstico sin costo <ArrowRight strokeWidth={1.5} aria-hidden="true" />
+            Diagnóstico gratis <ArrowRight strokeWidth={1.5} aria-hidden="true" />
           </a>
         </div>
       </div>

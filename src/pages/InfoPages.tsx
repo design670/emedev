@@ -265,7 +265,7 @@ export function DiagnosticPage() {
     <>
       <PageHero
         crumbs={[{ label: 'Diagnóstico' }]}
-        label="Diagnóstico sin costo"
+        label="Diagnóstico gratis"
         title={['Cuéntanos qué', { t: 'quieres resolver.', cls: 'hl' }]}
         subtitle={diagnosticPage.subtitle}
         cta={null}

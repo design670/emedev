@@ -1,14 +1,12 @@
 import { ArrowUpRight } from 'lucide-react';
-import { services, industries, partners, contact, DIAGNOSTICO_HREF } from '../data/content';
-import { PartnerIcon } from './PartnerIcon';
+import { services, industries, contact, DIAGNOSTICO_HREF } from '../data/content';
 import { Logo } from './ui';
 
 const unit = [
   { label: 'Casos', href: '/dev/casos' },
   { label: 'Proceso', href: '/dev/proceso' },
   { label: 'Seguridad y datos', href: '/dev/seguridad' },
-  { label: 'Equipo', href: '/dev/equipo' },
-  { label: 'Recursos', href: '/dev/recursos' },
+  { label: 'Blogs', href: '/dev/recursos' },
   { label: 'Diagnóstico', href: DIAGNOSTICO_HREF },
 ];
 
@@ -20,8 +18,8 @@ export function Footer() {
           <div className="footer__brand">
             <Logo />
             <p className="muted">
-              EME Dev es la unidad de tecnología de EME, compañía con 12 años de trayectoria y más
-              de 783 clientes.
+              EME Dev es la unidad de tecnología de EME, compañía con +15 años de trayectoria y más
+              de 346 proyectos y clientes.
             </p>
             <a className="footer__growth link-line" href="https://e-me.co" rel="noopener">
               EME Growth (marketing) <ArrowUpRight strokeWidth={1.5} aria-hidden="true" />
@@ -63,36 +61,17 @@ export function Footer() {
               <h2 className="footer__h t-label">Contacto</h2>
               <ul>
                 <li>
-                  <a href={contact.whatsappHref}>WhatsApp {contact.whatsapp}</a>
+                  <a href={contact.whatsappHref} className="footer__phone">
+                    WhatsApp {contact.whatsapp}
+                  </a>
                 </li>
                 <li>
                   <a href={`mailto:${contact.email}`}>{contact.email}</a>
                 </li>
-                <li className="muted">{contact.address}</li>
+                <li className="muted footer__address">{contact.address}</li>
               </ul>
             </div>
           </nav>
-        </div>
-
-        {/* Cinta infinita: la lista va dos veces para que el bucle no tenga corte */}
-        <div className="footer__seals">
-          <div className="footer__seals-track">
-            {[0, 1].map((copy) => (
-              <ul
-                key={copy}
-                className="footer__seals-list"
-                aria-label={copy === 0 ? 'Sellos de partner' : undefined}
-                aria-hidden={copy === 1 || undefined}
-              >
-                {partners.map((p) => (
-                  <li key={p}>
-                    <PartnerIcon name={p} className="partner-icon footer__seal-icon" />
-                    {p}
-                  </li>
-                ))}
-              </ul>
-            ))}
-          </div>
         </div>
 
         <div className="footer__bottom t-small muted">

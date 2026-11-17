@@ -162,9 +162,8 @@
   position: relative;
   z-index: 2;
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr);
   align-items: center;
-  gap: var(--s-6);
   margin-top: var(--s-9);
   padding-top: var(--s-6);
   border-top: 1px solid var(--ink-12);
@@ -249,8 +248,10 @@
   position: relative;
   display: grid;
   align-content: start;
+  justify-items: center;
   gap: var(--s-3);
   padding-top: var(--s-5);
+  text-align: center;
 }
 .metric__line {
   position: absolute;
@@ -276,7 +277,7 @@
   -webkit-text-stroke: 1px var(--ink-48);
 }
 .metric__label {
-  max-width: 22ch;
+  max-width: 24ch;
   color: var(--ink-64);
 }
 
@@ -939,91 +940,6 @@
   transform: rotate(-45deg) scale(1.06);
 }
 
-/* ---------- 10 · Productos propios ---------- */
-.products__head {
-  display: grid;
-  gap: var(--s-5);
-  margin-bottom: var(--s-8);
-}
-.products__title {
-  max-width: 17ch;
-}
-.products__grid {
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  column-gap: var(--col-gap);
-  row-gap: var(--s-7);
-}
-.product {
-  display: grid;
-  gap: var(--s-5);
-  align-content: start;
-}
-.product--apex {
-  grid-column: 1 / 7;
-}
-.product--tr {
-  grid-column: 7 / 13;
-}
-.product__media {
-  position: relative;
-  border-radius: var(--r-lg);
-  overflow: hidden;
-  background: var(--ink);
-}
-.product--apex .product__media,
-.product--tr .product__media {
-  aspect-ratio: 4 / 3;
-}
-.product__media-inner {
-  position: absolute;
-  inset: 0;
-}
-.product__info {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: var(--s-5);
-}
-.product__info p.muted {
-  max-width: 40ch;
-  margin-top: 6px;
-}
-.product__stat {
-  display: grid;
-  justify-items: end;
-  flex: none;
-}
-.product__stat .metric__value {
-  font-size: clamp(2.4rem, 2rem + 1.6vw, 3.6rem);
-}
-.products__why {
-  grid-column: 1 / 8;
-  display: grid;
-  gap: var(--s-5);
-  padding-top: var(--s-6);
-  border-top: 1px solid var(--ink-12);
-}
-.products__why .t-lead {
-  max-width: 36ch;
-}
-.products__list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-.products__list li {
-  padding: 10px 18px;
-  border-radius: var(--r-pill);
-  background: var(--ink);
-  color: var(--paper);
-  font-size: var(--fs-small);
-}
-.products__list li:first-child {
-  background: var(--lime);
-  color: var(--ink);
-}
-
 /* ---------- 11 · Confianza ---------- */
 .trust {
   padding-bottom: calc(var(--section-y) * 0.5);
@@ -1172,6 +1088,82 @@
   height: 40px;
   color: var(--ink);
   fill: var(--lime);
+}
+/* Cabecera de la tarjeta: comillas y logo del cliente */
+.tcard__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--s-4);
+}
+.tcard__logo {
+  display: block;
+  width: auto;
+  max-width: 140px;
+  height: 32px;
+  object-fit: contain;
+  filter: brightness(0);
+  opacity: 0.8;
+}
+.tcard:nth-child(even).is-active .tcard__logo {
+  filter: brightness(0) invert(1);
+}
+.tcard__company {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  opacity: 0.8;
+}
+/* Testimonio en video */
+.tcard.has-video {
+  gap: var(--s-5);
+}
+.tcard__video {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--r-md);
+  overflow: hidden;
+  background: var(--ink);
+}
+.tcard__video video,
+.tcard__video iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  object-fit: cover;
+}
+.tcard__play {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  background: var(--ink) center / cover no-repeat;
+  cursor: pointer;
+}
+.tcard__play-icon {
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--lime);
+  color: var(--ink);
+  transition: transform var(--t-base) var(--ease-out);
+}
+.tcard__play-icon svg {
+  width: 28px;
+  height: 28px;
+  margin-left: 3px;
+  fill: currentColor;
+}
+.tcard__play:hover .tcard__play-icon,
+.tcard__play:focus-visible .tcard__play-icon {
+  transform: scale(1.08);
+}
+.tcard.has-video .tcard__quote p {
+  font-size: clamp(1.15rem, 1rem + 0.6vw, 1.5rem);
 }
 .tcard__quote p {
   font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.4rem);
@@ -1323,14 +1315,19 @@
   row-gap: var(--s-6);
   align-items: end;
 }
+/* Texto y contacto apilados a la izquierda; botón redondo a la derecha */
 .cta__text {
   grid-column: 1 / 6;
+  grid-row: 1;
   max-width: 44ch;
 }
 .cta__contact {
-  grid-column: 6 / 9;
+  grid-column: 1 / 6;
+  grid-row: 2;
   display: grid;
+  justify-items: start;
   gap: 6px;
+  margin-top: calc(var(--s-4) - var(--s-6));
 }
 .cta__contact a {
   text-decoration: underline;
@@ -1339,6 +1336,8 @@
 }
 .cta__badge {
   grid-column: 9 / 13;
+  grid-row: 1 / 3;
+  align-self: center;
   justify-self: end;
   position: relative;
   display: grid;
@@ -1560,16 +1559,6 @@
   .pstep__card {
     margin-top: 0;
   }
-  .product--apex,
-  .product--tr,
-  .products__why {
-    grid-column: 1 / -1;
-    margin-top: 0;
-  }
-  .product--apex .product__media,
-  .product--tr .product__media {
-    aspect-ratio: 16 / 10;
-  }
   .trust__copy,
   .seals {
     grid-column: 1 / -1;
@@ -1677,13 +1666,6 @@
   }
   .cta__badge {
     display: none;
-  }
-  .product__info {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .product__stat {
-    justify-items: start;
   }
 }
 

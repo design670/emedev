@@ -13,7 +13,6 @@ import { ServiceList } from './components/ServiceList';
 import { CompanySize } from './components/CompanySize';
 import { CaseStudies } from './components/CaseStudies';
 import { ProcessSection } from './components/ProcessSection';
-import { OwnProducts } from './components/OwnProducts';
 import { Trust } from './components/Trust';
 import { Testimonials } from './components/Testimonials';
 import { FAQAccordion } from './components/FAQAccordion';
@@ -44,7 +43,7 @@ if (typeof window !== 'undefined' && !prefersReduced()) {
 function HomePage() {
   useMeta(
     'Desarrollo de software e IA a la medida | EME Dev',
-    'Agentes de IA, software, ERP, apps e integraciones para empresas. 12 años y más de 783 clientes. Agenda un diagnóstico sin costo.',
+    'Agentes de IA, software, ERP, apps e integraciones para empresas. 12 años y más de 783 clientes. Diagnóstico gratis.',
   );
   return (
     <>
@@ -55,7 +54,6 @@ function HomePage() {
       <CompanySize />
       <CaseStudies />
       <ProcessSection />
-      <OwnProducts />
       <Trust />
       <Testimonials />
       <FAQAccordion />
