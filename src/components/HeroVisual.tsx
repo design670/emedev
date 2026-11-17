@@ -111,11 +111,11 @@ export function HeroVisual() {
         const p = pts[i];
         if (p.lime) {
           const pulse = 0.5 + 0.5 * Math.sin(time * 0.003 + p.ph);
-          ctx.fillStyle = `rgba(253,244,139,${0.35 + depth * 0.65})`;
+          ctx.fillStyle = `rgba(235,255,0,${0.35 + depth * 0.65})`;
           ctx.beginPath();
           ctx.arc(proj[i * 3], proj[i * 3 + 1], 2.2 + depth * 2.2, 0, 6.283);
           ctx.fill();
-          ctx.strokeStyle = `rgba(253,244,139,${(1 - pulse) * 0.5 * depth})`;
+          ctx.strokeStyle = `rgba(235,255,0,${(1 - pulse) * 0.5 * depth})`;
           ctx.beginPath();
           ctx.arc(proj[i * 3], proj[i * 3 + 1], 4 + pulse * 10, 0, 6.283);
           ctx.stroke();
@@ -136,7 +136,7 @@ export function HeroVisual() {
         ctx.save();
         ctx.translate(ox, oy);
         ctx.rotate(ring.tilt + mx * 0.3);
-        ctx.strokeStyle = ring.lime ? 'rgba(253,244,139,0.5)' : 'rgba(255,255,255,0.14)';
+        ctx.strokeStyle = ring.lime ? 'rgba(235,255,0,0.5)' : 'rgba(255,255,255,0.14)';
         ctx.setLineDash(ring.lime ? [] : [2, 6]);
         ctx.beginPath();
         ctx.ellipse(0, 0, R * ring.r, R * ring.r * 0.26, 0, 0, 6.283);
@@ -146,7 +146,7 @@ export function HeroVisual() {
         const a = time * 0.0006 * ring.speed;
         const sxp = Math.cos(a) * R * ring.r,
           syp = Math.sin(a) * R * ring.r * 0.26;
-        ctx.fillStyle = ring.lime ? '#FDF48B' : '#FFFFFF';
+        ctx.fillStyle = ring.lime ? '#EBFF00' : '#FFFFFF';
         ctx.beginPath();
         ctx.arc(sxp, syp, ring.lime ? 4 : 2.5, 0, 6.283);
         ctx.fill();

@@ -1,16 +1,16 @@
 /* ==========================================================================
    EME Dev — Design tokens
-   Paleta cerrada: negro #0A0A0A · blanco #FFFFFF · lima #FDF48B
+   Paleta cerrada: negro #0A0A0A · blanco #FFFFFF · lima #EBFF00
    Las profundidades se construyen solo con opacidades de esos tres colores.
    ========================================================================== */
 :root {
   /* 12 · Color */
   --ink: #0a0a0a;
   --paper: #ffffff;
-  --lime: #fdf48b;
+  --lime: #ebff00;
   --ink-rgb: 10 10 10;
   --paper-rgb: 255 255 255;
-  --lime-rgb: 253 244 139;
+  --lime-rgb: 235 255 0;
 
   --ink-80: rgb(var(--ink-rgb) / 0.8);
   --ink-64: rgb(var(--ink-rgb) / 0.64);
