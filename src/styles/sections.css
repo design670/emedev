@@ -840,31 +840,25 @@
 }
 .process__track {
   display: flex;
+  align-items: stretch;
   gap: clamp(1.5rem, 3vw, 3.5rem);
   width: max-content;
   padding-right: var(--gutter);
   will-change: transform;
 }
+/* Tarjetas alineadas: misma altura y «Recibes» siempre abajo */
 .pstep {
   position: relative;
+  display: flex;
+  flex-direction: column;
   width: clamp(320px, 31vw, 460px);
-}
-.pstep__big {
-  position: absolute;
-  top: 0;
-  left: -0.05em;
-  font-size: clamp(5rem, 9vh + 2vw, 9.5rem);
-  line-height: 0.8;
-  letter-spacing: -0.07em;
-  color: var(--paper);
-  pointer-events: none;
 }
 .pstep__card {
   position: relative;
+  flex: 1;
   display: grid;
+  grid-template-rows: auto auto auto 1fr;
   gap: var(--s-4);
-  /* deja el número grande completo por encima de la tarjeta */
-  margin-top: calc(clamp(5rem, 9vh + 2vw, 9.5rem) * 0.8 + 1rem);
   padding: clamp(1.25rem, 2.6vh, 2rem);
   border-radius: var(--r-lg);
   background: #121212;
@@ -900,6 +894,7 @@
 .pstep__deliv {
   display: grid;
   gap: 6px;
+  align-self: end;
   margin-top: var(--s-3);
   padding: var(--s-4);
   border-radius: var(--r-sm);
@@ -1560,9 +1555,6 @@
     box-shadow: 0 0 0 4px var(--lime-24);
   }
   .pstep--end::before {
-    display: none;
-  }
-  .pstep__big {
     display: none;
   }
   .pstep__card {

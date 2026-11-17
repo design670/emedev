@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { ArrowRight } from 'lucide-react';
-import { processSteps } from '../data/content';
+import { processSteps, DIAGNOSTICO_HREF } from '../data/content';
 import { RevealText } from './ui';
 import { gsap, prefersReduced } from '../lib/motion';
 
@@ -106,10 +106,7 @@ export function ProcessSection() {
           </span>
           <ol className="process__track">
             {processSteps.map((s, i) => (
-              <li className={`pstep pstep--${i % 2 ? 'low' : 'high'}`} key={s.name}>
-                <span className="pstep__big" aria-hidden="true">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
+              <li className="pstep" key={s.name}>
                 <div className="pstep__card">
                   <div className="pstep__top">
                     <span className="pstep__num">Etapa {String(i + 1).padStart(2, '0')}</span>
@@ -125,8 +122,8 @@ export function ProcessSection() {
               </li>
             ))}
             <li className="pstep pstep--end">
-              <a href="/dev/proceso" className="pstep__endlink" data-cursor-label="VER">
-                <span className="t-h3">Conoce el proceso completo</span>
+              <a href={DIAGNOSTICO_HREF} className="pstep__endlink" data-cursor-label="AGENDAR">
+                <span className="t-h3">Agendar diagnóstico gratis</span>
                 <span className="pstep__endicon" aria-hidden="true">
                   <ArrowRight strokeWidth={1.5} />
                 </span>
