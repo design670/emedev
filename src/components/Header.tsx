@@ -4,6 +4,7 @@ import { navLinks, DIAGNOSTICO_HREF } from '../data/content';
 import { Button, Logo } from './ui';
 import { NavigationMenu, type MenuKey } from './NavigationMenu';
 import { MobileMenu } from './MobileMenu';
+import { LangSwitch } from './LangSwitch';
 import { getLenis, onReady, gsap, prefersReduced } from '../lib/motion';
 import { usePath, navigate, HOME } from '../lib/router';
 
@@ -117,6 +118,8 @@ export function Header() {
             ))}
           </ul>
         </nav>
+
+        <LangSwitch />
 
         <div className="header__cta">
           <Button href={DIAGNOSTICO_HREF} size="sm">
