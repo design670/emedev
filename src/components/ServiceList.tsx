@@ -33,11 +33,10 @@ export function ServiceList() {
           }}
         >
           <ol className="slist__items" data-reveal="stagger">
-            {services.map((s, i) => {
+            {services.map((s) => {
               const isActive = active === s.key;
               const inner = (
                 <>
-                  <span className="srow__num">{String(i + 1).padStart(2, '0')}</span>
                   <span className="srow__name">{s.name}</span>
                   <span className="srow__desc">{s.short}</span>
                   <span className="srow__arrow" aria-hidden="true">

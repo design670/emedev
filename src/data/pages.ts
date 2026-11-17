@@ -229,7 +229,7 @@ export const solutionPages: SolutionPage[] = [
   {
     slug: 'sitios-web',
     key: 'sitios',
-    name: 'Sitios web y landings',
+    name: 'Sitios web, e-commerce y landings',
     seoTitle: 'Diseño y desarrollo de páginas web | EME Dev',
     seoDesc:
       'Sitios corporativos, tiendas y landings rápidos, medibles y optimizados para Google y buscadores de IA.',

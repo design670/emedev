@@ -66,7 +66,7 @@ export const services: Service[] = [
   },
   {
     key: 'sitios',
-    name: 'Sitios web y landings',
+    name: 'Sitios web, e-commerce y landings',
     short: 'Sitios rápidos, medibles y pensados para convertir visitas en clientes.',
     href: '/dev/soluciones/sitios-web',
     tags: ['SEO técnico', 'Conversión', 'CMS'],
