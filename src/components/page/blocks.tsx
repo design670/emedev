@@ -276,11 +276,12 @@ export function HiringModels({ index, surface = 'on-light' }: { index: string; s
   return (
     <section className={`hiring section ${surface}`} aria-labelledby={`hiring-${index}`}>
       <div className="container">
-        <BlockHead index={index} label="Cómo se contrata" title={['Tres formas', 'de trabajar juntos.']} id={`hiring-${index}`}>
-          <a href="/dev/proceso" className="link-line" data-reveal="up">
+        <div className="hiring__head">
+          <BlockHead index={index} label="Cómo se contrata" title={['Tres formas', 'de trabajar juntos.']} id={`hiring-${index}`} />
+          <a href="/dev/proceso" className="link-line hiring__link" data-reveal="up">
             Conoce el proceso completo <ArrowRight strokeWidth={1.5} aria-hidden="true" />
           </a>
-        </BlockHead>
+        </div>
         <ol className="hiring__grid" data-reveal="stagger">
           {hiringModels.map((m, i) => (
             <li key={m.name} className={`hmodel hmodel--${i}`}>

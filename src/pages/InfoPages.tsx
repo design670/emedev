@@ -195,8 +195,8 @@ export function TeamPage() {
           <ul className="tcerts__list" data-reveal="stagger">
             {teamPage.certs.map((c) => (
               <li key={c}>
-                <PartnerIcon name={c} />
-                {c}
+                <PartnerIcon name={c} className="tcerts__icon" />
+                <span className="tcerts__name">{c}</span>
               </li>
             ))}
           </ul>

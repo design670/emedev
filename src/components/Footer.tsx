@@ -74,14 +74,26 @@ export function Footer() {
           </nav>
         </div>
 
-        <ul className="footer__seals" aria-label="Sellos de partner">
-          {partners.map((p) => (
-            <li key={p}>
-              <PartnerIcon name={p} />
-              {p}
-            </li>
-          ))}
-        </ul>
+        {/* Cinta infinita: la lista va dos veces para que el bucle no tenga corte */}
+        <div className="footer__seals">
+          <div className="footer__seals-track">
+            {[0, 1].map((copy) => (
+              <ul
+                key={copy}
+                className="footer__seals-list"
+                aria-label={copy === 0 ? 'Sellos de partner' : undefined}
+                aria-hidden={copy === 1 || undefined}
+              >
+                {partners.map((p) => (
+                  <li key={p}>
+                    <PartnerIcon name={p} className="partner-icon footer__seal-icon" />
+                    {p}
+                  </li>
+                ))}
+              </ul>
+            ))}
+          </div>
+        </div>
 
         <div className="footer__bottom t-small muted">
           <span>© {new Date().getFullYear()} EME. Todos los derechos reservados.</span>

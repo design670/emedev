@@ -244,6 +244,21 @@
 }
 
 /* ---------- Cómo se contrata ---------- */
+/* Título a la izquierda y enlace al proceso a la derecha, alineado abajo */
+.hiring__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--s-5) var(--s-6);
+  flex-wrap: wrap;
+  margin-bottom: var(--s-8);
+}
+.hiring__head .bhead {
+  margin-bottom: 0;
+}
+.hiring__link {
+  flex: none;
+}
 .hiring__grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -796,21 +811,29 @@
 .tcerts .bhead .t-lead {
   max-width: 34ch;
 }
+/* Logos sueltos, sin píldora: ícono grande y nombre debajo */
 .tcerts__list {
-  grid-column: 8 / 13;
-  display: flex;
-  flex-wrap: wrap;
+  grid-column: 7 / 13;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   align-content: start;
-  gap: 8px;
+  gap: var(--s-7) var(--s-5);
 }
 .tcerts__list li {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 18px;
-  border-radius: var(--r-pill);
-  background: var(--paper);
-  box-shadow: inset 0 0 0 1px var(--ink-12);
+  display: grid;
+  justify-items: start;
+  align-content: start;
+  gap: var(--s-3);
+}
+.tcerts__icon {
+  display: block;
+  width: auto;
+  height: 44px;
+}
+.tcerts__name {
+  font-size: 0.9375rem;
+  line-height: 1.3;
+  color: var(--ink-64);
 }
 
 /* ---------- Recursos ---------- */
@@ -1109,6 +1132,13 @@
   }
   .iproblem {
     min-height: 0;
+  }
+  .tcerts__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .tcerts__icon {
+    height: 36px;
+    max-width: 100%;
   }
   .team__grid {
     grid-template-columns: 1fr 1fr;
