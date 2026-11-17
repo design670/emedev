@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { metrics } from '../data/content';
+import { clients, metrics } from '../data/content';
 import { RevealText } from './ui';
 import { gsap, prefersReduced } from '../lib/motion';
 
@@ -47,9 +47,7 @@ export function MetricCounter({
     );
   return (
     <span className="metric__value" ref={ref}>
-      {prefix}
-      {value.toLocaleString('es-CO')}
-      {suffix}
+      {`${prefix}${value.toLocaleString('es-CO')}${suffix}`}
     </span>
   );
 }
@@ -65,6 +63,10 @@ export function Metrics() {
             className="t-h2 metrics__title"
             parts={['Experiencia que se traduce en', { t: 'resultados.', cls: 'mark' }]}
           />
+          <p className="metrics__proof" data-reveal="up">
+            <strong>+15 años</strong> de experiencia y más de <strong>349 proyectos</strong> en
+            Latinoamérica y Estados Unidos con soluciones tecnológicas.
+          </p>
         </div>
         <ul className="metrics__grid">
           {metrics.map((m, i) => (
@@ -75,6 +77,32 @@ export function Metrics() {
             </li>
           ))}
         </ul>
+
+        {/* Clientes de desarrollo */}
+        <div className="clients" data-reveal="fade">
+          <p id="clients-title" className="clients__title t-label muted">
+            Clientes de desarrollo
+          </p>
+          {/* Cinta infinita: la lista va dos veces para que el bucle no tenga corte */}
+          <div className="clients__marquee">
+            <div className="clients__track">
+              {[0, 1].map((copy) => (
+                <ul
+                  key={copy}
+                  className="clients__list"
+                  aria-labelledby={copy === 0 ? 'clients-title' : undefined}
+                  aria-hidden={copy === 1 || undefined}
+                >
+                  {clients.map((c) => (
+                    <li key={c.name}>
+                      {c.logo ? <img className="clients__logo" src={c.logo} alt={copy === 0 ? c.name : ''} /> : <span>{c.name}</span>}
+                    </li>
+                  ))}
+                </ul>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

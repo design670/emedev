@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { clients, DIAGNOSTICO_HREF } from '../data/content';
+import { DIAGNOSTICO_HREF } from '../data/content';
 import { Button, RevealText } from './ui';
 import { HeroVisual } from './HeroVisual';
 import { gsap, onReady, prefersReduced, ScrollTrigger } from '../lib/motion';
@@ -84,35 +84,19 @@ export function Hero() {
 
         <div className="hero__bottom">
           <p className="hero__sub t-lead" data-intro="up">
-            Construimos agentes de IA, sistemas de gestión, apps e integraciones para empresas que
-            ya probaron herramientas genéricas y necesitan algo que encaje con su forma de trabajar.
+            Construimos software con IA, agentes de IA, apps, webs, e-commerce e integraciones para
+            empresas que ya probaron herramientas genéricas y necesitan algo que encaje con su forma
+            de trabajar.
           </p>
           <div className="hero__ctas" data-intro="up">
-            <Button href={DIAGNOSTICO_HREF}>Agenda un diagnóstico sin costo</Button>
+            <Button href={DIAGNOSTICO_HREF}>Diagnóstico Gratuito</Button>
             <Button href="#casos" variant="ghost" icon={false}>
               Ver casos
             </Button>
           </div>
-          <p className="hero__proof" data-intro="up">
-            <strong>12 años</strong> y más de <strong>783 clientes</strong> en Latinoamérica y
-            Estados Unidos.
-          </p>
         </div>
       </div>
 
-      {/* SECCIÓN 03 — Clientes de desarrollo */}
-      <div className="clients container" data-intro="fade" aria-labelledby="clients-title">
-        <p id="clients-title" className="clients__title t-label muted">
-          Clientes de desarrollo
-        </p>
-        <ul className="clients__list">
-          {clients.map((c, i) => (
-            <li key={i}>
-              {c.logo ? <img className="clients__logo" src={c.logo} alt={c.name} loading="lazy" /> : <span>{c.name}</span>}
-            </li>
-          ))}
-        </ul>
-      </div>
     </section>
   );
 }

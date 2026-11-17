@@ -99,7 +99,6 @@ export const industries = [
 export const navLinks = [
   { label: 'Casos', href: '/dev/casos' },
   { label: 'Proceso', href: '/dev/proceso' },
-  { label: 'Equipo', href: '/dev/equipo' },
 ];
 
 export const DIAGNOSTICO_HREF = '/dev/diagnostico';
@@ -114,19 +113,31 @@ export const clientLogos: Record<string, string> = {
   FIU: '/clientes/fiu.png',
 };
 
+// Clientes de desarrollo (cinta bajo las cifras). Sin logo: se muestra el nombre (Genial Foods, Rapibox).
 export const clients: { name: string; logo?: string }[] = [
+  { name: 'Bicosa', logo: '/clientes/bicosa.png' },
+  { name: 'Quirulaser', logo: '/clientes/quirulaser.png' },
+  { name: 'Genial Foods' },
+  { name: 'Rapibox' },
+  { name: 'Tusim', logo: '/clientes/tusim.png' },
+  { name: 'Flexxi Credit', logo: '/clientes/flexxi-credit.png' },
+  { name: 'Carnes Santacruz', logo: '/clientes/carnes-santacruz.png' },
+  { name: 'Academia Sandra', logo: '/clientes/academia-sandra.png' },
+  { name: 'Sushi2go', logo: '/clientes/sushi2go.png' },
+  { name: 'Watertown', logo: '/clientes/watertown.png' },
+  { name: 'Importex', logo: '/clientes/importex.png' },
+  { name: 'CargoNet', logo: '/clientes/cargonet.png' },
   { name: 'Cajacopi', logo: '/clientes/cajacopi.svg' },
-  { name: 'Constructora H3' },
-  { name: 'Brilla', logo: '/clientes/brilla.png' },
-  { name: 'Almar' },
-  { name: 'Monark' },
+  { name: 'Country Club', logo: '/clientes/country-club.png' },
+  { name: 'Puerto de Barranquilla', logo: '/clientes/puerto-barranquilla.svg' },
+  { name: 'Soluzioni', logo: '/clientes/soluzioni.png' },
 ];
 
 export const metrics = [
-  { value: 120, prefix: '+', suffix: '', label: 'proyectos de software entregados' },
-  { value: 12, prefix: '', suffix: '', label: 'años construyendo tecnología para empresas' },
-  { value: 700, prefix: '+', suffix: '', label: 'empresas usan Achieve Apex, nuestro CRM con IA' },
-  { value: 25, prefix: '+', suffix: '', label: 'personas en el equipo de ingeniería y producto' },
+  { value: 147, prefix: '+', suffix: '', label: 'proyectos web y de software exitosos' },
+  { value: 15, prefix: '+', suffix: '', label: 'años de experiencia construyendo e implementando tecnología' },
+  { value: 350, prefix: '+', suffix: '', label: 'empresas en las que optimizamos procesos, tiempo y recursos' },
+  { value: 643, prefix: '+', suffix: '', label: 'usuarios utilizan nuestro CRM Apex' },
 ] as const;
 
 export const companySizes = [

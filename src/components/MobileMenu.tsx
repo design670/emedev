@@ -93,7 +93,7 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
         </ul>
         <div className="mmenu__foot">
           <Button href={DIAGNOSTICO_HREF} tabIndex={tab}>
-            Agenda un diagnóstico sin costo
+            Diagnóstico Gratuito
           </Button>
           <p className="muted t-small">
             <a href={contact.whatsappHref} tabIndex={tab}>

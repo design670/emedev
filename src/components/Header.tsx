@@ -120,7 +120,7 @@ export function Header() {
 
         <div className="header__cta">
           <Button href={DIAGNOSTICO_HREF} size="sm">
-            Agenda un diagnóstico
+            Diagnóstico Gratuito
           </Button>
         </div>
 

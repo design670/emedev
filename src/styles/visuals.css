@@ -26,7 +26,6 @@
   color: var(--ink-48);
 }
 .mega__visual .service-visual,
-.fpreview__item .service-visual,
 .case__media-inner .service-visual,
 .cdetail__media-inner .service-visual {
   height: 100%;

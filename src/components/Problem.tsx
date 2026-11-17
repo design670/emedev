@@ -80,17 +80,13 @@ export function Problem() {
 
           <div className="problem__text" data-reveal="up">
             <p>
-              En Colombia, el 42% de las empresas ya usa inteligencia artificial, pero solo el 12%
-              pasó de lo básico: la mayoría se quedó en un chatbot o en una herramienta comprada que
-              nadie conectó con el resto del negocio. La diferencia no está en la herramienta. Está
+              La mayoría se quedó en un chatbot o en una herramienta comprada que nadie conectó con
+              el resto del negocio. La diferencia no está en la herramienta. Está
               en tener los datos ordenados, los sistemas integrados y un equipo que sepa construir
               sobre eso.
             </p>
           </div>
           <RevealText as="p" className="problem__punch t-h3" parts={[{ t: 'Ahí entramos nosotros.', cls: 'hl' }]} />
-          <p className="problem__source t-small muted" data-reveal="fade">
-            Fuente: “Desbloqueando el potencial de la IA en Colombia 2026”, Strand Partners para AWS.
-          </p>
         </div>
 
         <figure className="problem__diagram" aria-hidden="true">

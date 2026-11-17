@@ -3,54 +3,7 @@ import { ArrowUpRight } from 'lucide-react';
 import { services, type ServiceKey } from '../data/content';
 import { SectionHeading } from './ui';
 import { ServiceVisual } from './ServiceVisual';
-import { gsap, isFinePointer, prefersReduced } from '../lib/motion';
-
-/* Imagen flotante que acompaña al cursor dentro de la lista de servicios. */
-export function FloatingImagePreview({
-  active,
-  visible,
-  boundsRef,
-}: {
-  active: ServiceKey | null;
-  visible: boolean;
-  boundsRef: React.RefObject<HTMLElement>;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    const bounds = boundsRef.current;
-    if (!el || !bounds) return;
-    const reduced = prefersReduced();
-    const xTo = gsap.quickTo(el, 'x', { duration: reduced ? 0.01 : 0.7, ease: 'power3.out' });
-    const yTo = gsap.quickTo(el, 'y', { duration: reduced ? 0.01 : 0.7, ease: 'power3.out' });
-    const rTo = gsap.quickTo(el, 'rotate', { duration: 0.9, ease: 'power3.out' });
-    let lastX = 0;
-    const move = (e: PointerEvent) => {
-      const r = bounds.getBoundingClientRect();
-      const x = e.clientX - r.left;
-      const y = e.clientY - r.top;
-      xTo(x + 36);
-      yTo(y - el.offsetHeight / 2);
-      if (!reduced) rTo(gsap.utils.clamp(-8, 8, (e.clientX - lastX) * 0.5));
-      lastX = e.clientX;
-    };
-    bounds.addEventListener('pointermove', move);
-    return () => bounds.removeEventListener('pointermove', move);
-  }, [boundsRef]);
-
-  return (
-    <div className={`fpreview${visible ? ' is-visible' : ''}`} ref={ref} aria-hidden="true">
-      <div className="fpreview__frame">
-        {services.map((s) => (
-          <div key={s.key} className={`fpreview__item${active === s.key ? ' is-active' : ''}`}>
-            <ServiceVisual k={s.key} />
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
+import { isFinePointer } from '../lib/motion';
 
 export function ServiceList() {
   const [active, setActive] = useState<ServiceKey | null>(null);
@@ -131,7 +84,6 @@ export function ServiceList() {
               );
             })}
           </ol>
-          {fine && <FloatingImagePreview active={active} visible={hovering && !!active} boundsRef={listRef} />}
         </div>
       </div>
     </section>
