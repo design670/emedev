@@ -206,9 +206,6 @@
   color: var(--paper);
   transition: transform var(--t-slow) var(--ease-out);
 }
-.header.is-hidden {
-  transform: translateY(-110%);
-}
 .header__bar {
   position: relative;
   z-index: 2;

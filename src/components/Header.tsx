@@ -11,25 +11,18 @@ export function Header() {
   const [menu, setMenu] = useState<MenuKey>(null);
   const [mobile, setMobile] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [hidden, setHidden] = useState(false);
   const path = usePath();
   useEffect(() => {
     setMenu(null);
     setMobile(false);
-    setHidden(false);
   }, [path]);
   const ref = useRef<HTMLElement>(null);
   const closeTimer = useRef<number>();
 
   // Estado según scroll: sólido al bajar, se oculta al bajar y vuelve al subir
   useEffect(() => {
-    let last = 0;
     const onScroll = (y: number) => {
       setScrolled(y > 40);
-      if (Math.abs(y - last) > 6) {
-        setHidden(y > last && y > 400);
-        last = y;
-      }
     };
     const lenis = getLenis();
     const handler = () => onScroll(window.scrollY);
@@ -94,7 +87,6 @@ export function Header() {
   const cls = [
     'header',
     scrolled && 'is-scrolled',
-    hidden && !menu && !mobile && 'is-hidden',
     menu && 'is-menu',
     mobile && 'is-mobile-open',
   ]
