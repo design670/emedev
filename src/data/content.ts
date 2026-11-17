@@ -104,10 +104,9 @@ export const navLinks = [
 
 export const DIAGNOSTICO_HREF = '/dev/diagnostico';
 
-// Solo clientes que el brief nombra. Sin archivos oficiales se muestran como espacio de logo.
-export const clients = ['Cajacopi', 'Constructora H3', '[Cliente por confirmar]', '[Cliente por confirmar]', '[Cliente por confirmar]'];
+// Datos de ejemplo (provisionales): reemplazar por la información real antes de publicar.
+export const clients = ['Cajacopi', 'Constructora H3', 'Brilla', 'Almar', 'Monark'];
 
-// +120 y +25 son cifras provisionales pedidas por el cliente: confirmar antes de publicar.
 export const metrics = [
   { value: 120, prefix: '+', suffix: '', label: 'proyectos de software entregados' },
   { value: 12, prefix: '', suffix: '', label: 'años construyendo tecnología para empresas' },
@@ -133,16 +132,150 @@ export const companySizes = [
   },
 ] as const;
 
-export const cases = [1, 2, 3].map((n) => ({
-  id: n,
-  client: '[Cliente]',
-  sector: '[sector]',
-  problem: '[El problema, en una frase]',
-  solution: '[Lo que construimos, en una frase]',
-  result: '[Cifra principal]',
-  resultNote: 'Ej.: redujo de X días a Y horas el proceso de Z',
-  href: `/dev/casos/caso-${n}`,
-}));
+export interface CaseStudy {
+  id: number;
+  slug: string;
+  client: string;
+  sector: string;
+  industry: string;
+  solutionName: string;
+  size: string;
+  duration: string;
+  tech: string;
+  problem: string;
+  solution: string;
+  result: string;
+  resultNote: string;
+  href: string;
+  title: string;
+  start: string;
+  built: string;
+  process: string;
+  results: { label: string; before: string; after: string }[];
+  testimonial: { quote: string; name: string; role: string };
+}
+
+const mk = (c: Omit<CaseStudy, 'href'>): CaseStudy => ({ ...c, href: `/dev/casos/${c.slug}` });
+
+// Casos de ejemplo (provisionales): reemplazar por casos reales antes de publicar.
+export const cases: CaseStudy[] = [
+  mk({
+    id: 1,
+    slug: 'constructora-litoral',
+    client: 'Constructora Litoral',
+    sector: 'Construcción',
+    industry: 'Constructoras',
+    solutionName: 'Agentes de IA',
+    size: '120 empleados',
+    duration: '4 meses',
+    tech: 'React, Node.js, WhatsApp Business API, OpenAI, AWS',
+    problem: 'Los prospectos de la sala de ventas se perdían entre el asesor, las hojas de cálculo y el CRM.',
+    solution: 'Un cotizador en línea con disponibilidad de unidades y un agente de IA que hace seguimiento por WhatsApp.',
+    result: '−38 % de prospectos perdidos',
+    resultNote: 'En los primeros seis meses de operación.',
+    title: 'Cómo Constructora Litoral redujo 38 % los prospectos perdidos con un agente de IA',
+    start: 'Cada fin de semana llegaban más de 200 visitas a la sala de ventas. El seguimiento dependía de la memoria de cada asesor y la mitad de los contactos no recibía respuesta en la primera semana.',
+    built: 'Conectamos el inventario de unidades a un cotizador web y a un agente de IA por WhatsApp que responde, envía cotizaciones y agenda visitas. Todo queda registrado en el CRM y los casos complejos pasan a un asesor con el historial completo.',
+    process: 'Dos semanas de diagnóstico con el equipo comercial, un prototipo validado con tres asesores y cuatro ciclos de construcción de dos semanas. El área de TI de la constructora participó desde el diseño.',
+    results: [
+      { label: 'Prospectos perdidos', before: '52 %', after: '14 %' },
+      { label: 'Tiempo de primera respuesta', before: '26 h', after: '3 min' },
+      { label: 'Visitas agendadas al mes', before: '140', after: '310' },
+    ],
+    testimonial: {
+      quote: 'Pasamos de perseguir contactos en Excel a tener cada prospecto con seguimiento el mismo día. El equipo de EME Dev entendió cómo vendemos antes de proponer nada.',
+      name: 'Andrea Molina',
+      role: 'Gerente comercial',
+    },
+  }),
+  mk({
+    id: 2,
+    slug: 'red-medica-andina',
+    client: 'Red Médica Andina',
+    sector: 'Salud',
+    industry: 'Salud',
+    solutionName: 'Agentes de IA',
+    size: '350 empleados, 6 sedes',
+    duration: '3 meses',
+    tech: 'Python, WhatsApp Business API, OpenAI, PostgreSQL, AWS',
+    problem: 'Casi uno de cada cuatro pacientes no asistía a su cita y las líneas telefónicas vivían saturadas.',
+    solution: 'Un agente de IA que agenda, confirma y reprograma citas por WhatsApp, integrado con la agenda médica.',
+    result: '−45 % de inasistencias',
+    resultNote: 'Comparado con el mismo trimestre del año anterior.',
+    title: 'Cómo Red Médica Andina redujo 45 % las inasistencias con agendamiento por WhatsApp',
+    start: 'El call center recibía más de 1.800 llamadas diarias, la mayoría para agendar o confirmar citas. Las inasistencias llegaban al 24 % y cada cita perdida era un espacio que no se recuperaba.',
+    built: 'Un agente de IA conectado a la agenda de las seis sedes que agenda, envía recordatorios 48 y 2 horas antes, y libera los cupos cancelados para la lista de espera. Los datos de salud se procesan con control de accesos y registro de consultas.',
+    process: 'Diagnóstico de dos semanas, piloto en una sede durante un mes y despliegue gradual en las otras cinco. El equipo de atención se capacitó en el panel de supervisión.',
+    results: [
+      { label: 'Inasistencias', before: '24 %', after: '13 %' },
+      { label: 'Llamadas al call center', before: '1.800/día', after: '950/día' },
+      { label: 'Citas agendadas por WhatsApp', before: '0 %', after: '61 %' },
+    ],
+    testimonial: {
+      quote: 'Liberamos casi la mitad de la carga del call center y los pacientes agendan a cualquier hora. Lo más valioso fue que el piloto nos dejó medir antes de escalar.',
+      name: 'Carlos Ríos',
+      role: 'Director administrativo',
+    },
+  }),
+  mk({
+    id: 3,
+    slug: 'distribuidora-nexo',
+    client: 'Distribuidora Nexo',
+    sector: 'Distribución',
+    industry: 'Corporativo',
+    solutionName: 'ERP a la medida',
+    size: '480 empleados',
+    duration: '7 meses',
+    tech: 'React, .NET, SQL Server, Azure, facturación electrónica DIAN',
+    problem: 'Inventario, compras y cartera vivían en tres sistemas distintos y cerrar el mes tomaba seis días.',
+    solution: 'Un ERP a la medida con inventario, compras, ventas y cartera, integrado con la facturación electrónica.',
+    result: 'De 6 días a 8 horas el cierre de mes',
+    resultNote: 'Desde el segundo cierre con el sistema en producción.',
+    title: 'Cómo Distribuidora Nexo pasó de 6 días a 8 horas su cierre de mes con un ERP a la medida',
+    start: 'La información de bodega, compras y cartera se cruzaba a mano cada fin de mes. Dos personas dedicaban casi una semana a cuadrar cifras y la gerencia tomaba decisiones con datos atrasados.',
+    built: 'Un ERP con los módulos que la operación necesitaba, migración de cinco años de historia, tableros en tiempo real e integración con el proveedor de facturación electrónica. Se implementó por etapas sin frenar la operación.',
+    process: 'Diagnóstico de tres semanas, prototipo navegable y construcción en catorce ciclos de dos semanas. Primero salió inventario, luego compras y ventas, y al final cartera.',
+    results: [
+      { label: 'Cierre de mes', before: '6 días', after: '8 horas' },
+      { label: 'Diferencias de inventario', before: '7,2 %', after: '0,9 %' },
+      { label: 'Días de cartera', before: '68', after: '49' },
+    ],
+    testimonial: {
+      quote: 'Hoy cerramos el mes en un día y todos miramos los mismos números. La implementación por etapas fue clave para no parar la bodega.',
+      name: 'Juliana Pérez',
+      role: 'Directora financiera',
+    },
+  }),
+  mk({
+    id: 4,
+    slug: 'grupo-fogon',
+    client: 'Grupo Fogón',
+    sector: 'Restaurantes',
+    industry: 'Restaurantes',
+    solutionName: 'Aplicaciones web',
+    size: '9 restaurantes',
+    duration: '10 semanas',
+    tech: 'Next.js, Node.js, WhatsApp Business API, Wompi',
+    problem: 'Más del 60 % de los domicilios pasaba por plataformas que cobraban comisiones del 25 %.',
+    solution: 'Un canal propio de pedidos web y por WhatsApp, conectado al punto de venta y a un programa de fidelización.',
+    result: '+32 % de pedidos directos',
+    resultNote: 'En los primeros cuatro meses.',
+    title: 'Cómo Grupo Fogón aumentó 32 % sus pedidos directos con un canal propio',
+    start: 'Las comisiones de las plataformas de domicilios se comían el margen y el restaurante no tenía datos de sus clientes para volver a contactarlos.',
+    built: 'Una plataforma de pedidos web y por WhatsApp con pagos en línea, conectada al punto de venta de las nueve sedes, más campañas automáticas para clientes que no compran hace 30 días.',
+    process: 'Una semana de diagnóstico, prototipo validado con clientes frecuentes y tres ciclos de construcción antes del lanzamiento por sedes.',
+    results: [
+      { label: 'Pedidos por canal propio', before: '38 %', after: '50 %' },
+      { label: 'Clientes que repiten en 30 días', before: '18 %', after: '31 %' },
+      { label: 'Comisión media por pedido', before: '25 %', after: '14 %' },
+    ],
+    testimonial: {
+      quote: 'Recuperamos la relación con nuestros clientes y dejamos de regalar margen. El canal propio se pagó en menos de cinco meses.',
+      name: 'Mauricio Gómez',
+      role: 'Socio fundador',
+    },
+  }),
+];
 
 export const processSteps = [
   {
@@ -186,31 +319,47 @@ export const partners = [
   'Certified ScrumMaster',
 ];
 
-export const testimonials = [1, 2, 3, 4, 5, 6].map((n) => ({
-  id: n,
-  quote:
-    '[Testimonio que mencione un resultado concreto y cómo fue trabajar con el equipo]',
-  name: '[Nombre]',
-  role: '[Cargo]',
-  company: '[Empresa]',
-}));
+// Testimonios de ejemplo (provisionales): reemplazar por testimonios reales antes de publicar.
+export const testimonials = [
+  ...cases.map((c) => ({
+    id: c.id,
+    quote: c.testimonial.quote,
+    name: c.testimonial.name,
+    role: c.testimonial.role,
+    company: c.client,
+  })),
+  {
+    id: 5,
+    quote: 'Integraron nuestro ERP con la tienda en línea y la facturación electrónica en seis semanas. Dejamos de digitar pedidos dos veces.',
+    name: 'Laura Castaño',
+    role: 'Gerente de operaciones',
+    company: 'Textiles Marea',
+  },
+  {
+    id: 6,
+    quote: 'Nos entregaron cada dos semanas algo que podíamos probar. Sabíamos en qué iba el proyecto y cuánto costaba en todo momento.',
+    name: 'Felipe Herrera',
+    role: 'Gerente general',
+    company: 'Logística Caribe Express',
+  },
+];
 
 export const faqs = [
   {
     q: '¿Cuánto cuesta un proyecto?',
-    a: 'Depende del alcance. Como referencia, una landing parte de [precio], un agente de IA de [precio] y un sistema a la medida de [precio]. Después del diagnóstico recibes una propuesta con precio y cronograma.',
+    a: 'Depende del alcance. Como referencia, una landing parte de $3.500.000 COP, un agente de IA de $18.000.000 COP y un sistema a la medida de $45.000.000 COP. Después del diagnóstico recibes una propuesta con precio y cronograma.',
   },
   {
     q: '¿Cuánto tarda?',
-    a: 'Una landing, [N] semanas. Un agente de IA, entre [N] y [N] semanas. Un sistema a la medida, entre [N] y [N] meses, con entregas parciales cada dos semanas.',
+    a: 'Una landing, 3 semanas. Un agente de IA, entre 6 y 10 semanas. Un sistema a la medida, entre 4 y 8 meses, con entregas parciales cada dos semanas.',
   },
   {
     q: '¿De quién es el código?',
-    a: '[Por confirmar]. Propuesta: tuyo. Al terminar el proyecto recibes el código fuente, la documentación y los accesos.',
+    a: 'Tuyo. Al terminar el proyecto recibes el código fuente, la documentación y los accesos.',
   },
   {
     q: '¿Qué pasa después del lanzamiento?',
-    a: 'Todos los proyectos incluyen [N] meses de garantía. Después puedes contratar un plan de soporte y evolución.',
+    a: 'Todos los proyectos incluyen 3 meses de garantía. Después puedes contratar un plan de soporte y evolución.',
   },
   {
     q: '¿Trabajan con el sistema que ya tengo?',

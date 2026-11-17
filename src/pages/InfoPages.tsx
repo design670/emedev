@@ -5,6 +5,8 @@ import { contact } from '../data/content';
 import { PageHero, BlockHead, HiringModels } from '../components/page/blocks';
 import { CTASection } from '../components/CTASection';
 import { Button, WithPlaceholders } from '../components/ui';
+import { ImagePlaceholder } from '../components/ServiceVisual';
+import { MetricCounter } from '../components/Metrics';
 import { useMeta } from '../lib/router';
 
 /* ------------------------------------------------------------------ */
@@ -24,11 +26,7 @@ export function ProcessPage() {
 
       <section className="stages section on-light" aria-labelledby="stages-title">
         <div className="container">
-          <BlockHead index="01" label="Las cinco etapas" title={['De la primera reunión', { t: 'al sistema en uso.', cls: 'mark' }]} id="stages-title">
-            <p className="t-small muted" data-reveal="up">
-              Plazos de referencia <em className="ph">[confirmar]</em>
-            </p>
-          </BlockHead>
+          <BlockHead index="01" label="Las cinco etapas" title={['De la primera reunión', { t: 'al sistema en uso.', cls: 'mark' }]} id="stages-title" />
           <ol className="stages__list">
             {processPage.stages.map((s, i) => (
               <li key={s.name} className="stage" data-reveal="up">
@@ -156,18 +154,16 @@ export function TeamPage() {
             {teamPage.people.map((p, i) => (
               <li key={i} className="person">
                 <div className="person__photo">
-                  <span className="t-label">[Foto real]</span>
+                  <ImagePlaceholder n={14 + i} />
                 </div>
-                <h3 className="t-h4">
-                  <em className="ph">{p.name}</em>
-                </h3>
+                <h3 className="t-h4">{p.name}</h3>
                 <p className="person__role">{p.role}</p>
                 <p className="muted t-small">
                   <WithPlaceholders text={p.bio} />
                 </p>
-                <span className="link-line person__in">
-                  LinkedIn <em className="ph">[enlace]</em> <ArrowUpRight strokeWidth={1.5} aria-hidden="true" />
-                </span>
+                <a className="link-line person__in" href="https://www.linkedin.com/" target="_blank" rel="noopener">
+                  LinkedIn <ArrowUpRight strokeWidth={1.5} aria-hidden="true" />
+                </a>
               </li>
             ))}
           </ul>
@@ -179,9 +175,9 @@ export function TeamPage() {
           <BlockHead index="02" label="El equipo en cifras" title={['El equipo', { t: 'en cifras.', cls: 'hl' }]} id="tnums-title" />
           <ul className="tnums__grid" data-reveal="stagger">
             {teamPage.numbers.map((n) => (
-              <li key={n}>
-                <span className="metric__value is-ph">[N]</span>
-                <span className="muted">{n}</span>
+              <li key={n.label}>
+                <MetricCounter value={n.value} />
+                <span className="muted">{n.label}</span>
               </li>
             ))}
           </ul>
@@ -367,13 +363,14 @@ export function DiagnosticPage() {
                   </select>
                 </label>
                 <label className="field">
-                  <span>
-                    Presupuesto aproximado <em className="ph">[rangos]</em>
-                  </span>
+                  <span>Presupuesto aproximado</span>
                   <select name="presupuesto" defaultValue="">
                     <option value="" disabled>
-                      [Rangos por definir]
+                      Selecciona
                     </option>
+                    {diagnosticPage.budgets.map((b) => (
+                      <option key={b}>{b}</option>
+                    ))}
                   </select>
                 </label>
               </div>

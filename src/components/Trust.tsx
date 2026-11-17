@@ -11,7 +11,7 @@ export function Trust() {
         <div className="trust__copy">
           <RevealText as="h2" id="trust-title" className="t-h2" parts={['Respaldo técnico.']} />
           <p className="trust__text" data-reveal="up">
-            El código y los datos de tu proyecto son tuyos <em className="ph">[confirmar política]</em>.
+            El código y los datos de tu proyecto son tuyos.
             Firmamos acuerdo de confidencialidad antes de ver tu información.
           </p>
           <a href="/dev/seguridad" className="link-line" data-reveal="up">

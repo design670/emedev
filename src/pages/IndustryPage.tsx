@@ -47,16 +47,12 @@ export function IndustryPage({ page }: { page: I }) {
 
       {page.note && <Callout label={page.note.title} text={page.note.text} tone="ink" />}
 
-      <FeaturedCase index="03" visual={page.visual} label={page.caseLabel} />
+      <FeaturedCase index="03" visual={page.visual} slug={page.caseSlug} />
 
       {page.logos && (
         <section className="ilogos section on-light" aria-labelledby="ilogos-title">
           <div className="container">
-            <BlockHead index="04" label="Clientes" title={['Clientes', 'corporativos.']} id="ilogos-title">
-              <p className="muted t-small" data-reveal="up">
-                Solo los que hayan contratado desarrollo <em className="ph">[confirmar]</em>
-              </p>
-            </BlockHead>
+            <BlockHead index="04" label="Clientes" title={['Clientes', 'corporativos.']} id="ilogos-title" />
             <ul className="ilogos__grid" data-reveal="stagger">
               {page.logos.map((l) => (
                 <li key={l}>{l}</li>

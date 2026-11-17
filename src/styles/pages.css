@@ -721,17 +721,15 @@
   align-content: start;
   gap: var(--s-2);
 }
-.person:nth-child(even) {
-  margin-top: var(--s-8);
-}
 .person__photo {
+  position: relative;
+  overflow: hidden;
   display: grid;
   place-items: center;
   aspect-ratio: 4 / 5;
   margin-bottom: var(--s-3);
   border-radius: var(--r-lg);
   background: var(--surface);
-  border: 1px dashed var(--ink-12);
   color: var(--ink-48);
 }
 .person__role {
@@ -1048,9 +1046,6 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .iproblem:nth-child(even) {
-    margin-top: 0;
-  }
-  .person:nth-child(even) {
     margin-top: 0;
   }
   .stage {

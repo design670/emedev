@@ -237,9 +237,22 @@ export function Callout({ label, text, tone = 'lime' }: { label: string; text: s
   );
 }
 
-/* Caso destacado con formato fijo (placeholders hasta tener datos reales) */
-export function FeaturedCase({ index, visual, label }: { index: string; visual: ServiceKey; label?: string }) {
-  const c = label ? { ...cases[0], client: label, sector: '' } : cases[0];
+/* Caso destacado: por slug (industrias) o por solución (páginas de solución) */
+export function FeaturedCase({
+  index,
+  visual,
+  slug,
+  solutionName,
+}: {
+  index: string;
+  visual: ServiceKey;
+  slug?: string;
+  solutionName?: string;
+}) {
+  const c =
+    cases.find((x) => x.slug === slug) ??
+    cases.find((x) => x.solutionName === solutionName) ??
+    cases[0];
   return (
     <section className="fcase section on-surface" aria-labelledby={`fcase-${index}`}>
       <div className="container">
@@ -252,7 +265,7 @@ export function FeaturedCase({ index, visual, label }: { index: string; visual: 
           </div>
         </div>
         <div className="fcase__card">
-          <CaseStudyCard c={{ ...c, sector: c.sector || '[sector]' }} visual={visual} size="lg" />
+          <CaseStudyCard c={c} visual={visual} size="lg" />
         </div>
       </div>
     </section>

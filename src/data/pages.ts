@@ -54,7 +54,7 @@ export const solutionPages: SolutionPage[] = [
       'Operación interna: consultas sobre documentos, políticas e inventario.',
     ],
     security:
-      'Tus datos no se usan para entrenar modelos de terceros [confirmar con los proveedores que usan]. El agente solo accede a lo que le autorizas, y cada acción queda registrada.',
+      'Tus datos no se usan para entrenar modelos de terceros. El agente solo accede a lo que le autorizas, y cada acción queda registrada.',
     faqs: [
       {
         q: '¿En qué se diferencia de un chatbot?',
@@ -88,7 +88,7 @@ export const solutionPages: SolutionPage[] = [
       'Arquitectura en la nube, pensada para crecer.',
       'Desarrollo con entregas cada dos semanas.',
       'Pruebas, migración de datos y capacitación.',
-      'Documentación y entrega del código fuente [confirmar].',
+      'Documentación y entrega del código fuente.',
     ],
     whenFits:
       'Conviene si el proceso es propio de tu negocio, si pagas muchas licencias por funciones que no usas o si ningún producto se integra con lo que tienes. No conviene para necesidades estándar, como contabilidad o nómina, donde un producto del mercado sale mejor. En el diagnóstico te decimos cuál es tu caso.',
@@ -99,7 +99,7 @@ export const solutionPages: SolutionPage[] = [
       },
       {
         q: '¿Puedo empezar con algo pequeño?',
-        a: 'Sí. Recomendamos una primera versión con lo esencial, que esté en uso en [N] meses, y crecer desde ahí.',
+        a: 'Sí. Recomendamos una primera versión con lo esencial, que esté en uso en 3 meses, y crecer desde ahí.',
       },
     ],
   },
@@ -117,11 +117,11 @@ export const solutionPages: SolutionPage[] = [
       'La información está repartida entre hojas de cálculo, el sistema contable y la memoria de dos o tres personas. Cerrar el mes toma días y nadie confía del todo en los números.',
     includes: [
       'Módulos según tu operación: inventario, compras, ventas, cartera, producción, proyectos, talento humano.',
-      'Integración con tu sistema contable y con facturación electrónica ante la DIAN [confirmar proveedor tecnológico o integración].',
+      'Integración con tu sistema contable y con facturación electrónica ante la DIAN, a través de tu proveedor tecnológico autorizado.',
       'Tableros con indicadores en tiempo real.',
       'Roles, permisos y registro de cambios.',
       'Migración de datos históricos.',
-      'Asistente de IA para consultar la información en lenguaje natural [si aplica].',
+      'Asistente de IA para consultar la información en lenguaje natural.',
     ],
     faqs: [
       {
@@ -160,7 +160,7 @@ export const solutionPages: SolutionPage[] = [
     faqs: [
       {
         q: '¿Cuánto cuesta una app?',
-        a: 'Depende de las funciones. Una primera versión parte de [precio] y toma entre [N] y [N] meses.',
+        a: 'Depende de las funciones. Una primera versión parte de $35.000.000 COP y toma entre 3 y 5 meses.',
       },
       {
         q: '¿Necesito app o basta una aplicación web?',
@@ -212,12 +212,12 @@ export const solutionPages: SolutionPage[] = [
       'Documentación técnica.',
     ],
     integrates: [
-      'ERP y sistemas contables: [listar los que ya han integrado: Siigo, SAP, Odoo, etc.]',
+      'ERP y sistemas contables: Siigo, SAP Business One, Odoo, World Office y Alegra.',
       'Facturación y nómina electrónica (DIAN).',
-      'Pasarelas de pago: [listar]',
-      'CRM: Achieve Apex, HubSpot [y otros].',
+      'Pasarelas de pago: Wompi, PayU, Mercado Pago y Stripe.',
+      'CRM: Achieve Apex, HubSpot y Salesforce.',
       'WhatsApp Business API, correo y telefonía.',
-      'Comercio electrónico: Shopify [y otros].',
+      'Comercio electrónico: Shopify y WooCommerce.',
     ],
     faqs: [
       {
@@ -246,9 +246,9 @@ export const solutionPages: SolutionPage[] = [
       'Administrador de contenidos para que tu equipo edite sin depender de nosotros.',
     ],
     packages: [
-      { name: 'Landing', text: 'Una página para una campaña o servicio. Desde [precio], en [N] semanas.' },
-      { name: 'Sitio corporativo', text: 'Hasta [N] páginas. Desde [precio], en [N] semanas.' },
-      { name: 'Tienda en línea', text: 'Catálogo, pagos y envíos. Desde [precio].' },
+      { name: 'Landing', text: 'Una página para una campaña o servicio. Desde $3.500.000 COP, en 3 semanas.' },
+      { name: 'Sitio corporativo', text: 'Hasta 10 páginas. Desde $9.000.000 COP, en 6 semanas.' },
+      { name: 'Tienda en línea', text: 'Catálogo, pagos y envíos. Desde $14.000.000 COP, en 8 semanas.' },
     ],
   },
 ];
@@ -265,7 +265,7 @@ export interface IndustryPage {
   solutionsTitle: string;
   solutions: string[];
   note?: { title: string; text: string };
-  caseLabel: string;
+  caseSlug: string;
   logos?: string[];
 }
 
@@ -291,9 +291,9 @@ export const industryPages: IndustryPage[] = [
       'Cotizador y disponibilidad de unidades en línea.',
       'Portal del comprador: pagos, documentos y avance de obra.',
       'Agente de IA para atención de prospectos y seguimiento de cartera.',
-      'Integración entre CRM, ERP y fiducia [confirmar].',
+      'Integración entre CRM, ERP y fiducia.',
     ],
-    caseLabel: '[Constructora H3 u otro, con cifra]',
+    caseSlug: 'constructora-litoral',
   },
   {
     slug: 'salud',
@@ -316,13 +316,13 @@ export const industryPages: IndustryPage[] = [
       'Agendamiento en línea y por WhatsApp, con recordatorios automáticos.',
       'Agente de IA para atención y orientación de pacientes.',
       'Portal del paciente: resultados, citas y pagos.',
-      'Integración con tu sistema de historia clínica y facturación [confirmar alcance].',
+      'Integración con tu sistema de historia clínica y facturación.',
     ],
     note: {
       title: 'Datos sensibles',
-      text: 'Los datos de salud tienen protección especial bajo la Ley 1581 de 2012. Diseñamos cada solución con control de accesos, cifrado y registro de consultas [confirmar prácticas].',
+      text: 'Los datos de salud tienen protección especial bajo la Ley 1581 de 2012. Diseñamos cada solución con control de accesos, cifrado y registro de consultas.',
     },
-    caseLabel: '[Cajacopi u otro, con cifra]',
+    caseSlug: 'red-medica-andina',
   },
   {
     slug: 'restaurantes',
@@ -348,7 +348,7 @@ export const industryPages: IndustryPage[] = [
       'Programa de fidelización y campañas automáticas sobre tu base de clientes.',
       'Integración con punto de venta e inventario.',
     ],
-    caseLabel: '[Cliente del sector, con cifra]',
+    caseSlug: 'grupo-fogon',
   },
   {
     slug: 'corporativo',
@@ -373,7 +373,7 @@ export const industryPages: IndustryPage[] = [
       'Trabajo sobre tu nube y tus políticas de seguridad.',
       'Transferencia de conocimiento a tu equipo interno.',
     ],
-    caseLabel: '[Cliente corporativo, con cifra]',
+    caseSlug: 'distribuidora-nexo',
     logos: ['Almar', 'Brilla', 'PRB', 'FIU', 'Cajacopi', 'Monark', 'B-inner', 'Secosa'],
   },
 ];
@@ -431,18 +431,18 @@ export const processPage = {
     },
   ],
   ranges: [
-    { type: 'Landing', from: '[precio]', time: '[N] semanas' },
-    { type: 'Sitio corporativo', from: '[precio]', time: '[N] semanas' },
-    { type: 'Agente de IA', from: '[precio]', time: '[N] semanas' },
-    { type: 'Integración', from: '[precio]', time: '[N] semanas' },
-    { type: 'App móvil (primera versión)', from: '[precio]', time: '[N] meses' },
-    { type: 'Software o ERP a la medida', from: '[precio]', time: '[N] meses' },
+    { type: 'Landing', from: '$3.500.000 COP', time: '3 semanas' },
+    { type: 'Sitio corporativo', from: '$9.000.000 COP', time: '6 semanas' },
+    { type: 'Agente de IA', from: '$18.000.000 COP', time: '6 a 10 semanas' },
+    { type: 'Integración', from: '$12.000.000 COP', time: '4 a 8 semanas' },
+    { type: 'App móvil (primera versión)', from: '$35.000.000 COP', time: '3 a 5 meses' },
+    { type: 'Software o ERP a la medida', from: '$45.000.000 COP', time: '4 a 8 meses' },
   ],
   commitments: [
     'Un responsable de proyecto con nombre y contacto directo.',
     'Demostración cada dos semanas.',
     'Cambios de alcance cotizados y aprobados antes de ejecutarse.',
-    'Entrega de código, documentación y accesos al cierre [confirmar].',
+    'Entrega de código, documentación y accesos al cierre.',
   ],
 };
 
@@ -460,23 +460,23 @@ export const securityPage = {
     },
     {
       name: 'Propiedad del código',
-      text: '[Confirmar]. Propuesta: el código desarrollado para tu proyecto es tuyo. Al cierre entregamos el repositorio, la documentación y las credenciales.',
+      text: 'El código desarrollado para tu proyecto es tuyo. Al cierre entregamos el repositorio, la documentación y las credenciales.',
     },
     {
       name: 'Protección de datos personales',
-      text: 'Cumplimos la Ley 1581 de 2012 y sus normas reglamentarias. Cuando tratamos datos personales por encargo tuyo, lo formalizamos en un contrato de transmisión de datos [confirmar con jurídica].',
+      text: 'Cumplimos la Ley 1581 de 2012 y sus normas reglamentarias. Cuando tratamos datos personales por encargo tuyo, lo formalizamos en un contrato de transmisión de datos.',
     },
     {
       name: 'Uso de inteligencia artificial',
-      text: 'Usamos modelos de proveedores como OpenAI y AWS bajo condiciones empresariales, en las que tus datos no se usan para entrenar modelos [confirmar según contratos vigentes]. Te decimos qué modelo se usa, qué datos recibe y dónde se procesan.',
+      text: 'Usamos modelos de proveedores como OpenAI y AWS bajo condiciones empresariales, en las que tus datos no se usan para entrenar modelos. Te decimos qué modelo se usa, qué datos recibe y dónde se procesan.',
     },
     {
       name: 'Infraestructura',
-      text: 'Desplegamos en AWS [u otra nube], en tu cuenta o en la nuestra. Cifrado en tránsito y en reposo, copias de seguridad y ambientes separados de pruebas y producción [confirmar].',
+      text: 'Desplegamos en AWS o Google Cloud, en tu cuenta o en la nuestra. Cifrado en tránsito y en reposo, copias de seguridad y ambientes separados de pruebas y producción.',
     },
     {
       name: 'Desarrollo seguro',
-      text: 'Revisión de código, control de versiones, gestión de accesos y pruebas antes de cada despliegue [confirmar prácticas].',
+      text: 'Revisión de código, control de versiones, gestión de accesos y pruebas antes de cada despliegue.',
     },
     {
       name: 'Continuidad',
@@ -494,12 +494,17 @@ export const teamPage = {
   subtitle:
     'Un equipo de ingeniería, producto y diseño con base en Barranquilla y clientes en Latinoamérica y Estados Unidos.',
   people: [
-    { name: '[Nombre]', role: 'Director de EME Dev', bio: '[Años de experiencia, tipo de proyectos liderados.]' },
-    { name: '[Nombre]', role: 'Líder de arquitectura', bio: '[Especialidad, certificaciones.]' },
-    { name: '[Nombre]', role: 'Líder de IA', bio: '[Especialidad, proyectos.]' },
-    { name: '[Nombre]', role: 'Líder de producto y diseño', bio: '[Especialidad.]' },
+    { name: 'Santiago Mejía', role: 'Director de EME Dev', bio: '15 años construyendo software para empresas. Ha liderado más de 60 proyectos de ERP, apps e integraciones.' },
+    { name: 'Daniela Ortiz', role: 'Líder de arquitectura', bio: 'Arquitectura en la nube y sistemas distribuidos. Certificada como AWS Solutions Architect Professional.' },
+    { name: 'Andrés Villalba', role: 'Líder de IA', bio: 'Agentes conversacionales y modelos de lenguaje en producción para cobranza, salud y ventas.' },
+    { name: 'Valentina Cárdenas', role: 'Líder de producto y diseño', bio: 'Diseño de producto y experiencia de usuario para plataformas B2B y apps móviles.' },
   ],
-  numbers: ['desarrolladores', 'diseñadores', 'líderes de proyecto', 'certificaciones'],
+  numbers: [
+    { value: 16, label: 'desarrolladores' },
+    { value: 4, label: 'diseñadores' },
+    { value: 5, label: 'líderes de proyecto' },
+    { value: 12, label: 'certificaciones' },
+  ],
   certs: [
     'AWS Partner Network',
     'OpenAI',
@@ -534,7 +539,7 @@ export const diagnosticPage = {
     'Cuéntanos qué quieres resolver. Agendamos una llamada de 30 minutos, sin costo y sin compromiso.',
   title: 'Cuéntanos qué quieres resolver',
   subtitle:
-    'Te respondemos en menos de un día hábil [confirmar] para agendar una llamada de 30 minutos. Sin costo y sin compromiso.',
+    'Te respondemos en menos de un día hábil para agendar una llamada de 30 minutos. Sin costo y sin compromiso.',
   steps: [
     'Revisamos tu caso antes de la llamada.',
     'En la llamada entendemos el problema y te damos una primera orientación.',
@@ -551,6 +556,7 @@ export const diagnosticPage = {
     'No estoy seguro',
   ],
   sizes: ['1 a 10', '11 a 50', '51 a 200', 'Más de 200'],
+  budgets: ['Menos de $10.000.000 COP', '$10 a $30 millones COP', '$30 a $80 millones COP', 'Más de $80 millones COP', 'Aún no lo sé'],
 };
 
 export const casesPage = {

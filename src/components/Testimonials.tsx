@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { ArrowLeft, ArrowRight, Quote } from 'lucide-react';
 import { testimonials } from '../data/content';
-import { RevealText, WithPlaceholders } from './ui';
+import { RevealText, WithPlaceholders, initials } from './ui';
 import { gsap, prefersReduced } from '../lib/motion';
 
 type T = (typeof testimonials)[number];
@@ -16,8 +16,8 @@ export function TestimonialCard({ t, active }: { t: T; active: boolean }) {
         </p>
       </blockquote>
       <figcaption className="tcard__who">
-        <span className="tcard__photo" aria-label="Foto pendiente">
-          [Foto]
+        <span className="tcard__photo" aria-hidden="true">
+          {initials(t.name)}
         </span>
         <span>
           <strong>

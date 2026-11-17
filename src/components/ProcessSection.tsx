@@ -43,9 +43,8 @@ export function ProcessSection() {
       steps.forEach((s) => {
         gsap.fromTo(
           s.querySelector('.pstep__card'),
-          { y: 60, opacity: 0.3 },
+          { opacity: 0.3 },
           {
-            y: 0,
             opacity: 1,
             ease: 'none',
             scrollTrigger: {
@@ -132,7 +131,6 @@ export function ProcessSection() {
                   <ArrowRight strokeWidth={1.5} />
                 </span>
               </a>
-              <p className="t-small muted pstep__note">Plazos de referencia <em className="ph">[confirmar]</em></p>
             </li>
           </ol>
         </div>

@@ -753,9 +753,6 @@
   position: relative;
   width: clamp(320px, 31vw, 460px);
 }
-.pstep--low {
-  margin-top: clamp(1.5rem, 4vh, 3rem);
-}
 .pstep__big {
   position: absolute;
   top: 0;
@@ -763,19 +760,15 @@
   font-size: clamp(5rem, 9vh + 2vw, 9.5rem);
   line-height: 0.8;
   letter-spacing: -0.07em;
-  color: transparent;
-  -webkit-text-stroke: 1px var(--paper-14);
-  transition: -webkit-text-stroke-color var(--t-slow);
+  color: var(--paper);
   pointer-events: none;
-}
-.pstep.is-on .pstep__big {
-  -webkit-text-stroke-color: rgb(var(--lime-rgb) / 0.55);
 }
 .pstep__card {
   position: relative;
   display: grid;
   gap: var(--s-4);
-  margin-top: clamp(3rem, 9vh, 5.5rem);
+  /* deja el número grande completo por encima de la tarjeta */
+  margin-top: calc(clamp(5rem, 9vh + 2vw, 9.5rem) * 0.8 + 1rem);
   padding: clamp(1.25rem, 2.6vh, 2rem);
   border-radius: var(--r-lg);
   background: #121212;
@@ -1120,8 +1113,9 @@
   border-radius: 50%;
   background: var(--lime);
   color: var(--ink);
-  font-size: 0.625rem;
-  font-weight: 500;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
 }
 
 /* ---------- 13 · FAQ ---------- */

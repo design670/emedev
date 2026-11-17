@@ -81,7 +81,7 @@ export function SolutionPage({ page }: { page: S }) {
       {page.packages && (
         <section className="packages section on-light" aria-labelledby="packages-title">
           <div className="container">
-            <BlockHead index={idx()} label="Paquetes" title={['Paquetes', { t: '[definir]', cls: 'ph' }]} id="packages-title" />
+            <BlockHead index={idx()} label="Paquetes" title={['Paquetes', { t: 'claros.', cls: 'mark' }]} id="packages-title" />
             <ol className="packages__grid" data-reveal="stagger">
               {page.packages.map((p, i) => (
                 <li key={p.name} className={`pack pack--${i}`}>
@@ -97,7 +97,7 @@ export function SolutionPage({ page }: { page: S }) {
         </section>
       )}
 
-      <FeaturedCase index={idx()} visual={page.key} />
+      <FeaturedCase index={idx()} visual={page.key} solutionName={page.name} />
       <HiringModels index={idx()} />
       <FAQAccordion index={idx()} items={page.faqs ?? generalFaqs} title={['Preguntas', 'frecuentes.']} surface="on-surface" />
       <RelatedLinks
