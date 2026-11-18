@@ -1721,3 +1721,79 @@
     display: none;
   }
 }
+
+/* Proceso sobre fondo lima: textos y barra en negro, tarjetas oscuras */
+.process.on-lime {
+  background: var(--lime);
+  color: var(--ink);
+}
+.process.on-lime .process__title .hl {
+  background: var(--ink);
+  color: var(--lime);
+  padding: 0 0.1em;
+  border-radius: 0.08em;
+}
+.process.on-lime .process__bar {
+  background: var(--ink-12);
+}
+.process.on-lime .process__bar-fill {
+  background: var(--ink);
+}
+.process.on-lime .process__tick {
+  background: var(--lime);
+  box-shadow: inset 0 0 0 1px var(--ink-48);
+}
+.process.on-lime .process__tick.is-on {
+  background: var(--ink);
+  box-shadow: 0 0 0 4px var(--ink-12);
+}
+/* Tarjetas verdes con borde negro; «Recibes» en negro para destacar */
+.process.on-lime .pstep__card,
+.process.on-lime .pstep.is-on .pstep__card {
+  color: var(--ink);
+  background: var(--lime);
+  box-shadow: inset 0 0 0 1.5px var(--ink);
+  opacity: 1 !important;
+}
+.process.on-lime .pstep__num {
+  color: var(--ink-64);
+}
+.process.on-lime .pstep__time {
+  background: transparent;
+  box-shadow: inset 0 0 0 1px var(--ink);
+  color: var(--ink);
+}
+.process.on-lime .pstep__text {
+  color: var(--ink-80);
+}
+.process.on-lime .pstep__deliv {
+  background: var(--ink);
+  border-left-color: var(--ink);
+  color: var(--paper);
+}
+.process.on-lime .pstep__deliv .t-label {
+  color: var(--lime);
+}
+.process.on-lime .pstep__endlink {
+  color: var(--ink);
+}
+.process.on-lime .pstep__endicon {
+  background: var(--ink);
+  color: var(--lime);
+}
+@media (max-width: 1023.98px) {
+  .process.on-lime .process__vline {
+    background: var(--ink-12);
+  }
+  .process.on-lime .process__vline-fill {
+    background: var(--ink);
+  }
+  .process.on-lime .pstep::before {
+    background: var(--lime);
+    box-shadow: inset 0 0 0 1px var(--ink-48);
+  }
+  .process.on-lime .pstep.is-on::before {
+    background: var(--ink);
+    box-shadow: 0 0 0 4px var(--ink-12);
+  }
+}

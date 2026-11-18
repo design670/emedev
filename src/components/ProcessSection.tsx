@@ -83,7 +83,7 @@ export function ProcessSection() {
   }, []);
 
   return (
-    <section className="process on-dark" id="proceso" ref={ref} aria-labelledby="process-title">
+    <section className="process on-lime" id="proceso" ref={ref} aria-labelledby="process-title">
       <div className="process__pin">
         <div className="container process__head">
           <RevealText
