@@ -44,3 +44,6 @@ Ya no quedan corchetes en el sitio: todo lo que faltaba se llenó con datos de e
 - [ ] Textos, nombre y cargo de: Bicosa, Genial Foods, Country Club, Quirulaser, Importex, CargoNet, Templado, Carnes Santacruz, Watertown (en `src/data/content.ts` → `testimonials`)
 - [ ] Videos: agregar `video` con un .mp4 en `public/testimonios/` o un enlace de YouTube, y `poster` opcional con la portada
 - [ ] Logos de Genial Foods y Templado (hoy se muestra el nombre)
+
+## Redes sociales
+- [ ] Confirmar el TikTok de EME: el pie enlaza a tiktok.com/@emegrowthagency (mismo usuario que Instagram, LinkedIn y YouTube), pero no se pudo verificar

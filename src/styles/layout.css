@@ -747,31 +747,39 @@ button.lang__opt:hover {
   flex-wrap: wrap;
   padding-block: var(--s-6);
 }
-/* «EME Dev» gigante como marca de agua detrás de la información */
-.footer > .container {
-  position: relative;
-  z-index: 1;
+/* Logo del pie más grande */
+.footer__logo {
+  font-size: 2rem;
 }
-.footer__giant {
-  position: absolute;
-  inset-inline: 0;
-  top: 50%;
-  z-index: 0;
-  transform: translateY(-50%);
-  margin: 0;
-  font-size: clamp(5rem, 1rem + 22vw, 24rem);
-  font-weight: 600;
-  letter-spacing: -0.07em;
-  line-height: 0.75;
-  text-align: center;
-  color: var(--paper-04);
-  white-space: nowrap;
-  pointer-events: none;
-  user-select: none;
+/* Redes sociales: íconos redondos que se iluminan en lima al pasar el cursor */
+.footer__social {
+  display: flex;
+  gap: 10px;
 }
-.footer__giant span {
-  color: rgb(var(--lime-rgb) / 0.1);
-  font-weight: 400;
+.footer__social a {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--paper-14);
+  color: var(--paper);
+  transition:
+    background-color var(--t-fast),
+    border-color var(--t-fast),
+    color var(--t-fast),
+    transform var(--t-base) var(--ease-out);
+}
+.footer__social a:hover,
+.footer__social a:focus-visible {
+  background: var(--lime);
+  border-color: var(--lime);
+  color: var(--ink);
+  transform: translateY(-3px);
+}
+.footer__social svg {
+  width: 18px;
+  height: 18px;
 }
 
 /* ---------- Responsive de layout ---------- */

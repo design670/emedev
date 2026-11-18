@@ -137,7 +137,7 @@ export const metrics = [
   { value: 200, prefix: '+', suffix: '', label: 'Proyectos web' },
   { value: 65, prefix: '+', suffix: '', label: 'Proyectos de desarrollo a la medida' },
   { value: 7, prefix: '+', suffix: '', label: 'Aplicaciones móviles' },
-  { value: 2, prefix: '+', suffix: '', label: 'Herramientas propias (Apex y Get Transcribe)' },
+  { value: 2, prefix: '+', suffix: '', label: 'Herramientas propias\n(Apex y Get Transcribe)' },
 ] as const;
 
 export const companySizes = [
@@ -458,6 +458,13 @@ export const faqs = [
     q: '¿Atienden empresas fuera de Colombia?',
     a: 'Sí. Trabajamos con clientes en Latinoamérica y Estados Unidos, en español e inglés.',
   },
+];
+
+// Redes de EME. Instagram y LinkedIn salen de e-me.co; TikTok sigue el mismo usuario y falta confirmarlo.
+export const socials = [
+  { name: 'Instagram', href: 'https://www.instagram.com/emegrowthagency/' },
+  { name: 'TikTok', href: 'https://www.tiktok.com/@emegrowthagency' },
+  { name: 'LinkedIn', href: 'https://www.linkedin.com/company/emegrowthagency' },
 ];
 
 export const contact = {

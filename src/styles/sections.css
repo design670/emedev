@@ -278,6 +278,8 @@
 }
 .metric__label {
   max-width: 24ch;
+  /* Respeta saltos de línea del texto (p. ej. el paréntesis en la línea de abajo) */
+  white-space: pre-line;
   color: var(--ink-64);
 }
 

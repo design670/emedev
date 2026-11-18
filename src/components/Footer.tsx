@@ -1,5 +1,6 @@
 import { ArrowUpRight } from 'lucide-react';
-import { services, industries, contact, DIAGNOSTICO_HREF } from '../data/content';
+import { services, industries, contact, socials, DIAGNOSTICO_HREF } from '../data/content';
+import { SocialIcon } from './SocialIcon';
 import { Logo } from './ui';
 
 const unit = [
@@ -16,7 +17,7 @@ export function Footer() {
       <div className="container">
         <div className="footer__top">
           <div className="footer__brand">
-            <Logo />
+            <Logo className="footer__logo" />
             <p className="muted">
               EME Dev es la unidad de tecnología de EME, compañía con +15 años de trayectoria y más
               de 346 proyectos y clientes.
@@ -24,6 +25,17 @@ export function Footer() {
             <a className="footer__growth link-line" href="https://e-me.co" rel="noopener">
               EME Growth (marketing) <ArrowUpRight strokeWidth={1.5} aria-hidden="true" />
             </a>
+            <ul className="footer__social" aria-label="Redes sociales">
+              {socials
+                .filter((s) => s.href)
+                .map((s) => (
+                  <li key={s.name}>
+                    <a href={s.href} target="_blank" rel="noopener noreferrer" aria-label={`EME en ${s.name}`}>
+                      <SocialIcon name={s.name} />
+                    </a>
+                  </li>
+                ))}
+            </ul>
           </div>
 
           <nav className="footer__cols" aria-label="Pie de página">
@@ -79,9 +91,6 @@ export function Footer() {
           <span>Barranquilla, Colombia</span>
         </div>
       </div>
-      <p className="footer__giant" aria-hidden="true">
-        EME <span>Dev</span>
-      </p>
     </footer>
   );
 }
