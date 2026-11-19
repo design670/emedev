@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { gsap, getLenis, markReady, prefersReduced } from '../lib/motion';
+import { t as tr } from '../lib/i18n';
 
 /* Pantalla de carga: avanza con recursos reales (fuentes + load) y nunca
    simula una espera larga. En la segunda visita de la sesión es casi inmediata. */
@@ -124,7 +125,7 @@ export function Preloader() {
         </p>
       </div>
       <div className="preloader__meta">
-        <span className="t-label">Software e inteligencia artificial</span>
+        <span className="t-label">{tr('Software e inteligencia artificial', 'Software and artificial intelligence')}</span>
         <span className="preloader__count">
           <span ref={countRef}>000</span>
           <small>%</small>

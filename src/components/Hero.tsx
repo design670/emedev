@@ -3,6 +3,7 @@ import { DIAGNOSTICO_HREF } from '../data/content';
 import { Button, RevealText } from './ui';
 import { HeroVisual } from './HeroVisual';
 import { gsap, onReady, prefersReduced, ScrollTrigger } from '../lib/motion';
+import { t } from '../lib/i18n';
 
 export function Hero() {
   const ref = useRef<HTMLElement>(null);
@@ -64,19 +65,22 @@ export function Hero() {
           id="hero-title"
           className="hero__title t-display"
           reveal="intro"
-          parts={['Software e IA a la medida que tu operación', { t: 'sí usa.', cls: 'hl' }]}
+          parts={[
+            t('Software e IA a la medida que tu operación', 'Custom software and AI your operation'),
+            { t: t('sí usa.', 'actually uses.'), cls: 'hl' },
+          ]}
         />
 
         <div className="hero__visual" aria-hidden="true">
           <HeroVisual />
           <span className="hero__chip c1">
-            <i /> Agente de IA · activo
+            <i /> {t('Agente de IA · activo', 'AI agent · active')}
           </span>
           <span className="hero__chip c2">
-            <i /> ERP ↔ CRM · sincronizado
+            <i /> {t('ERP ↔ CRM · sincronizado', 'ERP ↔ CRM · synced')}
           </span>
           <span className="hero__chip c3">
-            <i /> API /facturas · 200 OK
+            <i /> {t('API /facturas · 200 OK', 'API /invoices · 200 OK')}
           </span>
         </div>
 
@@ -84,14 +88,15 @@ export function Hero() {
 
         <div className="hero__bottom">
           <p className="hero__sub t-lead" data-intro="up">
-            Construimos software con IA, agentes de IA, apps, webs, e-commerce e integraciones para
-            empresas que ya probaron herramientas genéricas y necesitan algo que encaje con su forma
-            de trabajar.
+            {t(
+              'Construimos software con IA, agentes de IA, apps, webs, e-commerce e integraciones para empresas que ya probaron herramientas genéricas y necesitan algo que encaje con su forma de trabajar.',
+              'We build AI-powered software, AI agents, apps, websites, e-commerce and integrations for companies that have already tried generic tools and need something that fits the way they work.',
+            )}
           </p>
           <div className="hero__ctas" data-intro="up">
-            <Button href={DIAGNOSTICO_HREF}>Diagnóstico Gratuito</Button>
+            <Button href={DIAGNOSTICO_HREF}>{t('Diagnóstico Gratuito', 'Free Diagnostic')}</Button>
             <Button href="#casos" variant="ghost" icon={false}>
-              Ver casos
+              {t('Ver casos', 'View case studies')}
             </Button>
           </div>
         </div>

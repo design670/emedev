@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { clients, metrics } from '../data/content';
 import { RevealText } from './ui';
 import { gsap, prefersReduced } from '../lib/motion';
+import { t } from '../lib/i18n';
 
 /* Conteo animado al entrar en pantalla. Las cifras sin dato quedan como [N]. */
 export function MetricCounter({
@@ -41,7 +42,7 @@ export function MetricCounter({
 
   if (value == null)
     return (
-      <span className="metric__value is-ph" title="Dato pendiente de confirmar">
+      <span className="metric__value is-ph" title={t('Dato pendiente de confirmar', 'Figure pending confirmation')}>
         [N]
       </span>
     );
@@ -61,11 +62,19 @@ export function Metrics() {
             as="h2"
             id="metrics-title"
             className="t-h2 metrics__title"
-            parts={['Experiencia que se traduce en', { t: 'resultados.', cls: 'mark' }]}
+            parts={[t('Experiencia que se traduce en', 'Experience that translates into'), { t: t('resultados.', 'results.'), cls: 'mark' }]}
           />
           <p className="metrics__proof" data-reveal="up">
-            <strong>+15 años</strong> de experiencia y más de <strong>349 proyectos</strong> en
-            Latinoamérica y Estados Unidos con soluciones tecnológicas a la medida.
+            {t(
+              <>
+                <strong>+15 años</strong> de experiencia y más de <strong>349 proyectos</strong> en
+                Latinoamérica y Estados Unidos con soluciones tecnológicas a la medida.
+              </>,
+              <>
+                <strong>15+ years</strong> of experience and more than <strong>349 projects</strong> across
+                Latin America and the United States with custom technology solutions.
+              </>,
+            )}
           </p>
         </div>
         <ul className="metrics__grid">
@@ -87,7 +96,7 @@ export function Metrics() {
                 <ul
                   key={copy}
                   className="clients__list"
-                  aria-label={copy === 0 ? 'Clientes de desarrollo' : undefined}
+                  aria-label={copy === 0 ? t('Clientes de desarrollo', 'Development clients') : undefined}
                   aria-hidden={copy === 1 || undefined}
                 >
                   {clients.map((c) => (

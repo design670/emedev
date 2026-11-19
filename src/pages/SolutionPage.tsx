@@ -14,6 +14,7 @@ import { FAQAccordion } from '../components/FAQAccordion';
 import { CTASection } from '../components/CTASection';
 import { WithPlaceholders } from '../components/ui';
 import { useMeta } from '../lib/router';
+import { t } from '../lib/i18n';
 
 /* Estructura común del brief: hero, problema, qué incluye, casos de uso,
    un caso con cifras, cómo se contrata, preguntas frecuentes y cierre. */
@@ -28,34 +29,34 @@ export function SolutionPage({ page }: { page: S }) {
   return (
     <>
       <PageHero
-        crumbs={[{ label: 'Soluciones', href: '/dev#soluciones' }, { label: page.name }]}
+        crumbs={[{ label: t('Soluciones', 'Solutions'), href: '/dev#soluciones' }, { label: page.name }]}
         label={page.name}
         title={[head, { t: tail, cls: 'hl' }]}
         subtitle={page.subtitle}
         visual={page.key}
-        secondary={{ label: 'Ver casos', href: '/dev/casos' }}
+        secondary={{ label: t('Ver casos', 'View case studies'), href: '/dev/casos' }}
       />
 
       {page.problem && <ProblemStatement index={idx()} text={page.problem} />}
 
       <NumberedList
         index={idx()}
-        label="Qué incluye"
-        title={['Qué', { t: 'incluye.', cls: 'mark' }]}
+        label={t('Qué incluye', 'What’s included')}
+        title={[t('Qué', 'What’s'), { t: t('incluye.', 'included.'), cls: 'mark' }]}
         items={page.includes}
         surface={page.problem ? 'on-surface' : 'on-light'}
         id="includes-title"
       />
 
-      {page.security && <Callout label="Seguridad" text={page.security} />}
-      {page.whenFits && <Callout label="Cuándo conviene y cuándo no" text={page.whenFits} tone="ink" />}
+      {page.security && <Callout label={t('Seguridad', 'Security')} text={page.security} />}
+      {page.whenFits && <Callout label={t('Cuándo conviene y cuándo no', 'When it fits and when it doesn’t')} text={page.whenFits} tone="ink" />}
 
       {page.useCases && <UseCases index={idx()} items={page.useCases} id="usecases-title" />}
 
       {page.integrates && (
         <section className="integrates section on-dark" aria-labelledby="integrates-title">
           <div className="container">
-            <BlockHead index={idx()} label="Qué integramos" title={['Lo que', { t: 'conectamos.', cls: 'hl' }]} id="integrates-title" />
+            <BlockHead index={idx()} label={t('Qué integramos', 'What we integrate')} title={[t('Lo que', 'What we'), { t: t('conectamos.', 'connect.'), cls: 'hl' }]} id="integrates-title" />
             <ul className="integrates__grid" data-reveal="stagger">
               {page.integrates.map((it) => {
                 const [h, ...r] = it.split(':');
@@ -80,7 +81,7 @@ export function SolutionPage({ page }: { page: S }) {
       {page.packages && (
         <section className="packages section on-light" aria-labelledby="packages-title">
           <div className="container">
-            <BlockHead index={idx()} label="Paquetes" title={['Paquetes', { t: 'claros.', cls: 'mark' }]} id="packages-title" />
+            <BlockHead index={idx()} label={t('Paquetes', 'Packages')} title={[t('Paquetes', 'Clear'), { t: t('claros.', 'packages.'), cls: 'mark' }]} id="packages-title" />
             <ol className="packages__grid" data-reveal="stagger">
               {page.packages.map((p, i) => (
                 <li key={p.name} className={`pack pack--${i}`}>
@@ -97,9 +98,9 @@ export function SolutionPage({ page }: { page: S }) {
       )}
 
       <FeaturedCase index={idx()} visual={page.key} solutionName={page.name} />
-      <FAQAccordion index={idx()} items={page.faqs ?? generalFaqs} title={['Preguntas', 'frecuentes.']} surface="on-surface" />
+      <FAQAccordion index={idx()} items={page.faqs ?? generalFaqs} title={[t('Preguntas', 'Frequently asked'), t('frecuentes.', 'questions.')]} surface="on-surface" />
       <RelatedLinks
-        title="Otras soluciones"
+        title={t('Otras soluciones', 'Other solutions')}
         items={solutionPages
           .filter((s) => s.slug !== page.slug)
           .map((s) => ({ label: s.name, href: `/dev/soluciones/${s.slug}` }))}

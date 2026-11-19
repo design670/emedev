@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { services, industries, DIAGNOSTICO_HREF } from '../data/content';
 import { ServiceVisual, ImagePlaceholder } from './ServiceVisual';
+import { t as tr } from '../lib/i18n';
 
 export type MenuKey = 'soluciones' | 'industrias' | null;
 
@@ -26,7 +27,7 @@ export function NavigationMenu({
           id="menu-soluciones"
           className={`mega__panel mega__panel--sol${open === 'soluciones' ? ' is-active' : ''}`}
           role="region"
-          aria-label="Soluciones"
+          aria-label={tr('Soluciones', 'Solutions')}
         >
           <ol className="mega__list">
             {services.map((item, i) => (
@@ -66,7 +67,7 @@ export function NavigationMenu({
           id="menu-industrias"
           className={`mega__panel mega__panel--sol mega__panel--ind${open === 'industrias' ? ' is-active' : ''}`}
           role="region"
-          aria-label="Industrias"
+          aria-label={tr('Industrias', 'Industries')}
         >
           <ol className="mega__list">
             {industries.map((item, i) => (
@@ -105,14 +106,14 @@ export function NavigationMenu({
         </div>
 
         <div className="mega__foot">
-          <span className="muted">¿No sabes por dónde empezar?</span>
+          <span className="muted">{tr('¿No sabes por dónde empezar?', 'Not sure where to start?')}</span>
           <a
             href={DIAGNOSTICO_HREF}
             className="link-line"
             onClick={onClose}
             tabIndex={open ? 0 : -1}
           >
-            Diagnóstico gratis <ArrowRight strokeWidth={1.5} aria-hidden="true" />
+            {tr('Diagnóstico gratis', 'Free diagnostic')} <ArrowRight strokeWidth={1.5} aria-hidden="true" />
           </a>
         </div>
       </div>

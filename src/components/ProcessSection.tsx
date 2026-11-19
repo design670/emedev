@@ -3,6 +3,7 @@ import { ArrowRight } from 'lucide-react';
 import { processSteps, DIAGNOSTICO_HREF } from '../data/content';
 import { RevealText } from './ui';
 import { gsap, prefersReduced } from '../lib/motion';
+import { t as tr } from '../lib/i18n';
 
 /* Escritorio: la sección se fija y las etapas avanzan en horizontal con el scroll.
    Tablet/móvil: línea de tiempo vertical que se rellena al avanzar. */
@@ -90,7 +91,11 @@ export function ProcessSection() {
             as="h2"
             id="process-title"
             className="t-h2 process__title"
-            parts={['Sabes qué recibes,', 'cuándo y', { t: 'cuánto cuesta.', cls: 'hl' }]}
+            parts={[
+              tr('Sabes qué recibes,', 'You know what you get,'),
+              tr('cuándo y', 'when, and'),
+              { t: tr('cuánto cuesta.', 'what it costs.'), cls: 'hl' },
+            ]}
           />
           <div className="process__bar" aria-hidden="true">
             <span className="process__bar-fill" />
@@ -109,21 +114,21 @@ export function ProcessSection() {
               <li className="pstep" key={s.name}>
                 <div className="pstep__card">
                   <div className="pstep__top">
-                    <span className="pstep__num">Etapa {String(i + 1).padStart(2, '0')}</span>
+                    <span className="pstep__num">{tr('Etapa', 'Stage')} {String(i + 1).padStart(2, '0')}</span>
                     <span className="pstep__time">{s.time}</span>
                   </div>
                   <h3 className="t-h3 pstep__name">{s.name}</h3>
                   <p className="pstep__text">{s.text}</p>
                   <div className="pstep__deliv">
-                    <span className="t-label">Recibes</span>
+                    <span className="t-label">{tr('Recibes', 'You get')}</span>
                     <p>{s.deliverable}</p>
                   </div>
                 </div>
               </li>
             ))}
             <li className="pstep pstep--end">
-              <a href={DIAGNOSTICO_HREF} className="pstep__endlink" data-cursor-label="AGENDAR">
-                <span className="t-h3">Agendar diagnóstico gratis</span>
+              <a href={DIAGNOSTICO_HREF} className="pstep__endlink" data-cursor-label={tr('AGENDAR', 'BOOK')}>
+                <span className="t-h3">{tr('Agendar diagnóstico gratis', 'Book a free diagnostic')}</span>
                 <span className="pstep__endicon" aria-hidden="true">
                   <ArrowRight strokeWidth={1.5} />
                 </span>

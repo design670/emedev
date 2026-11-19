@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import Lenis from 'lenis';
 import { gsap, ScrollTrigger, prefersReduced, setLenis, setupReveals, onReady } from './lib/motion';
 import { usePath, useLinkInterceptor, useMeta, HOME } from './lib/router';
+import { t } from './lib/i18n';
 import { solutionPages, industryPages } from './data/pages';
 import { Preloader } from './components/Preloader';
 import { CustomCursor } from './components/CustomCursor';
@@ -35,15 +36,18 @@ import {
 if (typeof window !== 'undefined' && !prefersReduced()) {
   const lenis = new Lenis({ duration: 1.15, smoothWheel: true });
   lenis.on('scroll', ScrollTrigger.update);
-  gsap.ticker.add((t) => lenis.raf(t * 1000));
+  gsap.ticker.add((time) => lenis.raf(time * 1000));
   gsap.ticker.lagSmoothing(0);
   setLenis(lenis);
 }
 
 function HomePage() {
   useMeta(
-    'Desarrollo de software e IA a la medida | EME Dev',
-    'Agentes de IA, software, ERP, apps e integraciones para empresas. 12 años y más de 783 clientes. Diagnóstico gratis.',
+    t('Desarrollo de software e IA a la medida | EME Dev', 'Custom software and AI development | EME Dev'),
+    t(
+      'Agentes de IA, software, ERP, apps e integraciones para empresas. 12 años y más de 783 clientes. Diagnóstico gratis.',
+      'AI agents, software, ERP, apps and integrations for businesses. 12 years and more than 783 clients. Free diagnostic.',
+    ),
   );
   return (
     <>
@@ -109,7 +113,7 @@ export default function App() {
   return (
     <>
       <a href="#contenido" className="skip-link">
-        Saltar al contenido
+        {t('Saltar al contenido', 'Skip to content')}
       </a>
       <Preloader />
       <CustomCursor />

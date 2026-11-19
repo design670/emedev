@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowRight, Play, Quote } from 'lucide-react';
 import { testimonials, type Testimonial } from '../data/content';
 import { RevealText, WithPlaceholders, initials } from './ui';
 import { gsap, prefersReduced } from '../lib/motion';
+import { t as tr } from '../lib/i18n';
 
 /* Convierte un enlace de YouTube en su dirección para incrustar; null si no es YouTube. */
 const youTubeEmbed = (url: string) => {
@@ -30,7 +31,7 @@ function TestimonialVideo({ t, active, onPlayChange }: { t: Testimonial; active:
         embed ? (
           <iframe
             src={embed}
-            title={`Testimonio de ${t.company}`}
+            title={tr(`Testimonio de ${t.company}`, `${t.company} testimonial`)}
             allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
             allowFullScreen
           />
@@ -46,7 +47,7 @@ function TestimonialVideo({ t, active, onPlayChange }: { t: Testimonial; active:
             setPlaying(true);
             onPlayChange(true);
           }}
-          aria-label={`Ver el video testimonio de ${t.company}`}
+          aria-label={tr(`Ver el video testimonio de ${t.company}`, `Watch the ${t.company} video testimonial`)}
           tabIndex={active ? 0 : -1}
         >
           <span className="tcard__play-icon" aria-hidden="true">
@@ -181,7 +182,7 @@ export function Testimonials() {
               as="h2"
               id="testi-title"
               className="t-h2"
-              parts={['Lo que dicen quienes ya', 'trabajan con nosotros.']}
+              parts={[tr('Lo que dicen quienes ya', 'What the people who already'), tr('trabajan con nosotros.', 'work with us say.')]}
             />
           </div>
           <div className="testimonials__nav" data-reveal="up">
@@ -193,10 +194,10 @@ export function Testimonials() {
                 <span key={`${idx}-${running}`} style={{ animationDuration: `${AUTOPLAY_MS}ms` }} />
               </span>
             )}
-            <button className="circle-btn" onClick={() => go(idx - 1)} aria-label="Testimonio anterior">
+            <button className="circle-btn" onClick={() => go(idx - 1)} aria-label={tr('Testimonio anterior', 'Previous testimonial')}>
               <ArrowLeft strokeWidth={1.5} />
             </button>
-            <button className="circle-btn" onClick={() => go(idx + 1)} aria-label="Testimonio siguiente">
+            <button className="circle-btn" onClick={() => go(idx + 1)} aria-label={tr('Testimonio siguiente', 'Next testimonial')}>
               <ArrowRight strokeWidth={1.5} />
             </button>
           </div>
@@ -204,7 +205,7 @@ export function Testimonials() {
 
         <div
           className="testimonials__viewport"
-          data-cursor-label="ARRASTRA"
+          data-cursor-label={tr('ARRASTRA', 'DRAG')}
           onPointerDown={onDown}
           onPointerMove={onMove}
           onPointerUp={onUp}

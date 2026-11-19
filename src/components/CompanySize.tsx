@@ -1,5 +1,6 @@
 import { companySizes } from '../data/content';
 import { SectionHeading } from './ui';
+import { t } from '../lib/i18n';
 
 /* Tres composiciones distintas sobre el mismo sistema:
    pequeña = ficha de alcance cerrado · mediana = sistemas que se unen ·
@@ -8,14 +9,14 @@ import { SectionHeading } from './ui';
 function VisualSmall() {
   return (
     <div className="cs-ticket" aria-hidden="true">
-      {['Alcance', 'Precio', 'Fecha'].map((r) => (
+      {[t('Alcance', 'Scope'), t('Precio', 'Price'), t('Fecha', 'Date')].map((r) => (
         <div className="cs-ticket__row" key={r}>
           <span>{r}</span>
           <span className="cs-ticket__dash" />
-          <span className="cs-ticket__ok">Definido</span>
+          <span className="cs-ticket__ok">{t('Definido', 'Defined')}</span>
         </div>
       ))}
-      <span className="cs-ticket__stamp">Cerrado</span>
+      <span className="cs-ticket__stamp">{t('Cerrado', 'Locked')}</span>
     </div>
   );
 }
@@ -28,20 +29,25 @@ function VisualMedium() {
           <path d={`M60 ${y} C 140 ${y}, 150 75, 222 75`} className="cs-merge__path" style={{ animationDelay: `${i * 0.4}s` }} />
           <rect x="8" y={y - 12} width="52" height="24" rx="12" className="cs-merge__node" />
           <text x="34" y={y + 4} textAnchor="middle" className="cs-merge__t">
-            {['Ventas', 'Bodega', 'Contab.'][i]}
+            {[t('Ventas', 'Sales'), t('Bodega', 'Warehouse'), t('Contab.', 'Acctg.')][i]}
           </text>
         </g>
       ))}
       <rect x="222" y="51" width="70" height="48" rx="12" className="cs-merge__hub" />
       <text x="257" y="79" textAnchor="middle" className="cs-merge__ht">
-        1 sistema
+        {t('1 sistema', '1 system')}
       </text>
     </svg>
   );
 }
 
 function VisualLarge() {
-  const layers = ['Agentes de IA', 'Integraciones', 'Tu arquitectura', 'Seguridad'];
+  const layers = [
+    t('Agentes de IA', 'AI agents'),
+    t('Integraciones', 'Integrations'),
+    t('Tu arquitectura', 'Your architecture'),
+    t('Seguridad', 'Security'),
+  ];
   return (
     <div className="cs-stack" aria-hidden="true">
       {layers.map((l, i) => (
@@ -61,10 +67,10 @@ export function CompanySize() {
       <div className="container">
         <SectionHeading
           index="04"
-          label="Por tamaño de empresa"
+          label={t('Por tamaño de empresa', 'By company size')}
           id="sizes-title"
           className="sizes__head"
-          parts={['Partimos de', { t: 'donde estás.', cls: 'hl' }]}
+          parts={[t('Partimos de', 'We start from'), { t: t('donde estás.', 'where you are.'), cls: 'hl' }]}
         />
         <div className="sizes__grid">
           {companySizes.map((c, i) => {

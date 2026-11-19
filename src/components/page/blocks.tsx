@@ -5,13 +5,14 @@ import { Button, RevealText, WithPlaceholders, type Part } from '../ui';
 import { ServiceVisual } from '../ServiceVisual';
 import { CaseStudyCard } from '../CaseStudies';
 import { gsap, onReady, prefersReduced } from '../../lib/motion';
+import { t } from '../../lib/i18n';
 
 /* ------------------------------------------------------------------ */
 /* Breadcrumb                                                          */
 /* ------------------------------------------------------------------ */
 export function Breadcrumb({ items }: { items: { label: string; href?: string }[] }) {
   return (
-    <nav className="crumbs" aria-label="Ruta de navegación" data-intro="fade">
+    <nav className="crumbs" aria-label={t('Ruta de navegación', 'Breadcrumb')} data-intro="fade">
       <ol>
         <li>
           <a href="/dev">EME Dev</a>
@@ -35,7 +36,7 @@ export function PageHero({
   subtitle,
   visual,
   aside,
-  cta = 'Diagnóstico gratis',
+  cta = t('Diagnóstico gratis', 'Free diagnostic'),
   ctaHref = DIAGNOSTICO_HREF,
   secondary,
   compact = false,
@@ -147,7 +148,7 @@ export function BlockHead({
 }
 
 /* Problema: frase grande en contraste */
-export function ProblemStatement({ index, text, label = 'El problema' }: { index: string; text: string; label?: string }) {
+export function ProblemStatement({ index, text, label = t('El problema', 'The problem') }: { index: string; text: string; label?: string }) {
   return (
     <section className="pstate section on-light" aria-labelledby={`pstate-${index}`}>
       <div className="container pstate__grid">
@@ -199,7 +200,7 @@ export function UseCases({ index, items, id }: { index: string; items: string[];
   return (
     <section className="ucases section on-dark" aria-labelledby={id}>
       <div className="container">
-        <BlockHead index={index} label="Casos de uso" title={['Dónde', { t: 'se usa.', cls: 'hl' }]} id={id} />
+        <BlockHead index={index} label={t('Casos de uso', 'Use cases')} title={[t('Dónde', 'Where'), { t: t('se usa.', 'it’s used.'), cls: 'hl' }]} id={id} />
         <ul className="ucases__list" data-reveal="stagger">
           {items.map((it, i) => {
             const [head, ...rest] = it.split(':');
@@ -255,10 +256,10 @@ export function FeaturedCase({
     <section className="fcase section on-surface" aria-labelledby={`fcase-${index}`}>
       <div className="container">
         <div className="cases__head">
-          <BlockHead index={index} label="Caso" title={['Un caso', { t: 'con cifras.', cls: 'mark' }]} id={`fcase-${index}`} />
+          <BlockHead index={index} label={t('Caso', 'Case study')} title={[t('Un caso', 'A case study'), { t: t('con cifras.', 'with numbers.'), cls: 'mark' }]} id={`fcase-${index}`} />
           <div className="cases__cta" data-reveal="up">
             <Button href="/dev/casos" variant="ink">
-              Ver todos los casos
+              {t('Ver todos los casos', 'View all case studies')}
             </Button>
           </div>
         </div>

@@ -7,6 +7,7 @@ import { MobileMenu } from './MobileMenu';
 import { LangSwitch } from './LangSwitch';
 import { getLenis, onReady, gsap, prefersReduced } from '../lib/motion';
 import { usePath, navigate, HOME } from '../lib/router';
+import { t } from '../lib/i18n';
 
 export function Header() {
   const [menu, setMenu] = useState<MenuKey>(null);
@@ -97,14 +98,14 @@ export function Header() {
   return (
     <header className={cls} ref={ref} onPointerLeave={scheduleClose} onPointerEnter={() => window.clearTimeout(closeTimer.current)}>
       <div className="header__bar container">
-        <a href={HOME} className="header__logo" aria-label="EME Dev, inicio" onClick={(e) => { e.preventDefault(); setMenu(null); setMobile(false); navigate(HOME); }}>
+        <a href={HOME} className="header__logo" aria-label={t('EME Dev, inicio', 'EME Dev, home')} onClick={(e) => { e.preventDefault(); setMenu(null); setMobile(false); navigate(HOME); }}>
           <Logo />
         </a>
 
-        <nav className="nav" aria-label="Principal">
+        <nav className="nav" aria-label={t('Principal', 'Main')}>
           <ul className="nav__list">
-            {trigger('soluciones', 'Soluciones')}
-            {trigger('industrias', 'Industrias')}
+            {trigger('soluciones', t('Soluciones', 'Solutions'))}
+            {trigger('industrias', t('Industrias', 'Industries'))}
             {navLinks.map((l) => (
               <li key={l.label} onPointerEnter={() => setMenu(null)}>
                 <a
@@ -123,13 +124,13 @@ export function Header() {
 
         <div className="header__cta">
           <Button href={DIAGNOSTICO_HREF} size="sm">
-            Diagnóstico Gratuito
+            {t('Diagnóstico Gratuito', 'Free Diagnostic')}
           </Button>
         </div>
 
         <button
           className={`burger${mobile ? ' is-open' : ''}`}
-          aria-label={mobile ? 'Cerrar menú' : 'Abrir menú'}
+          aria-label={mobile ? t('Cerrar menú', 'Close menu') : t('Abrir menú', 'Open menu')}
           aria-expanded={mobile}
           aria-controls="mobile-menu"
           onClick={() => setMobile((v) => !v)}

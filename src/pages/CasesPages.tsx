@@ -8,6 +8,7 @@ import { ImagePlaceholder } from '../components/ServiceVisual';
 import { CTASection } from '../components/CTASection';
 import { Button, initials } from '../components/ui';
 import { useMeta } from '../lib/router';
+import { t } from '../lib/i18n';
 import { NotFoundPage } from './InfoPages';
 
 /* Listado filtrable por industria y por solución */
@@ -35,7 +36,7 @@ export function CasesPage() {
       <div className="filters__chips">
         {['Todas', ...options].map((o) => (
           <button key={o} className={`chip${value === o ? ' is-on' : ''}`} aria-pressed={value === o} onClick={() => onChange(o)}>
-            {o}
+            {o === 'Todas' ? t('Todas', 'All') : o}
           </button>
         ))}
       </div>
@@ -45,17 +46,17 @@ export function CasesPage() {
   return (
     <>
       <PageHero
-        crumbs={[{ label: 'Casos' }]}
-        title={['Proyectos con', { t: 'resultados medibles.', cls: 'hl' }]}
+        crumbs={[{ label: t('Casos', 'Case studies') }]}
+        title={[t('Proyectos con', 'Projects with'), { t: t('resultados medibles.', 'measurable results.'), cls: 'hl' }]}
         subtitle={casesPage.subtitle}
         cta={null}
         compact
       />
-      <section className="caselist section on-light" aria-label="Listado de casos">
+      <section className="caselist section on-light" aria-label={t('Listado de casos', 'Case study list')}>
         <div className="container">
           <div className="filters" data-reveal="up">
-            <Chips label="Industria" options={industries.map((i) => i.name)} value={industry} onChange={setIndustry} />
-            <Chips label="Solución" options={services.map((s) => s.name)} value={solution} onChange={setSolution} />
+            <Chips label={t('Industria', 'Industry')} options={industries.map((i) => i.name)} value={industry} onChange={setIndustry} />
+            <Chips label={t('Solución', 'Solution')} options={services.map((s) => s.name)} value={solution} onChange={setSolution} />
           </div>
           {filtered.length ? (
             <div className="caselist__grid" key={`${industry}-${solution}`}>
@@ -65,7 +66,7 @@ export function CasesPage() {
             </div>
           ) : (
             <div className="caselist__empty" aria-live="polite">
-              <p className="t-h3">Aún no hay casos publicados con este filtro.</p>
+              <p className="t-h3">{t('Aún no hay casos publicados con este filtro.', 'No case studies published for this filter yet.')}</p>
               <button
                 className="link-line"
                 onClick={() => {
@@ -73,7 +74,7 @@ export function CasesPage() {
                   setSolution('Todas');
                 }}
               >
-                Ver todos los casos
+                {t('Ver todos los casos', 'View all case studies')}
               </button>
             </div>
           )}
@@ -87,33 +88,38 @@ export function CasesPage() {
 /* Caso individual */
 export function CasePage({ slug }: { slug: string }) {
   const c = cases.find((x) => x.slug === slug);
-  useMeta(c ? `${c.client}: caso de éxito | EME Dev` : 'Caso no encontrado | EME Dev', c?.result);
+  useMeta(
+    c
+      ? t(`${c.client}: caso de éxito | EME Dev`, `${c.client}: case study | EME Dev`)
+      : t('Caso no encontrado | EME Dev', 'Case study not found | EME Dev'),
+    c?.result,
+  );
   if (!c) return <NotFoundPage />;
 
   const words = c.title.split(' ');
-  const cut = words.findIndex((w) => w === 'con' || w === 'su' || w === 'sus');
+  const cut = words.findIndex((w) => ['con', 'su', 'sus', 'with', 'its', 'their'].includes(w));
   const head = words.slice(0, cut > 2 ? cut : -3).join(' ');
   const tail = words.slice(cut > 2 ? cut : -3).join(' ');
 
   const ficha = [
-    ['Industria', c.sector],
-    ['Tamaño de la empresa', c.size],
-    ['Solución', c.solutionName],
-    ['Duración del proyecto', c.duration],
-    ['Tecnologías', c.tech],
+    [t('Industria', 'Industry'), c.sector],
+    [t('Tamaño de la empresa', 'Company size'), c.size],
+    [t('Solución', 'Solution'), c.solutionName],
+    [t('Duración del proyecto', 'Project duration'), c.duration],
+    [t('Tecnologías', 'Technologies'), c.tech],
   ];
 
   return (
     <>
       <PageHero
-        crumbs={[{ label: 'Casos', href: '/dev/casos' }, { label: c.client }]}
+        crumbs={[{ label: t('Casos', 'Case studies'), href: '/dev/casos' }, { label: c.client }]}
         title={[head, { t: tail, cls: 'hl' }]}
         subtitle={c.problem}
-        cta="Quiero algo parecido"
+        cta={t('Quiero algo parecido', 'I want something similar')}
         compact
       />
 
-      <section className="cdetail section on-light" aria-label="Detalle del caso">
+      <section className="cdetail section on-light" aria-label={t('Detalle del caso', 'Case study details')}>
         <div className="container cdetail__grid">
           <dl className="cdetail__ficha" data-reveal="stagger">
             {ficha.map(([k, v]) => (
@@ -125,7 +131,7 @@ export function CasePage({ slug }: { slug: string }) {
           </dl>
           <div className="cdetail__body">
             <article className="cdetail__block" data-reveal="up">
-              <h2 className="t-h3">El punto de partida</h2>
+              <h2 className="t-h3">{t('El punto de partida', 'The starting point')}</h2>
               <p className="muted">{c.start}</p>
             </article>
             <div className="cdetail__media" data-reveal="mask">
@@ -134,11 +140,11 @@ export function CasePage({ slug }: { slug: string }) {
               </div>
             </div>
             <article className="cdetail__block" data-reveal="up">
-              <h2 className="t-h3">Lo que construimos</h2>
+              <h2 className="t-h3">{t('Lo que construimos', 'What we built')}</h2>
               <p className="muted">{c.built}</p>
             </article>
             <article className="cdetail__block" data-reveal="up">
-              <h2 className="t-h3">Cómo fue el proceso</h2>
+              <h2 className="t-h3">{t('Cómo fue el proceso', 'How the process went')}</h2>
               <p className="muted">{c.process}</p>
             </article>
           </div>
@@ -147,19 +153,19 @@ export function CasePage({ slug }: { slug: string }) {
 
       <section className="cresults section on-dark" aria-labelledby="cresults-title">
         <div className="container">
-          <BlockHead title={['Antes y', { t: 'después.', cls: 'hl' }]} id="cresults-title" />
+          <BlockHead title={[t('Antes y', 'Before and'), { t: t('después.', 'after.'), cls: 'hl' }]} id="cresults-title" />
           <ul className="cresults__grid" data-reveal="stagger">
             {c.results.map((r) => (
               <li key={r.label} className="cresult">
                 <span className="cresult__label t-label">{r.label}</span>
                 <div className="cresult__row">
                   <span>
-                    <small className="muted">Antes</small>
+                    <small className="muted">{t('Antes', 'Before')}</small>
                     {r.before}
                   </span>
                   <ArrowUpRight strokeWidth={1.25} aria-hidden="true" />
                   <span>
-                    <small className="muted">Después</small>
+                    <small className="muted">{t('Después', 'After')}</small>
                     <span className="hl">{r.after}</span>
                   </span>
                 </div>
@@ -170,7 +176,7 @@ export function CasePage({ slug }: { slug: string }) {
         </div>
       </section>
 
-      <section className="ctesti section on-surface" aria-label="Testimonio">
+      <section className="ctesti section on-surface" aria-label={t('Testimonio', 'Testimonial')}>
         <div className="container">
           <figure className="tcard is-active ctesti__card" data-reveal="up">
             <blockquote className="tcard__quote">
@@ -190,7 +196,7 @@ export function CasePage({ slug }: { slug: string }) {
           </figure>
           <div className="ctesti__cta" data-reveal="up">
             <Button href="/dev/diagnostico" variant="ink">
-              Quiero algo parecido
+              {t('Quiero algo parecido', 'I want something similar')}
             </Button>
           </div>
         </div>

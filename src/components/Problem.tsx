@@ -1,13 +1,14 @@
 import { useEffect, useRef } from 'react';
 import { RevealText } from './ui';
 import { gsap, prefersReduced } from '../lib/motion';
+import { t } from '../lib/i18n';
 
 const systems = [
   { l: 'ERP', x: 70, y: 70 },
   { l: 'CRM', x: 330, y: 52 },
   { l: 'Excel', x: 40, y: 220 },
   { l: 'WhatsApp', x: 360, y: 214 },
-  { l: 'Facturación', x: 92, y: 366 },
+  { l: t('Facturación', 'Invoicing'), x: 92, y: 366 },
   { l: 'Chatbot', x: 312, y: 372 },
 ];
 const HUB = { x: 200, y: 214 };
@@ -58,7 +59,10 @@ export function Problem() {
             as="h2"
             id="problem-title"
             className="t-h2 problem__title"
-            parts={['Casi todas las empresas ya usan IA.', { t: 'Muy pocas le sacan provecho.', cls: 'is-dim' }]}
+            parts={[
+              t('Casi todas las empresas ya usan IA.', 'Almost every company already uses AI.'),
+              { t: t('Muy pocas le sacan provecho.', 'Very few get real value from it.'), cls: 'is-dim' },
+            ]}
           />
 
           <div className="problem__stats" data-reveal="up">
@@ -67,26 +71,26 @@ export function Problem() {
               <span className="stat__track">
                 <span className="stat__fill" style={{ width: '42%' }} />
               </span>
-              <span className="stat__label">de las empresas en Colombia ya usa inteligencia artificial</span>
+              <span className="stat__label">{t('de las empresas en Colombia ya usa inteligencia artificial', 'of companies in Colombia already use artificial intelligence')}</span>
             </div>
             <div className="stat is-lime">
               <span className="stat__num">12%</span>
               <span className="stat__track">
                 <span className="stat__fill" style={{ width: '12%' }} />
               </span>
-              <span className="stat__label">pasó de lo básico</span>
+              <span className="stat__label">{t('pasó de lo básico', 'have gone beyond the basics')}</span>
             </div>
           </div>
 
           <div className="problem__text" data-reveal="up">
             <p>
-              La mayoría se quedó en un chatbot o en una herramienta comprada que nadie conectó con
-              el resto del negocio. La diferencia no está en la herramienta. Está
-              en tener los datos ordenados, los sistemas integrados y un equipo que sepa construir
-              sobre eso.
+              {t(
+                'La mayoría se quedó en un chatbot o en una herramienta comprada que nadie conectó con el resto del negocio. La diferencia no está en la herramienta. Está en tener los datos ordenados, los sistemas integrados y un equipo que sepa construir sobre eso.',
+                'Most stopped at a chatbot or an off-the-shelf tool that nobody connected to the rest of the business. The difference isn’t the tool. It’s having organized data, integrated systems and a team that knows how to build on top of them.',
+              )}
             </p>
           </div>
-          <RevealText as="p" className="problem__punch t-h3" parts={[{ t: 'Ahí entramos nosotros.', cls: 'hl' }]} />
+          <RevealText as="p" className="problem__punch t-h3" parts={[{ t: t('Ahí entramos nosotros.', 'That’s where we come in.'), cls: 'hl' }]} />
         </div>
 
         <figure className="problem__diagram" aria-hidden="true">
@@ -99,7 +103,7 @@ export function Problem() {
             <g className="pb-hub">
               <circle cx={HUB.x} cy={HUB.y} r="38" className="pb-hub__bg" />
               <text x={HUB.x} y={HUB.y + 5} textAnchor="middle" className="pb-hub__t">
-                Datos
+                {t('Datos', 'Data')}
               </text>
             </g>
             {systems.map((s) => (
@@ -119,7 +123,7 @@ export function Problem() {
             ))}
           </svg>
           <figcaption className="problem__caption t-label muted">
-            Datos ordenados · sistemas integrados · equipo que construye
+            {t('Datos ordenados · sistemas integrados · equipo que construye', 'Organized data · integrated systems · a team that builds')}
           </figcaption>
         </figure>
       </div>

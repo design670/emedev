@@ -3,6 +3,7 @@ import { Plus } from 'lucide-react';
 import { services, industries, navLinks, DIAGNOSTICO_HREF, contact } from '../data/content';
 import { Button } from './ui';
 import { getLenis, scrollToTarget } from '../lib/motion';
+import { t } from '../lib/i18n';
 
 export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
   const [sub, setSub] = useState<'sol' | 'ind' | null>(null);
@@ -35,9 +36,9 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
       aria-hidden={!open}
       role="dialog"
       aria-modal="true"
-      aria-label="Menú"
+      aria-label={t('Menú', 'Menu')}
     >
-      <nav className="mmenu__nav container" aria-label="Principal móvil">
+      <nav className="mmenu__nav container" aria-label={t('Principal móvil', 'Main mobile')}>
         <ul className="mmenu__list">
           <li>
             <button
@@ -46,7 +47,7 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
               onClick={() => setSub(sub === 'sol' ? null : 'sol')}
               tabIndex={tab}
             >
-              Soluciones <Plus aria-hidden="true" />
+              {t('Soluciones', 'Solutions')} <Plus aria-hidden="true" />
             </button>
             <div className={`mmenu__sub${sub === 'sol' ? ' is-open' : ''}`}>
               <ul>
@@ -68,7 +69,7 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
               onClick={() => setSub(sub === 'ind' ? null : 'ind')}
               tabIndex={tab}
             >
-              Industrias <Plus aria-hidden="true" />
+              {t('Industrias', 'Industries')} <Plus aria-hidden="true" />
             </button>
             <div className={`mmenu__sub${sub === 'ind' ? ' is-open' : ''}`}>
               <ul>
@@ -93,7 +94,7 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
         </ul>
         <div className="mmenu__foot">
           <Button href={DIAGNOSTICO_HREF} tabIndex={tab}>
-            Diagnóstico Gratuito
+            {t('Diagnóstico Gratuito', 'Free Diagnostic')}
           </Button>
           <p className="muted t-small">
             <a href={contact.whatsappHref} tabIndex={tab}>

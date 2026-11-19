@@ -4,13 +4,14 @@ import { cases } from '../data/content';
 import { Button, SectionHeading, WithPlaceholders } from './ui';
 import { ImagePlaceholder } from './ServiceVisual';
 import type { ServiceKey } from '../data/content';
+import { t } from '../lib/i18n';
 
 type Case = (typeof cases)[number];
 
 export function CaseStudyCard({ c, size }: { c: Case; visual?: ServiceKey; size: 'lg' | 'sm' | 'slide' }) {
   return (
     <article className={`case case--${size}`} data-reveal="up">
-      <a href={c.href} className="case__link" data-cursor-label="VER CASO" aria-label={`Ver el caso completo de ${c.client}`}>
+      <a href={c.href} className="case__link" data-cursor-label={t('VER CASO', 'VIEW CASE')} aria-label={t(`Ver el caso completo de ${c.client}`, `View the full ${c.client} case study`)}>
         <div className="case__media" data-reveal="mask">
           <div className="case__media-inner" data-mask-inner>
             <ImagePlaceholder n={9 + c.id} />
@@ -28,20 +29,20 @@ export function CaseStudyCard({ c, size }: { c: Case; visual?: ServiceKey; size:
           </div>
           <dl className="case__dl">
             <div>
-              <dt>El problema</dt>
+              <dt>{t('El problema', 'The problem')}</dt>
               <dd>
                 <WithPlaceholders text={c.problem} />
               </dd>
             </div>
             <div>
-              <dt>Lo que construimos</dt>
+              <dt>{t('Lo que construimos', 'What we built')}</dt>
               <dd>
                 <WithPlaceholders text={c.solution} />
               </dd>
             </div>
           </dl>
           <span className="link-line case__more">
-            Ver el caso completo <ArrowUpRight strokeWidth={1.5} aria-hidden="true" />
+            {t('Ver el caso completo', 'View full case study')} <ArrowUpRight strokeWidth={1.5} aria-hidden="true" />
           </span>
         </div>
       </a>
@@ -84,25 +85,25 @@ export function CaseStudies() {
         <div className="cases__head">
           <SectionHeading
             index="05"
-            label="Casos destacados"
+            label={t('Casos destacados', 'Featured case studies')}
             id="cases-title"
-            parts={['Resultados que puedes', { t: 'verificar.', cls: 'mark' }]}
+            parts={[t('Resultados que puedes', 'Results you can'), { t: t('verificar.', 'verify.'), cls: 'mark' }]}
           />
           <div className="cases__cta" data-reveal="up">
             <div className="cases__nav">
-              <button className="circle-btn" onClick={() => go(-1)} disabled={edge.start} aria-label="Caso anterior">
+              <button className="circle-btn" onClick={() => go(-1)} disabled={edge.start} aria-label={t('Caso anterior', 'Previous case')}>
                 <ArrowLeft strokeWidth={1.5} />
               </button>
-              <button className="circle-btn" onClick={() => go(1)} disabled={edge.end} aria-label="Caso siguiente">
+              <button className="circle-btn" onClick={() => go(1)} disabled={edge.end} aria-label={t('Caso siguiente', 'Next case')}>
                 <ArrowRight strokeWidth={1.5} />
               </button>
             </div>
             <Button href="/dev/casos" variant="ink">
-              Ver todos los casos
+              {t('Ver todos los casos', 'View all case studies')}
             </Button>
           </div>
         </div>
-        <div className="cases__track" ref={track} onScroll={update} aria-label="Casos destacados" tabIndex={0}>
+        <div className="cases__track" ref={track} onScroll={update} aria-label={t('Casos destacados', 'Featured case studies')} tabIndex={0}>
           {cases.map((c) => (
             <CaseStudyCard key={c.id} c={c} size="slide" />
           ))}

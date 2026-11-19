@@ -2,13 +2,14 @@ import { ArrowUpRight } from 'lucide-react';
 import { services, industries, contact, socials, DIAGNOSTICO_HREF } from '../data/content';
 import { SocialIcon } from './SocialIcon';
 import { Logo } from './ui';
+import { t } from '../lib/i18n';
 
 const unit = [
-  { label: 'Casos', href: '/dev/casos' },
-  { label: 'Proceso', href: '/dev/proceso' },
-  { label: 'Seguridad y datos', href: '/dev/seguridad' },
-  { label: 'Blogs', href: '/dev/recursos' },
-  { label: 'Diagnóstico', href: DIAGNOSTICO_HREF },
+  { label: t('Casos', 'Case studies'), href: '/dev/casos' },
+  { label: t('Proceso', 'Process'), href: '/dev/proceso' },
+  { label: t('Seguridad y datos', 'Security & data'), href: '/dev/seguridad' },
+  { label: t('Blogs', 'Blog'), href: '/dev/recursos' },
+  { label: t('Diagnóstico', 'Diagnostic'), href: DIAGNOSTICO_HREF },
 ];
 
 export function Footer() {
@@ -19,18 +20,20 @@ export function Footer() {
           <div className="footer__brand">
             <Logo className="footer__logo" />
             <p className="muted">
-              EME Dev es la unidad de tecnología de EME, compañía con +15 años de trayectoria y más
-              de 346 proyectos y clientes.
+              {t(
+                'EME Dev es la unidad de tecnología de EME, compañía con +15 años de trayectoria y más de 346 proyectos y clientes.',
+                'EME Dev is the technology unit of EME, a company with 15+ years of track record and more than 346 projects and clients.',
+              )}
             </p>
             <a className="footer__growth link-line" href="https://e-me.co" rel="noopener">
               EME Growth (marketing) <ArrowUpRight strokeWidth={1.5} aria-hidden="true" />
             </a>
-            <ul className="footer__social" aria-label="Redes sociales">
+            <ul className="footer__social" aria-label={t('Redes sociales', 'Social media')}>
               {socials
                 .filter((s) => s.href)
                 .map((s) => (
                   <li key={s.name}>
-                    <a href={s.href} target="_blank" rel="noopener noreferrer" aria-label={`EME en ${s.name}`}>
+                    <a href={s.href} target="_blank" rel="noopener noreferrer" aria-label={t(`EME en ${s.name}`, `EME on ${s.name}`)}>
                       <SocialIcon name={s.name} />
                     </a>
                   </li>
@@ -38,9 +41,9 @@ export function Footer() {
             </ul>
           </div>
 
-          <nav className="footer__cols" aria-label="Pie de página">
+          <nav className="footer__cols" aria-label={t('Pie de página', 'Footer')}>
             <div>
-              <h2 className="footer__h t-label">Soluciones</h2>
+              <h2 className="footer__h t-label">{t('Soluciones', 'Solutions')}</h2>
               <ul>
                 {services.map((s) => (
                   <li key={s.key}>
@@ -50,7 +53,7 @@ export function Footer() {
               </ul>
             </div>
             <div>
-              <h2 className="footer__h t-label">Industrias</h2>
+              <h2 className="footer__h t-label">{t('Industrias', 'Industries')}</h2>
               <ul>
                 {industries.map((s) => (
                   <li key={s.name}>
@@ -70,7 +73,7 @@ export function Footer() {
               </ul>
             </div>
             <div>
-              <h2 className="footer__h t-label">Contacto</h2>
+              <h2 className="footer__h t-label">{t('Contacto', 'Contact')}</h2>
               <ul>
                 <li>
                   <a href={contact.whatsappHref} className="footer__phone">
@@ -87,7 +90,7 @@ export function Footer() {
         </div>
 
         <div className="footer__bottom t-small muted">
-          <span>© {new Date().getFullYear()} EME. Todos los derechos reservados.</span>
+          <span>© {new Date().getFullYear()} EME. {t('Todos los derechos reservados.', 'All rights reserved.')}</span>
           <span>Barranquilla, Colombia</span>
         </div>
       </div>

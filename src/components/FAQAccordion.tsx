@@ -1,10 +1,11 @@
 import { useId, useState } from 'react';
 import { faqs, contact } from '../data/content';
 import { RevealText, WithPlaceholders } from './ui';
+import { t } from '../lib/i18n';
 
 export function FAQAccordion({
   items = faqs,
-  title = ['Resolvemos', 'tus dudas.'],
+  title = [t('Resolvemos', 'Your questions,'), t('tus dudas.', 'answered.')],
   surface = 'on-light',
 }: {
   items?: { q: string; a: string }[];
@@ -21,7 +22,7 @@ export function FAQAccordion({
         <div className="faq__side">
           <RevealText as="h2" id="faq-title" className="t-h2" parts={title} />
           <p className="faq__aside muted" data-reveal="up">
-            ¿Tienes otra pregunta? Escríbenos por{' '}
+            {t('¿Tienes otra pregunta? Escríbenos por', 'Have another question? Message us on')}{' '}
             <a className="link-line" href={contact.whatsappHref}>
               WhatsApp
             </a>

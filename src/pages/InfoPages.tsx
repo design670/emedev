@@ -9,6 +9,7 @@ import { Button, WithPlaceholders } from '../components/ui';
 import { ImagePlaceholder } from '../components/ServiceVisual';
 import { MetricCounter } from '../components/Metrics';
 import { useMeta } from '../lib/router';
+import { t } from '../lib/i18n';
 
 /* ------------------------------------------------------------------ */
 /* Proceso                                                             */
@@ -18,16 +19,16 @@ export function ProcessPage() {
   return (
     <>
       <PageHero
-        crumbs={[{ label: 'Proceso' }]}
-        label="Proceso"
-        title={['Así', { t: 'trabajamos.', cls: 'hl' }]}
+        crumbs={[{ label: t('Proceso', 'Process') }]}
+        label={t('Proceso', 'Process')}
+        title={[t('Así', 'How we'), { t: t('trabajamos.', 'work.'), cls: 'hl' }]}
         subtitle={processPage.subtitle}
-        secondary={{ label: 'Ver rangos de inversión', href: '#rangos' }}
+        secondary={{ label: t('Ver rangos de inversión', 'View investment ranges'), href: '#rangos' }}
       />
 
       <section className="stages section on-light" aria-labelledby="stages-title">
         <div className="container">
-          <BlockHead index="01" label="Las cinco etapas" title={['De la primera reunión', { t: 'al sistema en uso.', cls: 'mark' }]} id="stages-title" />
+          <BlockHead index="01" label={t('Las cinco etapas', 'The five stages')} title={[t('De la primera reunión', 'From the first meeting'), { t: t('al sistema en uso.', 'to a system in use.'), cls: 'mark' }]} id="stages-title" />
           <ol className="stages__list">
             {processPage.stages.map((s, i) => (
               <li key={s.name} className="stage" data-reveal="up">
@@ -38,7 +39,7 @@ export function ProcessPage() {
                   <p className="muted">{s.text}</p>
                 </div>
                 <div className="stage__gets">
-                  <span className="t-label">Recibes</span>
+                  <span className="t-label">{t('Recibes', 'You get')}</span>
                   <p>{s.gets}</p>
                 </div>
               </li>
@@ -49,12 +50,12 @@ export function ProcessPage() {
 
       <section className="ranges section on-dark" id="rangos" aria-labelledby="ranges-title">
         <div className="container ranges__grid">
-          <BlockHead index="03" label="Rangos de inversión" title={['Cuánto cuesta,', { t: 'antes de empezar.', cls: 'hl' }]} id="ranges-title" />
-          <div className="ranges__table" role="table" aria-label="Rangos de inversión por tipo de proyecto" data-reveal="up">
+          <BlockHead index="03" label={t('Rangos de inversión', 'Investment ranges')} title={[t('Cuánto cuesta,', 'What it costs,'), { t: t('antes de empezar.', 'before you start.'), cls: 'hl' }]} id="ranges-title" />
+          <div className="ranges__table" role="table" aria-label={t('Rangos de inversión por tipo de proyecto', 'Investment ranges by project type')} data-reveal="up">
             <div className="ranges__row is-head" role="row">
-              <span role="columnheader">Tipo de proyecto</span>
-              <span role="columnheader">Inversión desde</span>
-              <span role="columnheader">Tiempo estimado</span>
+              <span role="columnheader">{t('Tipo de proyecto', 'Project type')}</span>
+              <span role="columnheader">{t('Inversión desde', 'Investment from')}</span>
+              <span role="columnheader">{t('Tiempo estimado', 'Estimated time')}</span>
             </div>
             {processPage.ranges.map((r) => (
               <div className="ranges__row" role="row" key={r.type}>
@@ -73,7 +74,7 @@ export function ProcessPage() {
 
       <section className="commit section on-light" aria-labelledby="commit-title">
         <div className="container commit__grid">
-          <BlockHead index="04" label="Compromisos" title={['Lo que nos comprometemos', { t: 'a cumplir.', cls: 'mark' }]} id="commit-title" />
+          <BlockHead index="04" label={t('Compromisos', 'Commitments')} title={[t('Lo que nos comprometemos', 'What we commit'), { t: t('a cumplir.', 'to deliver.'), cls: 'mark' }]} id="commit-title" />
           <ul className="commit__list" data-reveal="stagger">
             {processPage.commitments.map((c) => (
               <li key={c}>
@@ -101,14 +102,14 @@ export function SecurityPage() {
   return (
     <>
       <PageHero
-        crumbs={[{ label: 'Seguridad y datos' }]}
-        label="Seguridad y datos"
-        title={['Cómo cuidamos tu información', { t: 'y tu inversión.', cls: 'hl' }]}
+        crumbs={[{ label: t('Seguridad y datos', 'Security & data') }]}
+        label={t('Seguridad y datos', 'Security & data')}
+        title={[t('Cómo cuidamos tu información', 'How we protect your information'), { t: t('y tu inversión.', 'and your investment.'), cls: 'hl' }]}
         subtitle={securityPage.subtitle}
         cta={securityPage.cta}
-        ctaHref={`mailto:${contact.email}?subject=Documentación de seguridad EME Dev`}
+        ctaHref={`mailto:${contact.email}?subject=${t('Documentación de seguridad EME Dev', 'EME Dev security documentation')}`}
       />
-      <section className="secitems section on-light" aria-label="Prácticas de seguridad">
+      <section className="secitems section on-light" aria-label={t('Prácticas de seguridad', 'Security practices')}>
         <div className="container">
           <ol className="secitems__list">
             {securityPage.items.map((it, i) => (
@@ -122,7 +123,7 @@ export function SecurityPage() {
             ))}
           </ol>
           <div className="secitems__cta" data-reveal="up">
-            <Button href={`mailto:${contact.email}?subject=Documentación de seguridad EME Dev`} variant="ink">
+            <Button href={`mailto:${contact.email}?subject=${t('Documentación de seguridad EME Dev', 'EME Dev security documentation')}`} variant="ink">
               {securityPage.cta}
             </Button>
           </div>
@@ -141,14 +142,14 @@ export function TeamPage() {
   return (
     <>
       <PageHero
-        crumbs={[{ label: 'Equipo' }]}
-        label="Equipo"
-        title={['Quién construye', { t: 'tu proyecto.', cls: 'hl' }]}
+        crumbs={[{ label: t('Equipo', 'Team') }]}
+        label={t('Equipo', 'Team')}
+        title={[t('Quién construye', 'Who builds'), { t: t('tu proyecto.', 'your project.'), cls: 'hl' }]}
         subtitle={teamPage.subtitle}
       />
       <section className="team section on-light" aria-labelledby="team-title">
         <div className="container">
-          <BlockHead index="01" label="Líderes" title={['Las personas', { t: 'detrás.', cls: 'mark' }]} id="team-title" />
+          <BlockHead index="01" label={t('Líderes', 'Leaders')} title={[t('Las personas', 'The people'), { t: t('detrás.', 'behind it.'), cls: 'mark' }]} id="team-title" />
           <ul className="team__grid" data-reveal="stagger">
             {teamPage.people.map((p, i) => (
               <li key={i} className="person">
@@ -171,7 +172,7 @@ export function TeamPage() {
 
       <section className="tnums section on-dark" aria-labelledby="tnums-title">
         <div className="container">
-          <BlockHead index="02" label="El equipo en cifras" title={['El equipo', { t: 'en cifras.', cls: 'hl' }]} id="tnums-title" />
+          <BlockHead index="02" label={t('El equipo en cifras', 'The team in numbers')} title={[t('El equipo', 'The team'), { t: t('en cifras.', 'in numbers.'), cls: 'hl' }]} id="tnums-title" />
           <ul className="tnums__grid" data-reveal="stagger">
             {teamPage.numbers.map((n) => (
               <li key={n.label}>
@@ -185,7 +186,7 @@ export function TeamPage() {
 
       <section className="tcerts section on-surface" aria-labelledby="tcerts-title">
         <div className="container tcerts__grid">
-          <BlockHead index="03" label="Certificaciones y alianzas" title={['Parte de', { t: 'EME.', cls: 'mark' }]} id="tcerts-title">
+          <BlockHead index="03" label={t('Certificaciones y alianzas', 'Certifications and partnerships')} title={[t('Parte de', 'Part of'), { t: 'EME.', cls: 'mark' }]} id="tcerts-title">
             <p className="t-lead" data-reveal="up">
               {teamPage.parent}
             </p>
@@ -213,20 +214,20 @@ export function ResourcesPage() {
   return (
     <>
       <PageHero
-        crumbs={[{ label: 'Recursos' }]}
-        label="Recursos"
-        title={['Guías para decidir mejor', { t: 'sobre tecnología.', cls: 'hl' }]}
+        crumbs={[{ label: t('Recursos', 'Resources') }]}
+        label={t('Recursos', 'Resources')}
+        title={[t('Guías para decidir mejor', 'Guides to make better'), { t: t('sobre tecnología.', 'technology decisions.'), cls: 'hl' }]}
         cta={null}
         compact
       />
-      <section className="articles section on-light" aria-label="Artículos">
+      <section className="articles section on-light" aria-label={t('Artículos', 'Articles')}>
         <div className="container">
           <ul className="articles__grid" data-reveal="stagger">
             {resourcesPage.articles.map((a, i) => (
               <li key={a.title} className={`article${i === 0 ? ' is-feature' : ''}`}>
                 <div className="article__top">
                   <span className="t-label">{a.tag}</span>
-                  <span className="article__soon">Próximamente</span>
+                  <span className="article__soon">{t('Próximamente', 'Coming soon')}</span>
                 </div>
                 <h2 className="article__title">{a.title}</h2>
                 <span className="article__num">{String(i + 1).padStart(2, '0')}</span>
@@ -262,17 +263,19 @@ export function DiagnosticPage() {
   return (
     <>
       <PageHero
-        crumbs={[{ label: 'Diagnóstico' }]}
-        label="Diagnóstico gratis"
-        title={['Cuéntanos qué', { t: 'quieres resolver.', cls: 'hl' }]}
+        crumbs={[{ label: t('Diagnóstico', 'Diagnostic') }]}
+        label={t('Diagnóstico gratis', 'Free diagnostic')}
+        title={[t('Cuéntanos qué', 'Tell us what'), { t: t('quieres resolver.', 'you want to solve.'), cls: 'hl' }]}
         subtitle={diagnosticPage.subtitle}
         cta={null}
         compact
       />
-      <section className="diag section on-light" aria-label="Formulario de diagnóstico">
+      <section className="diag section on-light" aria-label={t('Formulario de diagnóstico', 'Diagnostic form')}>
         <div className="container diag__grid">
           <aside className="diag__side">
-            <h2 className="t-h4" data-reveal="fade">Qué pasa después</h2>
+            <h2 className="t-h4" data-reveal="fade">
+              {t('Qué pasa después', 'What happens next')}
+            </h2>
             <ol className="diag__steps" data-reveal="stagger">
               {diagnosticPage.steps.map((s, i) => (
                 <li key={s}>
@@ -282,7 +285,7 @@ export function DiagnosticPage() {
               ))}
             </ol>
             <div className="diag__contact" data-reveal="up">
-              <p className="t-label muted">Otras formas de contacto</p>
+              <p className="t-label muted">{t('Otras formas de contacto', 'Other ways to reach us')}</p>
               <a href={contact.whatsappHref}>WhatsApp {contact.whatsapp}</a>
               <a href={`mailto:${contact.email}`}>{contact.email}</a>
               <span className="muted">{contact.address}</span>
@@ -294,9 +297,12 @@ export function DiagnosticPage() {
               <span className="diag__done-icon" aria-hidden="true">
                 <Check strokeWidth={2} />
               </span>
-              <h2 className="t-h2">Recibimos tu información.</h2>
+              <h2 className="t-h2">{t('Recibimos tu información.', 'We received your information.')}</h2>
               <p className="t-lead muted">
-                Te escribimos para agendar la llamada de 30 minutos. Si prefieres, escríbenos por{' '}
+                {t(
+                  'Te escribimos para agendar la llamada de 30 minutos. Si prefieres, escríbenos por',
+                  'We’ll reach out to schedule the 30-minute call. If you prefer, message us on',
+                )}{' '}
                 <a className="link-line" href={contact.whatsappHref}>
                   WhatsApp
                 </a>
@@ -307,21 +313,21 @@ export function DiagnosticPage() {
             <form className="diag__form" onSubmit={onSubmit} noValidate data-reveal="up">
               <div className="field-row">
                 <label className="field">
-                  <span>Nombre</span>
+                  <span>{t('Nombre', 'Name')}</span>
                   <input name="nombre" required autoComplete="name" />
                 </label>
                 <label className="field">
-                  <span>Empresa</span>
+                  <span>{t('Empresa', 'Company')}</span>
                   <input name="empresa" required autoComplete="organization" />
                 </label>
               </div>
               <div className="field-row">
                 <label className="field">
-                  <span>Cargo</span>
+                  <span>{t('Cargo', 'Job title')}</span>
                   <input name="cargo" autoComplete="organization-title" />
                 </label>
                 <label className="field">
-                  <span>Correo</span>
+                  <span>{t('Correo', 'Email')}</span>
                   <input name="correo" type="email" required autoComplete="email" />
                 </label>
               </div>
@@ -331,7 +337,7 @@ export function DiagnosticPage() {
               </label>
 
               <fieldset className="field field--chips">
-                <legend>¿Qué necesitas?</legend>
+                <legend>{t('¿Qué necesitas?', 'What do you need?')}</legend>
                 <div className="filters__chips">
                   {diagnosticPage.needs.map((n) => {
                     const on = need.includes(n);
@@ -354,10 +360,10 @@ export function DiagnosticPage() {
 
               <div className="field-row">
                 <label className="field">
-                  <span>Tamaño de la empresa</span>
+                  <span>{t('Tamaño de la empresa', 'Company size')}</span>
                   <select name="tamano" defaultValue="">
                     <option value="" disabled>
-                      Selecciona
+                      {t('Selecciona', 'Select')}
                     </option>
                     {diagnosticPage.sizes.map((s) => (
                       <option key={s}>{s}</option>
@@ -365,10 +371,10 @@ export function DiagnosticPage() {
                   </select>
                 </label>
                 <label className="field">
-                  <span>Presupuesto aproximado</span>
+                  <span>{t('Presupuesto aproximado', 'Approximate budget')}</span>
                   <select name="presupuesto" defaultValue="">
                     <option value="" disabled>
-                      Selecciona
+                      {t('Selecciona', 'Select')}
                     </option>
                     {diagnosticPage.budgets.map((b) => (
                       <option key={b}>{b}</option>
@@ -377,14 +383,14 @@ export function DiagnosticPage() {
                 </label>
               </div>
               <label className="field">
-                <span>Cuéntanos el problema en dos o tres líneas</span>
+                <span>{t('Cuéntanos el problema en dos o tres líneas', 'Describe the problem in two or three lines')}</span>
                 <textarea name="problema" rows={4} required />
               </label>
               <div className="diag__submit">
                 <button type="submit" className="btn btn--ink" data-cursor="link">
                   <span className="btn__label">
-                    <span>Enviar y agendar</span>
-                    <span aria-hidden="true">Enviar y agendar</span>
+                    <span>{t('Enviar y agendar', 'Send and schedule')}</span>
+                    <span aria-hidden="true">{t('Enviar y agendar', 'Send and schedule')}</span>
                   </span>
                   <span className="btn__icon" aria-hidden="true">
                     <ArrowUpRight strokeWidth={1.75} />
@@ -403,13 +409,13 @@ export function DiagnosticPage() {
 /* 404                                                                 */
 /* ------------------------------------------------------------------ */
 export function NotFoundPage() {
-  useMeta('Página no encontrada | EME Dev');
+  useMeta(t('Página no encontrada | EME Dev', 'Page not found | EME Dev'));
   return (
     <PageHero
-      crumbs={[{ label: 'Página no encontrada' }]}
-      title={['Esta página', { t: 'no existe.', cls: 'hl' }]}
-      subtitle="Revisa la dirección o vuelve al inicio."
-      cta="Volver al inicio"
+      crumbs={[{ label: t('Página no encontrada', 'Page not found') }]}
+      title={[t('Esta página', 'This page'), { t: t('no existe.', 'doesn’t exist.'), cls: 'hl' }]}
+      subtitle={t('Revisa la dirección o vuelve al inicio.', 'Check the address or go back to the home page.')}
+      cta={t('Volver al inicio', 'Back to home')}
       ctaHref="/dev"
     />
   );

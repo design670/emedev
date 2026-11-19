@@ -390,8 +390,6 @@
   max-width: 62%;
   height: 34px;
   object-fit: contain;
-  filter: brightness(0);
-  opacity: 0.72;
 }
 
 /* ---------- Casos: filtros y listado ---------- */

@@ -4,6 +4,7 @@ import { services, type ServiceKey } from '../data/content';
 import { SectionHeading } from './ui';
 import { ServiceVisual } from './ServiceVisual';
 import { isFinePointer } from '../lib/motion';
+import { t } from '../lib/i18n';
 
 export function ServiceList() {
   const [active, setActive] = useState<ServiceKey | null>(null);
@@ -18,10 +19,10 @@ export function ServiceList() {
       <div className="container">
         <SectionHeading
           index="03"
-          label="Soluciones"
+          label={t('Soluciones', 'Solutions')}
           id="services-title"
           className="services__head"
-          parts={['Qué', { t: 'construimos.', cls: '' }]}
+          parts={[t('Qué', 'What'), { t: t('construimos.', 'we build.'), cls: '' }]}
          />
 
         <div
@@ -50,7 +51,7 @@ export function ServiceList() {
                     <a
                       href={s.href}
                       className="srow__hit"
-                      data-cursor-label="EXPLORAR"
+                      data-cursor-label={t('EXPLORAR', 'EXPLORE')}
                       onPointerEnter={() => {
                         setActive(s.key);
                         setHovering(true);
@@ -73,7 +74,7 @@ export function ServiceList() {
                         <div className="srow__panel-inner">
                           <ServiceVisual k={s.key} />
                           <a className="link-line" href={s.href}>
-                            Explorar solución <ArrowUpRight strokeWidth={1.5} aria-hidden="true" />
+                            {t('Explorar solución', 'Explore solution')} <ArrowUpRight strokeWidth={1.5} aria-hidden="true" />
                           </a>
                         </div>
                       </div>

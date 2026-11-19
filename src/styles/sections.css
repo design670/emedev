@@ -213,9 +213,7 @@
   max-width: 210px;
   height: 46px;
   object-fit: contain;
-  /* SVG vectorizados: siluetas de un solo color, nítidas a cualquier tamaño */
-  filter: brightness(0);
-  opacity: 0.72;
+  /* Logos en su color original */
   backface-visibility: hidden;
 }
 /* Logos casi cuadrados: un poco más altos para equilibrar con los horizontales */
@@ -1113,11 +1111,12 @@
   max-width: 140px;
   height: 32px;
   object-fit: contain;
-  filter: brightness(0);
-  opacity: 0.8;
 }
+/* En la tarjeta oscura el logo va sobre una placa blanca para conservar su color */
 .tcard:nth-child(even).is-active .tcard__logo {
-  filter: brightness(0) invert(1);
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: #fff;
 }
 .tcard__company {
   font-weight: 600;

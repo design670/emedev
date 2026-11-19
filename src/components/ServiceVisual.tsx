@@ -1,4 +1,5 @@
 import { services, type ServiceKey } from '../data/content';
+import { t } from '../lib/i18n';
 
 /* Espacio reservado para imagen: una tarjeta de color plano con su número.
    Cada solución tiene un número fijo (Image 001 … 007) para que reemplazarlo
@@ -6,7 +7,7 @@ import { services, type ServiceKey } from '../data/content';
 
 export function ImagePlaceholder({ n, className = '' }: { n: number; className?: string }) {
   return (
-    <div className={`img-ph ${className}`} role="img" aria-label={`Imagen ${String(n).padStart(3, '0')} pendiente`}>
+    <div className={`img-ph ${className}`} role="img" aria-label={t(`Imagen ${String(n).padStart(3, '0')} pendiente`, `Image ${String(n).padStart(3, '0')} pending`)}>
       <span>Image {String(n).padStart(3, '0')}</span>
     </div>
   );
