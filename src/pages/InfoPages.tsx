@@ -3,7 +3,7 @@ import { useState, type FormEvent } from 'react';
 import { ArrowUpRight, Check } from 'lucide-react';
 import { processPage, securityPage, teamPage, resourcesPage, diagnosticPage } from '../data/pages';
 import { contact } from '../data/content';
-import { PageHero, BlockHead, HiringModels } from '../components/page/blocks';
+import { PageHero, BlockHead } from '../components/page/blocks';
 import { CTASection } from '../components/CTASection';
 import { Button, WithPlaceholders } from '../components/ui';
 import { ImagePlaceholder } from '../components/ServiceVisual';
@@ -46,8 +46,6 @@ export function ProcessPage() {
           </ol>
         </div>
       </section>
-
-      <HiringModels index="02" surface="on-surface" />
 
       <section className="ranges section on-dark" id="rangos" aria-labelledby="ranges-title">
         <div className="container ranges__grid">

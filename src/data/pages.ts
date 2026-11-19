@@ -378,20 +378,6 @@ export const industryPages: IndustryPage[] = [
   },
 ];
 
-export const hiringModels = [
-  {
-    name: 'Proyecto de alcance cerrado',
-    text: 'Precio y fecha definidos. Para necesidades claras y acotadas.',
-  },
-  {
-    name: 'Equipo dedicado',
-    text: 'Un equipo asignado por mes, con prioridades que tú defines. Para productos en evolución constante.',
-  },
-  {
-    name: 'Bolsa de horas',
-    text: 'Para soporte, mejoras y ajustes sobre sistemas existentes.',
-  },
-];
 
 export const processPage = {
   seoTitle: 'Cómo trabajamos y cuánto cuesta | EME Dev',

@@ -243,55 +243,6 @@
   aspect-ratio: 16 / 11;
 }
 
-/* ---------- Cómo se contrata ---------- */
-/* Título a la izquierda y enlace al proceso a la derecha, alineado abajo */
-.hiring__head {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: var(--s-5) var(--s-6);
-  flex-wrap: wrap;
-  margin-bottom: var(--s-8);
-}
-.hiring__head .bhead {
-  margin-bottom: 0;
-}
-.hiring__link {
-  flex: none;
-}
-.hiring__grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--col-gap);
-}
-.hmodel {
-  display: grid;
-  align-content: start;
-  gap: var(--s-4);
-  min-height: 260px;
-  padding: var(--s-6);
-  border-radius: var(--r-lg);
-  box-shadow: inset 0 0 0 1px var(--ink-12);
-}
-.hmodel--0 {
-  background: var(--ink);
-  color: var(--paper);
-  box-shadow: none;
-}
-.hmodel--1 {
-  background: var(--lime);
-  box-shadow: none;
-}
-.hmodel__num {
-  font-size: var(--fs-label);
-  letter-spacing: var(--ls-label);
-  margin-bottom: auto;
-  padding-bottom: var(--s-7);
-}
-.hmodel p {
-  opacity: 0.75;
-}
-
 /* ---------- Otras páginas del grupo ---------- */
 .related {
   padding-block: var(--s-8);
@@ -1076,13 +1027,9 @@
   .fcase__card .case__link {
     grid-template-columns: 1fr;
   }
-  .hiring__grid,
   .integrates__grid,
   .cresults__grid {
     grid-template-columns: 1fr;
-  }
-  .hmodel {
-    min-height: 0;
   }
   .packages__grid {
     grid-template-columns: 1fr;

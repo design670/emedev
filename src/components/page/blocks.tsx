@@ -1,7 +1,6 @@
 import { useEffect, useRef, type ReactNode } from 'react';
-import { ArrowUpRight, ArrowRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { DIAGNOSTICO_HREF, cases, type ServiceKey } from '../../data/content';
-import { hiringModels } from '../../data/pages';
 import { Button, RevealText, WithPlaceholders, type Part } from '../ui';
 import { ServiceVisual } from '../ServiceVisual';
 import { CaseStudyCard } from '../CaseStudies';
@@ -266,31 +265,6 @@ export function FeaturedCase({
         <div className="fcase__card">
           <CaseStudyCard c={c} visual={visual} size="lg" />
         </div>
-      </div>
-    </section>
-  );
-}
-
-/* Cómo se contrata */
-export function HiringModels({ index, surface = 'on-light' }: { index: string; surface?: string }) {
-  return (
-    <section className={`hiring section ${surface}`} aria-labelledby={`hiring-${index}`}>
-      <div className="container">
-        <div className="hiring__head">
-          <BlockHead index={index} label="Cómo se contrata" title={['Tres formas', 'de trabajar juntos.']} id={`hiring-${index}`} />
-          <a href="/dev/proceso" className="link-line hiring__link" data-reveal="up">
-            Conoce el proceso completo <ArrowRight strokeWidth={1.5} aria-hidden="true" />
-          </a>
-        </div>
-        <ol className="hiring__grid" data-reveal="stagger">
-          {hiringModels.map((m, i) => (
-            <li key={m.name} className={`hmodel hmodel--${i}`}>
-              <span className="hmodel__num">{String(i + 1).padStart(2, '0')}</span>
-              <h3 className="t-h4">{m.name}</h3>
-              <p>{m.text}</p>
-            </li>
-          ))}
-        </ol>
       </div>
     </section>
   );

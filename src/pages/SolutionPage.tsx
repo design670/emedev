@@ -7,7 +7,6 @@ import {
   UseCases,
   Callout,
   FeaturedCase,
-  HiringModels,
   RelatedLinks,
   BlockHead,
 } from '../components/page/blocks';
@@ -98,7 +97,6 @@ export function SolutionPage({ page }: { page: S }) {
       )}
 
       <FeaturedCase index={idx()} visual={page.key} solutionName={page.name} />
-      <HiringModels index={idx()} />
       <FAQAccordion index={idx()} items={page.faqs ?? generalFaqs} title={['Preguntas', 'frecuentes.']} surface="on-surface" />
       <RelatedLinks
         title="Otras soluciones"
