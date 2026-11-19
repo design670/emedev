@@ -142,7 +142,7 @@ export const metrics = [
   { value: 200, prefix: '+', suffix: '', label: 'Web projects' },
   { value: 65, prefix: '+', suffix: '', label: 'Custom development projects' },
   { value: 7, prefix: '+', suffix: '', label: 'Mobile apps' },
-  { value: 2, prefix: '+', suffix: '', label: 'In-house tools\n(Apex and Get Transcribe)' },
+  { value: 2, prefix: '', suffix: '', label: 'In-house tools\n(Apex and Get Transcribe)' },
 ] as const;
 
 export const companySizes = [
