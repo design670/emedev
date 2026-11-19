@@ -1,6 +1,7 @@
 import { useEffect, useRef, type ElementType, type ReactNode } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { gsap, isFinePointer, prefersReduced, scrollToTarget } from '../lib/motion';
+import { EmeWordmark } from './EmeWordmark';
 
 /* ------------------------------------------------------------------ */
 /* RevealText — divide el texto en palabras para revelarlo por máscara */
@@ -144,7 +145,7 @@ export function Button({
 export function Logo({ className = '' }: { className?: string }) {
   return (
     <span className={`logo ${className}`}>
-      <span className="logo__eme">EME</span>
+      <EmeWordmark className="logo__eme" />
       <span className="logo__dev">Dev</span>
     </span>
   );

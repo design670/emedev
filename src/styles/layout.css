@@ -34,12 +34,12 @@
   line-height: 1;
   padding: 0 0.08em 0.06em;
 }
-.preloader__word span {
-  display: inline-block;
+.preloader__word {
+  align-items: center;
+  gap: 0.5em;
 }
-.preloader__word .is-lime {
-  color: var(--lime);
-  font-weight: 400;
+.preloader__word > span {
+  display: inline-block;
 }
 .preloader__meta {
   position: absolute;
@@ -180,18 +180,26 @@
   letter-spacing: -0.04em;
   line-height: 1;
 }
+/* Logo EME Dev: trazo oficial de EME + pastilla lima «Dev». Todo en em para escalar con font-size */
+.logo {
+  gap: 0.5em;
+}
 .logo__eme {
-  font-weight: 700;
+  display: block;
+  height: 1.05em;
+  width: auto;
+  color: var(--paper);
+  overflow: visible;
 }
 .logo__dev {
   display: inline-flex;
   align-items: center;
-  height: 24px;
-  padding: 0 9px;
+  height: 1.7em;
+  padding: 0 0.65em;
   border-radius: var(--r-pill);
   background: var(--lime);
   color: var(--ink);
-  font-size: 0.875rem;
+  font-size: 0.64em;
   font-weight: 500;
   letter-spacing: -0.01em;
 }

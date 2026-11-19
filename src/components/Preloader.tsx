@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { gsap, getLenis, markReady, prefersReduced } from '../lib/motion';
 import { t as tr } from '../lib/i18n';
+import { EmeWordmark } from './EmeWordmark';
 
 /* Pantalla de carga: avanza con recursos reales (fuentes + load) y nunca
    simula una espera larga. En la segunda visita de la sesión es casi inmediata. */
@@ -79,7 +80,7 @@ export function Preloader() {
       const tl = gsap.timeline({ delay: wait, onComplete: () => {
         el.style.display = 'none';
       } });
-      tl.to('.preloader__word span', { yPercent: -110, duration: 0.8, stagger: 0.04, ease: 'expo.in' })
+      tl.to('.preloader__word > span', { yPercent: -110, duration: 0.8, stagger: 0.04, ease: 'expo.in' })
         .to('.preloader__meta', { opacity: 0, duration: 0.4 }, '<')
         .to(el, { clipPath: 'inset(0% 0% 100% 0%)', duration: 1.1, ease: 'expo.inOut' }, '-=0.15')
         .add(() => {
@@ -90,7 +91,7 @@ export function Preloader() {
 
     // Entrada del logotipo
     gsap.fromTo(
-      '.preloader__word span',
+      '.preloader__word > span',
       { yPercent: 110 },
       { yPercent: 0, duration: seen ? 0.5 : 1, stagger: 0.05, ease: 'expo.out' },
     );
@@ -108,7 +109,6 @@ export function Preloader() {
     };
   }, []);
 
-  const word = 'EME Dev'.split('');
   return (
     <div className="preloader" ref={root} aria-hidden="true">
       <span className="preloader__corner tl" />
@@ -116,12 +116,14 @@ export function Preloader() {
       <span className="preloader__corner bl" />
       <span className="preloader__corner br" />
       <div className="preloader__center">
+        {/* Logo EME Dev: el trazo de EME y la pastilla «Dev» entran por separado */}
         <p className="preloader__word">
-          {word.map((c, i) => (
-            <span key={i} className={i >= 4 ? 'is-lime' : ''}>
-              {c === ' ' ? ' ' : c}
-            </span>
-          ))}
+          <span>
+            <EmeWordmark className="logo__eme" />
+          </span>
+          <span>
+            <span className="logo__dev">Dev</span>
+          </span>
         </p>
       </div>
       <div className="preloader__meta">
