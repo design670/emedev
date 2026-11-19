@@ -176,6 +176,7 @@
 .clients__track {
   display: flex;
   width: max-content;
+  will-change: transform;
   animation: clients-marquee 60s linear infinite;
 }
 .clients__marquee:hover .clients__track {
@@ -197,10 +198,10 @@
   flex: none;
   display: grid;
   place-items: center;
-  height: 52px;
+  height: 60px;
   white-space: nowrap;
   border-radius: var(--r-sm);
-  font-size: 1.05rem;
+  font-size: 1.25rem;
   font-weight: 600;
   letter-spacing: -0.03em;
   color: var(--ink-64);
@@ -209,11 +210,19 @@
 .clients__logo {
   display: block;
   width: auto;
-  max-width: 150px;
-  height: 30px;
+  max-width: 180px;
+  height: 38px;
   object-fit: contain;
+  /* SVG vectorizados: siluetas de un solo color, nítidas a cualquier tamaño */
   filter: brightness(0);
   opacity: 0.72;
+  backface-visibility: hidden;
+}
+/* Logos casi cuadrados: un poco más altos para equilibrar con los horizontales */
+.clients__logo[src*="carnes-santacruz"],
+.clients__logo[src*="watertown"],
+.clients__logo[src*="tusim"] {
+  height: 50px;
 }
 
 /* ---------- 04 · Métricas ---------- */

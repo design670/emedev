@@ -108,29 +108,29 @@ export const DIAGNOSTICO_HREF = '/dev/diagnostico';
 // Logos oficiales por nombre de cliente (archivos en public/clientes).
 export const clientLogos: Record<string, string> = {
   Cajacopi: '/clientes/cajacopi.svg',
-  Brilla: '/clientes/brilla.png',
+  Brilla: '/clientes/brilla.svg',
   PRB: '/clientes/probarranquilla.svg',
-  FIU: '/clientes/fiu.png',
+  FIU: '/clientes/fiu.svg',
 };
 
 // Clientes de desarrollo (cinta bajo las cifras). Sin logo: se muestra el nombre (Genial Foods, Rapibox).
 export const clients: { name: string; logo?: string }[] = [
-  { name: 'Bicosa', logo: '/clientes/bicosa.png' },
-  { name: 'Quirulaser', logo: '/clientes/quirulaser.png' },
+  { name: 'Bicosa', logo: '/clientes/bicosa.svg' },
+  { name: 'Quirulaser', logo: '/clientes/quirulaser.svg' },
   { name: 'Genial Foods' },
   { name: 'Rapibox' },
-  { name: 'Tusim', logo: '/clientes/tusim.png' },
-  { name: 'Flexxi Credit', logo: '/clientes/flexxi-credit.png' },
-  { name: 'Carnes Santacruz', logo: '/clientes/carnes-santacruz.png' },
-  { name: 'Academia Sandra', logo: '/clientes/academia-sandra.png' },
-  { name: 'Sushi2go', logo: '/clientes/sushi2go.png' },
-  { name: 'Watertown', logo: '/clientes/watertown.png' },
-  { name: 'Importex', logo: '/clientes/importex.png' },
-  { name: 'CargoNet', logo: '/clientes/cargonet.png' },
+  { name: 'Tusim', logo: '/clientes/tusim.svg' },
+  { name: 'Flexxi Credit', logo: '/clientes/flexxi-credit.svg' },
+  { name: 'Carnes Santacruz', logo: '/clientes/carnes-santacruz.svg' },
+  { name: 'Academia Sandra', logo: '/clientes/academia-sandra.svg' },
+  { name: 'Sushi2go', logo: '/clientes/sushi2go.svg' },
+  { name: 'Watertown', logo: '/clientes/watertown.svg' },
+  { name: 'Importex', logo: '/clientes/importex.svg' },
+  { name: 'CargoNet', logo: '/clientes/cargonet.svg' },
   { name: 'Cajacopi', logo: '/clientes/cajacopi.svg' },
-  { name: 'Country Club', logo: '/clientes/country-club.png' },
+  { name: 'Country Club', logo: '/clientes/country-club.svg' },
   { name: 'Puerto de Barranquilla', logo: '/clientes/puerto-barranquilla.svg' },
-  { name: 'Soluzioni', logo: '/clientes/soluzioni.png' },
+  { name: 'Soluzioni', logo: '/clientes/soluzioni.svg' },
 ];
 
 export const metrics = [
@@ -364,7 +364,7 @@ export const testimonials: Testimonial[] = [
   {
     id: 1,
     company: 'Bicosa',
-    logo: '/clientes/bicosa.png',
+    logo: '/clientes/bicosa.svg',
     quote: '[Testimonio pendiente]',
     name: '[Nombre]',
     role: '[Cargo]',
@@ -379,7 +379,7 @@ export const testimonials: Testimonial[] = [
   {
     id: 3,
     company: 'Country Club',
-    logo: '/clientes/country-club.png',
+    logo: '/clientes/country-club.svg',
     quote: '[Testimonio pendiente]',
     name: '[Nombre]',
     role: '[Cargo]',
@@ -387,7 +387,7 @@ export const testimonials: Testimonial[] = [
   {
     id: 4,
     company: 'Quirulaser',
-    logo: '/clientes/quirulaser.png',
+    logo: '/clientes/quirulaser.svg',
     quote: '[Testimonio pendiente]',
     name: '[Nombre]',
     role: '[Cargo]',
@@ -395,7 +395,7 @@ export const testimonials: Testimonial[] = [
   {
     id: 5,
     company: 'Importex',
-    logo: '/clientes/importex.png',
+    logo: '/clientes/importex.svg',
     quote: '[Testimonio pendiente]',
     name: '[Nombre]',
     role: '[Cargo]',
@@ -403,7 +403,7 @@ export const testimonials: Testimonial[] = [
   {
     id: 6,
     company: 'CargoNet',
-    logo: '/clientes/cargonet.png',
+    logo: '/clientes/cargonet.svg',
     quote: '[Testimonio pendiente]',
     name: '[Nombre]',
     role: '[Cargo]',
@@ -418,7 +418,7 @@ export const testimonials: Testimonial[] = [
   {
     id: 8,
     company: 'Carnes Santacruz',
-    logo: '/clientes/carnes-santacruz.png',
+    logo: '/clientes/carnes-santacruz.svg',
     quote: '[Testimonio pendiente]',
     name: '[Nombre]',
     role: '[Cargo]',
@@ -426,7 +426,7 @@ export const testimonials: Testimonial[] = [
   {
     id: 9,
     company: 'Watertown',
-    logo: '/clientes/watertown.png',
+    logo: '/clientes/watertown.svg',
     quote: '[Testimonio pendiente]',
     name: '[Nombre]',
     role: '[Cargo]',
