@@ -121,7 +121,7 @@ export const clientLogos: Record<string, string> = {
 export const clients: { name: string; logo?: string }[] = [
   { name: 'Bicosa', logo: '/clientes/color/bicosa.jpg' },
   { name: 'Quirulaser', logo: '/clientes/color/quirulaser.png' },
-  { name: 'Genial Foods' },
+  { name: 'Genial Foods', logo: '/clientes/color/genial-foods.png' },
   { name: 'Rapibox', logo: '/clientes/color/rapibox.png' },
   { name: 'Tusim', logo: '/clientes/color/tusim.png' },
   { name: 'Flexxi Credit', logo: '/clientes/color/flexxi-credit.png' },
@@ -377,6 +377,7 @@ export const testimonials: Testimonial[] = [
   {
     id: 2,
     company: 'Genial Foods',
+    logo: '/clientes/color/genial-foods.png',
     quote: '[Testimonial pending]',
     name: '[Name]',
     role: '[Role]',
@@ -441,11 +442,11 @@ export const testimonials: Testimonial[] = [
 export const faqs = [
   {
     q: 'How much does a project cost?',
-    a: 'It depends on the scope. As a reference, a landing page starts at COP 3,500,000, an AI agent at COP 18,000,000 and a custom system at COP 45,000,000. After the diagnostic, you get a proposal with price and timeline.',
+    a: 'It depends on the scope. As a reference, a landing page starts at COP 2,000,000, an AI agent at COP 2,700,000, custom software at COP 15,000,000 and an ERP at COP 45,000,000. After the diagnostic, you get a proposal with price and timeline.',
   },
   {
     q: 'How long does it take?',
-    a: 'A landing page, 3 weeks. An AI agent, 6 to 10 weeks. A custom system, 4 to 8 months, with partial releases every two weeks.',
+    a: 'A landing page, 3 days. An AI agent, 4 weeks. Custom software, 1 to 2 months, and an ERP, 4 to 8 months, with partial releases every two weeks.',
   },
   {
     q: 'Who owns the code?',

@@ -160,7 +160,7 @@ export const solutionPages: SolutionPage[] = [
     faqs: [
       {
         q: 'How much does an app cost?',
-        a: 'It depends on the features. A first version starts at COP 35,000,000 and takes 3 to 5 months.',
+        a: 'It depends on the features. A first version starts at COP 35,000,000 and takes 2 to 3 months.',
       },
       {
         q: 'Do I need an app, or is a web application enough?',
@@ -246,9 +246,9 @@ export const solutionPages: SolutionPage[] = [
       'A content management system so your team can make edits without depending on us.',
     ],
     packages: [
-      { name: 'Landing page', text: 'A single page for a campaign or service. From COP 3,500,000, in 3 weeks.' },
-      { name: 'Corporate site', text: 'Up to 10 pages. From COP 9,000,000, in 6 weeks.' },
-      { name: 'Online store', text: 'Catalog, payments and shipping. From COP 14,000,000, in 8 weeks.' },
+      { name: 'Landing page', text: 'A single page for a campaign or service. From COP 2,000,000, in 3 days.' },
+      { name: 'Corporate site', text: 'Up to 10 pages. From COP 8,500,000, in 6 weeks.' },
+      { name: 'Online store', text: 'Catalog, payments and shipping. From COP 8,000,000, in 4 weeks.' },
     ],
   },
 ];
@@ -417,12 +417,14 @@ export const processPage = {
     },
   ],
   ranges: [
-    { type: 'Landing page', from: 'COP 3,500,000', time: '3 weeks' },
-    { type: 'Corporate site', from: 'COP 9,000,000', time: '6 weeks' },
-    { type: 'AI agent', from: 'COP 18,000,000', time: '6 to 10 weeks' },
-    { type: 'Integration', from: 'COP 12,000,000', time: '4 to 8 weeks' },
-    { type: 'Mobile app (first version)', from: 'COP 35,000,000', time: '3 to 5 months' },
-    { type: 'Custom software or ERP', from: 'COP 45,000,000', time: '4 to 8 months' },
+    { type: 'Landing page', from: 'COP 2,000,000', time: '3 days' },
+    { type: 'Corporate site', from: 'COP 8,500,000', time: '6 weeks' },
+    { type: 'Online store', from: 'COP 8,000,000', time: '4 weeks' },
+    { type: 'AI agent', from: 'COP 2,700,000', time: '4 weeks' },
+    { type: 'Integration', from: 'COP 4,500,000', time: '5 days' },
+    { type: 'Mobile app', from: 'COP 35,000,000', time: '2 to 3 months' },
+    { type: 'ERP', from: 'COP 45,000,000', time: '4 to 8 months' },
+    { type: 'Custom software', from: 'COP 15,000,000', time: '1 to 2 months' },
   ],
   commitments: [
     'A named project lead with a direct line.',

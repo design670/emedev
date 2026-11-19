@@ -160,7 +160,7 @@ export const solutionPages: SolutionPage[] = [
     faqs: [
       {
         q: '¿Cuánto cuesta una app?',
-        a: 'Depende de las funciones. Una primera versión parte de $35.000.000 COP y toma entre 3 y 5 meses.',
+        a: 'Depende de las funciones. Una primera versión parte de $35.000.000 COP y toma entre 2 y 3 meses.',
       },
       {
         q: '¿Necesito app o basta una aplicación web?',
@@ -246,9 +246,9 @@ export const solutionPages: SolutionPage[] = [
       'Administrador de contenidos para que tu equipo edite sin depender de nosotros.',
     ],
     packages: [
-      { name: 'Landing', text: 'Una página para una campaña o servicio. Desde $3.500.000 COP, en 3 semanas.' },
-      { name: 'Sitio corporativo', text: 'Hasta 10 páginas. Desde $9.000.000 COP, en 6 semanas.' },
-      { name: 'Tienda en línea', text: 'Catálogo, pagos y envíos. Desde $14.000.000 COP, en 8 semanas.' },
+      { name: 'Landing', text: 'Una página para una campaña o servicio. Desde $2.000.000 COP, en 3 días.' },
+      { name: 'Sitio corporativo', text: 'Hasta 10 páginas. Desde $8.500.000 COP, en 6 semanas.' },
+      { name: 'Tienda en línea', text: 'Catálogo, pagos y envíos. Desde $8.000.000 COP, en 4 semanas.' },
     ],
   },
 ];
@@ -417,12 +417,14 @@ export const processPage = {
     },
   ],
   ranges: [
-    { type: 'Landing', from: '$3.500.000 COP', time: '3 semanas' },
-    { type: 'Sitio corporativo', from: '$9.000.000 COP', time: '6 semanas' },
-    { type: 'Agente de IA', from: '$18.000.000 COP', time: '6 a 10 semanas' },
-    { type: 'Integración', from: '$12.000.000 COP', time: '4 a 8 semanas' },
-    { type: 'App móvil (primera versión)', from: '$35.000.000 COP', time: '3 a 5 meses' },
-    { type: 'Software o ERP a la medida', from: '$45.000.000 COP', time: '4 a 8 meses' },
+    { type: 'Landing', from: '$2.000.000 COP', time: '3 días' },
+    { type: 'Sitio corporativo', from: '$8.500.000 COP', time: '6 semanas' },
+    { type: 'Tienda en línea', from: '$8.000.000 COP', time: '4 semanas' },
+    { type: 'Agente de IA', from: '$2.700.000 COP', time: '4 semanas' },
+    { type: 'Integración', from: '$4.500.000 COP', time: '5 días' },
+    { type: 'App móvil', from: '$35.000.000 COP', time: '2 a 3 meses' },
+    { type: 'ERP', from: '$45.000.000 COP', time: '4 a 8 meses' },
+    { type: 'Software a la medida', from: '$15.000.000 COP', time: '1 a 2 meses' },
   ],
   commitments: [
     'Un responsable de proyecto con nombre y contacto directo.',

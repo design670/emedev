@@ -198,7 +198,7 @@
   flex: none;
   display: grid;
   place-items: center;
-  height: 72px;
+  height: 84px;
   white-space: nowrap;
   border-radius: var(--r-sm);
   font-size: 1.45rem;
@@ -210,8 +210,8 @@
 .clients__logo {
   display: block;
   width: auto;
-  max-width: 210px;
-  height: 46px;
+  max-width: 250px;
+  height: 58px;
   object-fit: contain;
   /* Logos en su color original */
   backface-visibility: hidden;
@@ -219,8 +219,9 @@
 /* Logos casi cuadrados: un poco más altos para equilibrar con los horizontales */
 .clients__logo[src*="carnes-santacruz"],
 .clients__logo[src*="watertown"],
-.clients__logo[src*="tusim"] {
-  height: 60px;
+.clients__logo[src*="tusim"],
+.clients__logo[src*="genial-foods"] {
+  height: 76px;
 }
 
 /* ---------- 04 · Métricas ---------- */

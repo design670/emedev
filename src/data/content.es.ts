@@ -117,11 +117,11 @@ export const clientLogos: Record<string, string> = {
   FIU: '/clientes/color/fiu.png',
 };
 
-// Clientes de desarrollo (cinta bajo las cifras). Sin logo: se muestra el nombre (Genial Foods).
+// Clientes de desarrollo (cinta bajo las cifras).
 export const clients: { name: string; logo?: string }[] = [
   { name: 'Bicosa', logo: '/clientes/color/bicosa.jpg' },
   { name: 'Quirulaser', logo: '/clientes/color/quirulaser.png' },
-  { name: 'Genial Foods' },
+  { name: 'Genial Foods', logo: '/clientes/color/genial-foods.png' },
   { name: 'Rapibox', logo: '/clientes/color/rapibox.png' },
   { name: 'Tusim', logo: '/clientes/color/tusim.png' },
   { name: 'Flexxi Credit', logo: '/clientes/color/flexxi-credit.png' },
@@ -377,6 +377,7 @@ export const testimonials: Testimonial[] = [
   {
     id: 2,
     company: 'Genial Foods',
+    logo: '/clientes/color/genial-foods.png',
     quote: '[Testimonio pendiente]',
     name: '[Nombre]',
     role: '[Cargo]',
@@ -441,11 +442,11 @@ export const testimonials: Testimonial[] = [
 export const faqs = [
   {
     q: '¿Cuánto cuesta un proyecto?',
-    a: 'Depende del alcance. Como referencia, una landing parte de $3.500.000 COP, un agente de IA de $18.000.000 COP y un sistema a la medida de $45.000.000 COP. Después del diagnóstico recibes una propuesta con precio y cronograma.',
+    a: 'Depende del alcance. Como referencia, una landing parte de $2.000.000 COP, un agente de IA de $2.700.000 COP, un software a la medida de $15.000.000 COP y un ERP de $45.000.000 COP. Después del diagnóstico recibes una propuesta con precio y cronograma.',
   },
   {
     q: '¿Cuánto tarda?',
-    a: 'Una landing, 3 semanas. Un agente de IA, entre 6 y 10 semanas. Un sistema a la medida, entre 4 y 8 meses, con entregas parciales cada dos semanas.',
+    a: 'Una landing, 3 días. Un agente de IA, 4 semanas. Un software a la medida, entre 1 y 2 meses, y un ERP, entre 4 y 8 meses, con entregas parciales cada dos semanas.',
   },
   {
     q: '¿De quién es el código?',
