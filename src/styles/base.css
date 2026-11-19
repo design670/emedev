@@ -282,11 +282,22 @@ a {
 .btn--ghost::before {
   background: currentColor;
 }
+/* Al pasar el cursor el botón se rellena con el color contrario al texto
+   (antes usaba currentColor y el relleno quedaba igual que el texto: no se leía) */
+.on-dark .btn--ghost::before {
+  background: var(--paper);
+}
 .on-dark .btn--ghost:hover {
   color: var(--ink);
 }
+.on-light .btn--ghost::before,
+.on-surface .btn--ghost::before,
+.on-lime .btn--ghost::before {
+  background: var(--ink);
+}
 .on-light .btn--ghost:hover,
-.on-surface .btn--ghost:hover {
+.on-surface .btn--ghost:hover,
+.on-lime .btn--ghost:hover {
   color: var(--paper);
 }
 .btn--ink {
