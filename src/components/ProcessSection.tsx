@@ -128,7 +128,7 @@ export function ProcessSection() {
             ))}
             <li className="pstep pstep--end">
               <a href={DIAGNOSTICO_HREF} className="pstep__endlink" data-cursor-label={tr('AGENDAR', 'BOOK')}>
-                <span className="t-h3">{tr('Agendar diagnóstico gratis', 'Book a free diagnostic')}</span>
+                <span className="t-h3">{tr('Diagnóstico gratis', 'Free diagnostic')}</span>
                 <span className="pstep__endicon" aria-hidden="true">
                   <ArrowRight strokeWidth={1.5} />
                 </span>
