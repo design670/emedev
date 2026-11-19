@@ -78,21 +78,25 @@ export const industries = [
     name: 'Constructoras',
     short: 'Cotizadores, portales de compradores y agentes de IA para salas de venta y cartera.',
     href: '/dev/industrias/constructoras',
+    tags: ['Cotizadores', 'Portal del comprador', 'Cartera'],
   },
   {
     name: 'Salud',
     short: 'Agendamiento, recordatorios y portales de pacientes que reducen inasistencias.',
     href: '/dev/industrias/salud',
+    tags: ['Agendamiento', 'Recordatorios', 'Portal del paciente'],
   },
   {
     name: 'Restaurantes',
     short: 'Pedidos directos, reservas y fidelización por WhatsApp, conectados a tu punto de venta.',
     href: '/dev/industrias/restaurantes',
+    tags: ['Pedidos directos', 'Reservas', 'Fidelización'],
   },
   {
     name: 'Corporativo',
     short: 'Modernización de sistemas, agentes de IA con gobernanza y equipos dedicados.',
     href: '/dev/industrias/corporativo',
+    tags: ['Modernización', 'IA con gobernanza', 'Equipos dedicados'],
   },
 ];
 

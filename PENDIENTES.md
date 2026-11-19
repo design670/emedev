@@ -26,12 +26,12 @@ Ya no quedan corchetes en el sitio: todo lo que faltaba se llenó con datos de e
 - [x] Logos oficiales de Cajacopi (cajacopi.com) y Brilla (gascaribe.com) en la franja del Hero (public/clientes)
 - [ ] Logos de Constructora H3, Almar y Monark: no tienen sitio oficial verificable en internet; siguen como texto hasta recibir los archivos
 - [x] Íconos oficiales de los seis sellos de partner (Simple Icons, en src/components/PartnerIcon.tsx). Confirmar que EME Dev tiene cada membresía/certificación antes de publicar
-- [ ] Imágenes 001–017 (ver mapa en Notas), incluidas las capturas reales de Achieve Apex (008) y Get Transcribe (009)
+- [ ] Imágenes 001–021 (ver mapa en Notas), incluidas las capturas reales de Achieve Apex (008) y Get Transcribe (009)
 - [ ] Imagen Open Graph `og-image.png` (1200×630) en `public/`
 
 ## Notas
 
-- Imágenes: todas las tarjetas visuales son espacios numerados («Image 001»…) en `ImagePlaceholder` / `ServiceVisual` (`src/components/ServiceVisual.tsx`). Mapa: 001 Agentes de IA · 002 Software a la medida · 003 ERP · 004 Apps móviles · 005 Aplicaciones web · 006 Integraciones · 007 Sitios web (se repiten en la lista de servicios, el menú y el hero de cada solución; las industrias usan la de su solución relacionada) · 008 Achieve Apex · 009 Get Transcribe · 010–013 casos (Constructora Litoral, Red Médica Andina, Distribuidora Nexo, Grupo Fogón) · 014–017 fotos del equipo.
+- Imágenes: todas las tarjetas visuales son espacios numerados («Image 001»…) en `ImagePlaceholder` / `ServiceVisual` (`src/components/ServiceVisual.tsx`). Mapa: 001 Agentes de IA · 002 Software a la medida · 003 ERP · 004 Apps móviles · 005 Aplicaciones web · 006 Integraciones · 007 Sitios web (se repiten en la lista de servicios, el menú y el hero de cada solución; las industrias usan la de su solución relacionada) · 008 Achieve Apex · 009 Get Transcribe · 010–013 casos (Constructora Litoral, Red Médica Andina, Distribuidora Nexo, Grupo Fogón) · 014–017 fotos del equipo · 018–021 menú de Industrias (Constructoras, Salud, Restaurantes, Corporativo).
 - Páginas internas (fase 7) listas en `src/pages/` con router propio (`src/lib/router.tsx`): 7 soluciones, 4 industrias, Casos (con filtros), caso individual (`/dev/casos/<slug>`), Proceso, Seguridad y datos, Equipo, Recursos, Diagnóstico y 404. Copy en `src/data/pages.ts`.
 - **Formulario de diagnóstico:** valida y muestra confirmación, pero todavía **no envía a ningún lado**. Falta conectarlo al pipeline de Dev en Achieve Apex.
 - **Servidor:** al publicar en e-me.co/dev, el servidor debe devolver `index.html` para cualquier ruta `/dev/*` (fallback de SPA).
