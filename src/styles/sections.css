@@ -365,7 +365,7 @@
   font-size: 1.0625rem;
 }
 .problem__punch {
-  font-size: clamp(1.6rem, 1.2rem + 1.3vw, 2.5rem);
+  font-size: clamp(1.3rem, 1.1rem + 0.6vw, 1.75rem);
   letter-spacing: -0.04em;
 }
 .problem__diagram {
