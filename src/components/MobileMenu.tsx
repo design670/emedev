@@ -77,7 +77,11 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
                   <li key={s.name}>
                     <a href={s.href} onClick={go(s.href)} tabIndex={sub === 'ind' ? tab : -1}>
                       <span>{String(i + 1).padStart(2, '0')}</span>
-                      {s.name}
+                      {/* Nombre general + línea de apoyo en letra pequeña */}
+                      <em className="mmenu__stack">
+                        {s.name}
+                        <small className="mmenu__line">{s.line}</small>
+                      </em>
                     </a>
                   </li>
                 ))}

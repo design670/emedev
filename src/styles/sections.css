@@ -1806,3 +1806,100 @@
     box-shadow: 0 0 0 4px var(--ink-12);
   }
 }
+
+/* ---------- Inicio · Donde más hemos construido (industrias v3) ---------- */
+.hindustries__head {
+  display: grid;
+  gap: var(--s-5);
+  margin-bottom: var(--s-8);
+}
+.hindustries__intro {
+  max-width: 52ch;
+  color: var(--ink-64);
+}
+/* Cuatro tarjetas alineadas, mismo alto */
+.hindustries__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--col-gap);
+}
+.hindustries__grid > li {
+  display: flex;
+}
+.hindustry {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: var(--s-4);
+  width: 100%;
+  padding: var(--s-6) var(--s-5) var(--s-5);
+  border-radius: var(--r-lg);
+  background: var(--paper);
+  box-shadow: inset 0 0 0 1px var(--ink-12);
+  transition:
+    background-color var(--t-base) var(--ease-out),
+    color var(--t-base) var(--ease-out);
+}
+.hindustry__name {
+  font-size: clamp(1.35rem, 1.1rem + 0.8vw, 1.85rem);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+.hindustry__text {
+  color: var(--ink-64);
+  line-height: 1.45;
+}
+.hindustry__arrow {
+  display: grid;
+  place-items: center;
+  justify-self: end;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px var(--ink-12);
+  transition:
+    background-color var(--t-base) var(--ease-out),
+    transform var(--t-base) var(--ease-out);
+}
+.hindustry__arrow svg {
+  width: 18px;
+  height: 18px;
+}
+@media (hover: hover) {
+  .hindustry:hover {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .hindustry:hover .hindustry__text {
+    color: var(--paper-56);
+  }
+  .hindustry:hover .hindustry__arrow {
+    background: var(--lime);
+    color: var(--ink);
+    box-shadow: none;
+    transform: rotate(45deg);
+  }
+}
+.hindustry:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
+}
+.hindustries__outro {
+  max-width: 70ch;
+  margin-top: var(--s-7);
+  color: var(--ink-64);
+}
+.hindustries__outro .link-line {
+  color: var(--ink);
+}
+@media (max-width: 1023.98px) {
+  .hindustries__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 640px) {
+  .hindustries__grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -81,7 +81,11 @@ export function NavigationMenu({
                   tabIndex={open === 'industrias' ? 0 : -1}
                 >
                   <span className="mega__num">{String(i + 1).padStart(2, '0')}</span>
-                  <span className="mega__name">{item.name}</span>
+                  {/* Nombre general + línea de apoyo en letra pequeña (sin ella no se entiende) */}
+                  <span className="mega__name mega__name--stack">
+                    {item.name}
+                    <small className="mega__line">{item.line}</small>
+                  </span>
                   <ArrowRight className="mega__arrow" strokeWidth={1.5} aria-hidden="true" />
                 </a>
               </li>
@@ -96,11 +100,13 @@ export function NavigationMenu({
             </div>
             <div className="mega__meta">
               <p className="mega__desc">{ind.short}</p>
-              <ul className="mega__tags">
-                {ind.tags.map((t) => (
-                  <li key={t}>{t}</li>
-                ))}
-              </ul>
+              {ind.tags.length > 0 && (
+                <ul className="mega__tags">
+                  {ind.tags.map((t) => (
+                    <li key={t}>{t}</li>
+                  ))}
+                </ul>
+              )}
             </div>
           </div>
         </div>

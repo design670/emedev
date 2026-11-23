@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    { "source": "/dev/industrias/salud", "destination": "/dev/industrias/salud-y-servicios", "statusCode": 301 },
+    { "source": "/dev/industrias/constructoras", "destination": "/dev", "statusCode": 301 },
+    { "source": "/dev/industrias/restaurantes", "destination": "/dev", "statusCode": 301 },
+    { "source": "/dev/industrias/corporativo", "destination": "/dev", "statusCode": 301 }
+  ],
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}

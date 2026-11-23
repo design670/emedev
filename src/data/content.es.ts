@@ -1,6 +1,8 @@
 // Todo el texto sale del brief "EME Dev: mapa del sitio y copy" (13-nov-2026).
 // Lo que va entre corchetes es un dato pendiente de confirmar por EME: no se inventa.
 
+import { industryPages } from './pages.es';
+
 export type ServiceKey =
   | 'agentes'
   | 'software'
@@ -73,32 +75,15 @@ export const services: Service[] = [
   },
 ];
 
-export const industries = [
-  {
-    name: 'Constructoras',
-    short: 'Cotizadores, portales de compradores y agentes de IA para salas de venta y cartera.',
-    href: '/dev/industrias/constructoras',
-    tags: ['Cotizadores', 'Portal del comprador', 'Cartera'],
-  },
-  {
-    name: 'Salud',
-    short: 'Agendamiento, recordatorios y portales de pacientes que reducen inasistencias.',
-    href: '/dev/industrias/salud',
-    tags: ['Agendamiento', 'Recordatorios', 'Portal del paciente'],
-  },
-  {
-    name: 'Restaurantes',
-    short: 'Pedidos directos, reservas y fidelización por WhatsApp, conectados a tu punto de venta.',
-    href: '/dev/industrias/restaurantes',
-    tags: ['Pedidos directos', 'Reservas', 'Fidelización'],
-  },
-  {
-    name: 'Corporativo',
-    short: 'Modernización de sistemas, agentes de IA con gobernanza y equipos dedicados.',
-    href: '/dev/industrias/corporativo',
-    tags: ['Modernización', 'IA con gobernanza', 'Equipos dedicados'],
-  },
-];
+/* Industrias (v3): salen de las páginas de industria, así menú, pie, filtros y páginas
+   usan siempre los mismos nombres. `line` es la línea de apoyo del menú. */
+export const industries = industryPages.map((p) => ({
+  name: p.name,
+  line: p.line,
+  short: p.card,
+  href: `/dev/industrias/${p.slug}`,
+  tags: [] as string[],
+}));
 
 export const navLinks = [
   { label: 'Casos', href: '/dev/casos' },
@@ -195,7 +180,7 @@ export const cases: CaseStudy[] = [
     slug: 'constructora-litoral',
     client: 'Constructora Litoral',
     sector: 'Construcción',
-    industry: 'Constructoras',
+    industry: '',
     solutionName: 'Agentes de IA',
     size: '120 empleados',
     duration: '4 meses',
@@ -224,7 +209,7 @@ export const cases: CaseStudy[] = [
     slug: 'red-medica-andina',
     client: 'Red Médica Andina',
     sector: 'Salud',
-    industry: 'Salud',
+    industry: 'Agenda y atención',
     solutionName: 'Agentes de IA',
     size: '350 empleados, 6 sedes',
     duration: '3 meses',
@@ -253,7 +238,7 @@ export const cases: CaseStudy[] = [
     slug: 'distribuidora-nexo',
     client: 'Distribuidora Nexo',
     sector: 'Distribución',
-    industry: 'Corporativo',
+    industry: 'Pedidos y cartera',
     solutionName: 'ERP a la medida',
     size: '480 empleados',
     duration: '7 meses',
@@ -282,7 +267,7 @@ export const cases: CaseStudy[] = [
     slug: 'grupo-fogon',
     client: 'Grupo Fogón',
     sector: 'Restaurantes',
-    industry: 'Restaurantes',
+    industry: '',
     solutionName: 'Aplicaciones web',
     size: '9 restaurantes',
     duration: '10 semanas',

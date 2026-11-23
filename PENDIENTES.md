@@ -47,3 +47,10 @@ Ya no quedan corchetes en el sitio: todo lo que faltaba se llenó con datos de e
 
 ## Redes sociales
 - [ ] Confirmar el TikTok de EME: el pie enlaza a tiktok.com/@emegrowthagency (mismo usuario que Instagram, LinkedIn y YouTube), pero no se pudo verificar
+
+## Industrias v3 (2026-11-23)
+- [ ] Casos reales por industria (hoy `caseSlug: null`, el bloque no se muestra): Operación y seguimiento → Rapibox, Importex o Cargonet; Pedidos y cartera → Genial Foods; Agenda y atención → Quirulaser; Formación y estudiantes → Academia Sandra o Watertown
+- [ ] Confirmar alcance de «Integración con transportadoras y procesos de aduana» (Operación y seguimiento)
+- [ ] Confirmar prácticas del bloque «Datos sensibles» (Agenda y atención)
+- [ ] Pedidos y cartera no tiene línea de respaldo en el documento (bloque omitido)
+- [ ] Casos ficticios (Constructora Litoral, Red Médica Andina, Distribuidora Nexo, Grupo Fogón) siguen en el inicio, /dev/casos, testimonios del caso y soluciones: decidir si se quitan

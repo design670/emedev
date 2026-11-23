@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import Lenis from 'lenis';
 import { gsap, ScrollTrigger, prefersReduced, setLenis, setupReveals, onReady } from './lib/motion';
-import { usePath, useLinkInterceptor, useMeta, HOME } from './lib/router';
+import { usePath, useLinkInterceptor, useMeta, navigate, HOME } from './lib/router';
 import { t } from './lib/i18n';
 import { solutionPages, industryPages } from './data/pages';
 import { Preloader } from './components/Preloader';
@@ -11,6 +11,7 @@ import { Hero } from './components/Hero';
 import { Metrics } from './components/Metrics';
 import { Problem } from './components/Problem';
 import { ServiceList } from './components/ServiceList';
+import { IndustriesSection } from './components/IndustriesSection';
 import { CompanySize } from './components/CompanySize';
 import { CaseStudies } from './components/CaseStudies';
 import { ProcessSection } from './components/ProcessSection';
@@ -55,6 +56,7 @@ function HomePage() {
       <Metrics />
       <Problem />
       <ServiceList />
+      <IndustriesSection />
       <CompanySize />
       <CaseStudies />
       <ProcessSection />
@@ -66,6 +68,21 @@ function HomePage() {
   );
 }
 
+/* Industrias que salieron en la v3: salud pasa a salud-y-servicios; las demás vuelven al inicio */
+const LEGACY_INDUSTRIES: Record<string, string> = {
+  salud: '/dev/industrias/salud-y-servicios',
+  constructoras: HOME,
+  restaurantes: HOME,
+  corporativo: HOME,
+};
+
+function Redirect({ to }: { to: string }) {
+  useEffect(() => {
+    navigate(to, { replace: true });
+  }, [to]);
+  return null;
+}
+
 function resolve(path: string) {
   if (path === HOME) return <HomePage />;
   const parts = path.replace(/^\/dev\/?/, '').split('/');
@@ -74,6 +91,7 @@ function resolve(path: string) {
     const p = solutionPages.find((s) => s.slug === slug);
     if (p) return <SolutionPage key={path} page={p} />;
   }
+  if (section === 'industrias' && slug && LEGACY_INDUSTRIES[slug]) return <Redirect to={LEGACY_INDUSTRIES[slug]} />;
   if (section === 'industrias' && slug) {
     const p = industryPages.find((s) => s.slug === slug);
     if (p) return <IndustryPage key={path} page={p} />;

@@ -1,12 +1,16 @@
-import { clientLogos } from '../data/content';
+import { clientLogos, clients } from '../data/content';
 import { industryPages, type IndustryPage as I } from '../data/pages';
 import { PageHero, NumberedList, Callout, FeaturedCase, RelatedLinks, BlockHead } from '../components/page/blocks';
 import { CTASection } from '../components/CTASection';
 import { useMeta } from '../lib/router';
 import { t } from '../lib/i18n';
 
-/* Estructura común del brief: hero, problemas típicos del sector, soluciones
-   que aplican, un caso del sector, logos del sector y cierre. */
+/* Logo de un cliente por nombre, si existe en el proyecto (si no, se muestra el nombre) */
+const logoFor = (name: string) => clients.find((c) => c.name === name)?.logo ?? clientLogos[name];
+
+/* Plantilla de industria (v3): hero, problemas, soluciones, bloques por sector (cada uno con
+   su propio h3), datos sensibles (si aplica), caso (solo si hay uno real), respaldo y cierre.
+   El <title> y la descripción usan el nombre específico del sector; el H1, el nombre general. */
 export function IndustryPage({ page }: { page: I }) {
   useMeta(page.seoTitle, page.seoDesc);
   const words = page.title.split(' ');
@@ -41,30 +45,45 @@ export function IndustryPage({ page }: { page: I }) {
       <NumberedList
         index="02"
         label={page.solutionsTitle}
-        title={page.slug === 'corporativo' ? [t('Cómo trabajamos con', 'How we work with'), { t: t('empresas grandes.', 'large companies.'), cls: 'mark' }] : [t('Soluciones para', 'Solutions for'), { t: t('el sector.', 'the industry.'), cls: 'mark' }]}
+        title={[t('Soluciones para', 'Solutions for'), { t: t('el sector.', 'the industry.'), cls: 'mark' }]}
         items={page.solutions}
         surface="on-surface"
         id="isolutions-title"
       />
 
+      {/* Bloques por sector: cada tarjeta con su propio encabezado (h3) para búsquedas específicas */}
+      <section className="isectors section on-light" aria-labelledby="isectors-title">
+        <div className="container">
+          <BlockHead index="03" label={t('Por sector', 'By sector')} title={[t('Según tu', 'Depending on'), { t: t('tipo de negocio.', 'your business.'), cls: 'mark' }]} id="isectors-title" />
+          <ul className="isectors__grid" data-reveal="stagger">
+            {page.sectors.map((s) => (
+              <li key={s.title} className="isector">
+                <h3 className="isector__title">{s.title}</h3>
+                <p className="isector__text">{s.text}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
       {page.note && <Callout label={page.note.title} text={page.note.text} tone="ink" />}
 
-      <FeaturedCase index="03" visual={page.visual} slug={page.caseSlug} />
+      {/* Sin caso real documentado, el bloque no se muestra */}
+      {page.caseSlug && <FeaturedCase index="04" visual={page.visual} slug={page.caseSlug} />}
 
-      {page.logos && (
+      {page.trust && (
         <section className="ilogos section on-light" aria-labelledby="ilogos-title">
           <div className="container">
-            <BlockHead index="04" label={t('Clientes', 'Clients')} title={[t('Clientes', 'Corporate'), t('corporativos.', 'clients.')]} id="ilogos-title" />
+            <BlockHead index="05" label={page.trust.title} title={[page.trust.title + '.']} id="ilogos-title" />
             <ul className="ilogos__grid" data-reveal="stagger">
-              {page.logos.map((l) => (
-                <li key={l}>
-                  {clientLogos[l] ? (
-                    <img className="ilogos__img" src={clientLogos[l]} alt={l} loading="lazy" />
-                  ) : (
-                    l
-                  )}
-                </li>
-              ))}
+              {page.trust.names.map((name) => {
+                const logo = logoFor(name);
+                return (
+                  <li key={name}>
+                    {logo ? <img className="ilogos__img" src={logo} alt={name} loading="lazy" /> : name}
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </section>
@@ -74,7 +93,7 @@ export function IndustryPage({ page }: { page: I }) {
         title={t('Otras industrias', 'Other industries')}
         items={industryPages
           .filter((s) => s.slug !== page.slug)
-          .map((s) => ({ label: s.name, href: `/dev/industrias/${s.slug}` }))}
+          .map((s) => ({ label: s.name, text: s.line, href: `/dev/industrias/${s.slug}` }))}
       />
       <CTASection />
     </>

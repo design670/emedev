@@ -253,9 +253,17 @@ export const solutionPages: SolutionPage[] = [
   },
 ];
 
+/* Industrias v3 (documento «Industrias v3», 2026-11-23): nombradas por proceso, no por sector.
+   Regla de los dos nombres: `name` (general) va en menú, H1, botones, tarjetas y pie;
+   `seoTitle`/`seoDesc` y el slug usan el nombre específico del sector. No unificarlos. */
 export interface IndustryPage {
   slug: string;
+  /** Nombre general: menú, H1, tarjetas, pie */
   name: string;
+  /** Línea de apoyo bajo el nombre en el menú (letra pequeña) */
+  line: string;
+  /** Texto de la tarjeta en la sección de industrias del inicio */
+  card: string;
   visual: ServiceKey;
   seoTitle: string;
   seoDesc: string;
@@ -264,117 +272,177 @@ export interface IndustryPage {
   problems: string[];
   solutionsTitle: string;
   solutions: string[];
+  /** Bloques por sector: cada uno con su propio encabezado (h3) */
+  sectors: { title: string; text: string }[];
+  /** Bloque «Datos sensibles» (solo Agenda y atención) */
   note?: { title: string; text: string };
-  caseSlug: string;
-  logos?: string[];
+  /** Caso real del sector; null mientras no esté documentado (el bloque se oculta) */
+  caseSlug: string | null;
+  /** «También confían en nosotros»: nombres de clientes (logo si existe) */
+  trust?: { title: string; names: string[] };
 }
 
 export const industryPages: IndustryPage[] = [
   {
-    slug: 'constructoras',
-    name: 'Constructoras',
-    visual: 'web',
-    seoTitle: 'Software para constructoras | EME Dev',
+    slug: 'operacion-y-logistica',
+    name: 'Operación y seguimiento',
+    line: 'Envíos, carga, casilleros, talleres, alquiler de equipos',
+    card: 'Para empresas donde algo entra, se procesa y se entrega: envíos, carga, casilleros, talleres, laboratorios, alquiler de equipos.',
+    visual: 'integraciones',
+    seoTitle: 'Software para empresas de envíos, carga y casilleros | EME Dev',
     seoDesc:
-      'Sistemas de gestión comercial, cotizadores, portales de compradores y agentes de IA para salas de venta y cartera.',
-    title: 'Tecnología para constructoras que quieren vender más y controlar mejor sus proyectos.',
+      'Cotización, órdenes de servicio, seguimiento y cobros para couriers, casilleros, talleres y alquiler de equipos.',
+    title: 'Software para empresas donde algo entra, se mueve y se entrega.',
     subtitle:
-      'Sistemas de gestión comercial, cotizadores, portales de compradores y agentes de IA para salas de venta y cartera.',
+      'Cotización, órdenes de servicio, seguimiento, entregas y cobros en un solo sistema. Lo construimos para Rapibox, Importex y Cargonet.',
     problems: [
-      'Prospectos que se pierden entre la sala de ventas, el asesor y el CRM.',
-      'Cartera y recaudo gestionados a mano.',
-      'Compradores que llaman para preguntar por su estado de cuenta o el avance de obra.',
-      'Inventario de unidades desactualizado entre canales.',
+      'Cotizar a mano cada envío, con tarifas que cambian por peso, volumen, origen y destino.',
+      'Clientes que llaman o escriben para preguntar dónde va su paquete.',
+      'La operación repartida entre WhatsApp, Excel y correo.',
+      'Cobros que se pierden entre la entrega y la facturación.',
+      'Novedades (retrasos, aduana, daños) que nadie registra y que aparecen cuando el cliente reclama.',
     ],
     solutionsTitle: 'Soluciones para el sector',
     solutions: [
-      'Cotizador y disponibilidad de unidades en línea.',
-      'Portal del comprador: pagos, documentos y avance de obra.',
-      'Agente de IA para atención de prospectos y seguimiento de cartera.',
-      'Integración entre CRM, ERP y fiducia.',
+      'Cotizador con tus tarifas, por peso, volumen y ruta.',
+      'Órdenes de servicio y trazabilidad desde la recolección hasta la entrega.',
+      'Portal y app para que el cliente consulte su envío sin llamar.',
+      'Gestión de casillero: prealertas, recepción, consolidación y despacho.',
+      'Registro de novedades y control de cartera.',
+      // TODO: confirmar con EME el alcance de la integración con transportadoras y aduana.
+      'Integración con transportadoras y procesos de aduana.',
     ],
-    caseSlug: 'constructora-litoral',
+    sectors: [
+      { title: 'Si eres courier, casillero o agencia de carga.', text: 'Prealertas, recepción, consolidación, despacho y trazabilidad hasta la entrega.' },
+      { title: 'Si tienes un taller o un servicio técnico.', text: 'La orden entra, pasa por etapas, se aprueba un presupuesto y se entrega con factura.' },
+      { title: 'Si alquilas equipos o maquinaria.', text: 'Salida, tiempo de uso, devolución, estado del equipo y cobro por período.' },
+      { title: 'Si operas un activo con entrada y salida.', text: 'Parqueaderos, bodegas, patios: control de ocupación, permanencia y cobro.' },
+      { title: 'Si procesas muestras o piezas.', text: 'Laboratorios y centros de diagnóstico: recepción, proceso, resultado y entrega.' },
+    ],
+    // TODO: caso pendiente (Rapibox, Importex o Cargonet). No usar casos ficticios.
+    caseSlug: null,
+    trust: {
+      title: 'Respaldo del sector',
+      names: ['Puerto de Barranquilla', 'Zona Franca La Cayena', 'ProBarranquilla'],
+    },
   },
   {
-    slug: 'salud',
-    name: 'Salud',
-    visual: 'agentes',
-    seoTitle: 'Software para clínicas y centros médicos | EME Dev',
-    seoDesc:
-      'Agendamiento, recordatorios, portales de pacientes y agentes de IA que reducen inasistencias y descargan a tu equipo administrativo.',
-    title: 'Software para clínicas, centros médicos y especialistas.',
+    slug: 'distribucion-y-mayoristas',
+    name: 'Pedidos y cartera',
+    line: 'Distribuidoras, comercializadoras, mayoristas, importadores',
+    card: 'Para empresas que le venden a otras empresas y tienen vendedores en calle: distribuidoras, comercializadoras, mayoristas, importadores.',
+    visual: 'erp',
+    seoTitle: 'Software para distribuidoras y mayoristas | EME Dev',
+    seoDesc: 'Pedidos, cartera, vendedores en calle y rotación de productos en un solo sistema.',
+    title: 'Software para empresas que venden, despachan y cobran todos los días.',
     subtitle:
-      'Agendamiento, recordatorios, portales de pacientes y agentes de IA que reducen inasistencias y descargan a tu equipo administrativo.',
+      'Pedidos, vendedores en calle, cartera y rotación de productos en un sistema que tu equipo comercial y tu equipo logístico usan al mismo tiempo.',
     problems: [
-      'Citas perdidas por falta de confirmación.',
-      'Líneas telefónicas saturadas con preguntas repetidas.',
-      'Información del paciente repartida entre sistemas.',
-      'Procesos de autorización y facturación lentos.',
+      'El vendedor toma el pedido sin saber cuánto debe el cliente.',
+      'Cartera vencida que se descubre tarde.',
+      'Pedidos que entran por WhatsApp y alguien tiene que digitar.',
+      'Nadie sabe con certeza qué productos rotan y cuáles están quietos.',
+      'Cotizaciones grandes que toman horas de digitación.',
+    ],
+    solutionsTitle: 'Soluciones para el sector',
+    solutions: [
+      'App para tus clientes: pedidos, estado, cartera y documentos.',
+      'App para tus vendedores: cartera vencida, pedidos nuevos y rotación de productos.',
+      'Sistema operativo: pedidos, despachos, inventario y facturación.',
+      'Agente de IA que lee correos con cotizaciones y genera órdenes de compra automáticamente.',
+      'Tableros de rotación, márgenes y desempeño por vendedor.',
+    ],
+    sectors: [
+      { title: 'Si vendes alimentos o productos perecederos.', text: 'Rotación, lotes, fechas de vencimiento y despachos por ruta.' },
+      { title: 'Si vendes materias primas o insumos industriales.', text: 'Cotizaciones largas, fichas técnicas y órdenes de compra generadas por IA.' },
+      { title: 'Si vendes repuestos o equipos.', text: 'Catálogo con referencias, compatibilidades y disponibilidad en tiempo real.' },
+      { title: 'Si tienes vendedores en calle.', text: 'App que muestra cartera vencida antes de tomar el pedido.' },
+      { title: 'Si le vendes a cadenas o grandes distribuidores.', text: 'Portal donde tu cliente consulta pedidos, cartera y documentos sin llamar.' },
+    ],
+    // TODO: caso pendiente (Genial Foods). No usar casos ficticios.
+    caseSlug: null,
+    // Sin bloque de respaldo: el documento no define una línea para esta industria.
+  },
+  {
+    slug: 'salud-y-servicios',
+    name: 'Agenda y atención',
+    line: 'Clínicas, centros estéticos, gimnasios, consultorios',
+    card: 'Para negocios que venden tiempo y citas: clínicas, centros estéticos, gimnasios, consultorios, talleres de servicio.',
+    visual: 'agentes',
+    seoTitle: 'Software para clínicas y centros estéticos | EME Dev',
+    seoDesc: 'Agendamiento, seguimiento de pacientes y control de paquetes de sesiones.',
+    title: 'Software para negocios que venden tiempo y citas.',
+    subtitle:
+      'Agendamiento, seguimiento de pacientes y control de la operación, sin que tu equipo viva pegado al teléfono.',
+    problems: [
+      'Agenda en papel o en una hoja de cálculo que solo una persona entiende.',
+      'Citas perdidas porque nadie confirma.',
+      'Historial de tratamientos y avances repartido entre varios lugares.',
+      'Paquetes de sesiones y pagos que se llevan a mano.',
     ],
     solutionsTitle: 'Soluciones para el sector',
     solutions: [
       'Agendamiento en línea y por WhatsApp, con recordatorios automáticos.',
-      'Agente de IA para atención y orientación de pacientes.',
-      'Portal del paciente: resultados, citas y pagos.',
-      'Integración con tu sistema de historia clínica y facturación.',
+      'Historial de sesiones, tratamientos y avance del paciente.',
+      'Control de paquetes, sesiones consumidas y pagos.',
+      'Panel de ocupación por profesional y por sede.',
+      'Portal del paciente: citas, resultados y pagos.',
     ],
+    sectors: [
+      { title: 'Si tienes una clínica o un consultorio.', text: 'Agenda por profesional y por sede, historial del paciente y recordatorios.' },
+      { title: 'Si vendes tratamientos por sesiones.', text: 'Centros estéticos y de rehabilitación: control de paquetes, sesiones consumidas y saldos.' },
+      { title: 'Si manejas membresías.', text: 'Gimnasios, clubes y academias: cobro recurrente, asistencia y renovaciones.' },
+      { title: 'Si atiendes a domicilio o en ruta.', text: 'Asignación de técnicos, ventana de llegada y cierre del servicio en sitio.' },
+    ],
+    // TODO: confirmar con EME las prácticas de protección de datos de salud descritas aquí.
     note: {
       title: 'Datos sensibles',
       text: 'Los datos de salud tienen protección especial bajo la Ley 1581 de 2012. Diseñamos cada solución con control de accesos, cifrado y registro de consultas.',
     },
-    caseSlug: 'red-medica-andina',
+    // TODO: caso pendiente (Quirulaser). No usar casos ficticios.
+    caseSlug: null,
+    trust: {
+      title: 'También confían en nosotros',
+      names: ['Clínica La Asunción', 'Sociedad Colombiana de Pediatría', 'Cajacopi'],
+    },
   },
   {
-    slug: 'restaurantes',
-    name: 'Restaurantes',
+    slug: 'educacion-y-formacion',
+    name: 'Formación y estudiantes',
+    line: 'Universidades, centros técnicos, academias, clubes',
+    card: 'Para instituciones que forman personas: universidades, centros técnicos, academias, clubes.',
     visual: 'apps',
-    seoTitle: 'Software para restaurantes | EME Dev',
-    seoDesc:
-      'Pedidos directos, reservas, fidelización y automatización por WhatsApp, conectados a tu punto de venta.',
-    title:
-      'Tecnología para restaurantes y negocios de comida que quieren vender más sin depender de terceros.',
+    seoTitle: 'Plataformas para academias y universidades | EME Dev',
+    seoDesc: 'Tus estudiantes ven clases, notas, avances y pagos desde el celular.',
+    title: 'Plataformas para instituciones que forman personas.',
     subtitle:
-      'Pedidos directos, reservas, fidelización y automatización por WhatsApp, conectados a tu punto de venta.',
+      'Tus estudiantes ven sus clases, notas, avances y pagos desde el celular. Tu equipo ve todo lo demás.',
     problems: [
-      'Comisiones altas en plataformas de domicilios.',
-      'Clientes que no vuelven porque nadie los contacta.',
-      'Reservas y pedidos por WhatsApp atendidos a mano.',
-      'Inventario y ventas en sistemas que no se hablan.',
+      'Estudiantes que preguntan por WhatsApp su horario, su nota o su saldo.',
+      'Cartera estudiantil en hojas de cálculo.',
+      'El avance del estudiante solo lo conoce el profesor.',
+      'Inscripciones y cupos gestionados a mano.',
     ],
     solutionsTitle: 'Soluciones para el sector',
     solutions: [
-      'Canal propio de pedidos web y por WhatsApp.',
-      'Agente de IA para reservas y pedidos.',
-      'Programa de fidelización y campañas automáticas sobre tu base de clientes.',
-      'Integración con punto de venta e inventario.',
+      'App del estudiante: materias, clases, temario, calificaciones, avances y pagos.',
+      'Gestión de programas, cohortes, horarios y cupos.',
+      'Control de cartera estudiantil y pagos en línea.',
+      'Panel del profesor para registrar asistencia y avance.',
+      'Certificados y constancias automáticas.',
     ],
-    caseSlug: 'grupo-fogon',
-  },
-  {
-    slug: 'corporativo',
-    name: 'Corporativo',
-    visual: 'integraciones',
-    seoTitle: 'Modernización de sistemas empresariales | EME Dev',
-    seoDesc:
-      'Modernización de sistemas, agentes de IA con gobernanza, integraciones y equipos dedicados que trabajan con tus estándares.',
-    title: 'Un equipo de ingeniería para los proyectos que tu área de TI no alcanza a cubrir.',
-    subtitle:
-      'Modernización de sistemas, agentes de IA con gobernanza, integraciones y equipos dedicados que trabajan con tus estándares.',
-    problems: [
-      'Sistemas antiguos que frenan nuevos proyectos.',
-      'Pilotos de IA que no pasan a producción.',
-      'Falta de desarrolladores con experiencia en IA.',
-      'Proveedores que entregan y desaparecen.',
+    sectors: [
+      { title: 'Si eres universidad o centro técnico.', text: 'Programas, cohortes, cupos, calificaciones y cartera estudiantil.' },
+      { title: 'Si tienes una academia o un centro de idiomas.', text: 'Niveles, avance por estudiante, certificados y pagos en línea.' },
+      { title: 'Si enseñas una práctica o un deporte.', text: 'Temario, avance por habilidad y asistencia, como en Watertown.' },
+      { title: 'Si formas a tu propio equipo.', text: 'Formación corporativa: rutas de aprendizaje, evaluaciones y certificación interna.' },
     ],
-    solutionsTitle: 'Cómo trabajamos con empresas grandes',
-    solutions: [
-      'Equipos dedicados o proyectos de alcance cerrado.',
-      'Acuerdos de confidencialidad, acuerdos de nivel de servicio y documentación técnica.',
-      'Trabajo sobre tu nube y tus políticas de seguridad.',
-      'Transferencia de conocimiento a tu equipo interno.',
-    ],
-    caseSlug: 'distribuidora-nexo',
-    logos: ['Almar', 'Brilla', 'PRB', 'FIU', 'Cajacopi', 'Monark', 'B-inner', 'Secosa'],
+    // TODO: caso pendiente (Academia Sandra o Watertown). No usar casos ficticios.
+    caseSlug: null,
+    trust: {
+      title: 'También confían en nosotros',
+      names: ['ICSA', 'Universidad Metropolitana', 'Befuturo'],
+    },
   },
 ];
 
@@ -550,7 +618,7 @@ export const diagnosticPage = {
 export const casesPage = {
   seoTitle: 'Casos de éxito en software e IA | EME Dev',
   seoDesc:
-    'Proyectos reales con resultados medibles en constructoras, salud, restaurantes y empresas corporativas.',
+    'Proyectos reales con resultados medibles en operación y logística, distribución, salud y educación.',
   title: 'Proyectos con resultados medibles',
   subtitle: 'Filtra por industria o por tipo de solución.',
 };

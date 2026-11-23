@@ -253,9 +253,13 @@ export const solutionPages: SolutionPage[] = [
   },
 ];
 
+/* Industries v3: named by process, not by sector. Two-name rule: `name` (general) goes in
+   menu, H1, buttons, cards and footer; `seoTitle`/`seoDesc` and the slug use the sector name. */
 export interface IndustryPage {
   slug: string;
   name: string;
+  line: string;
+  card: string;
   visual: ServiceKey;
   seoTitle: string;
   seoDesc: string;
@@ -264,117 +268,172 @@ export interface IndustryPage {
   problems: string[];
   solutionsTitle: string;
   solutions: string[];
+  sectors: { title: string; text: string }[];
   note?: { title: string; text: string };
-  caseSlug: string;
-  logos?: string[];
+  caseSlug: string | null;
+  trust?: { title: string; names: string[] };
 }
 
 export const industryPages: IndustryPage[] = [
   {
-    slug: 'constructoras',
-    name: 'Construction companies',
-    visual: 'web',
-    seoTitle: 'Software for construction companies | EME Dev',
+    slug: 'operacion-y-logistica',
+    name: 'Operations and tracking',
+    line: 'Shipping, freight, mailboxes, repair shops, equipment rental',
+    card: 'For businesses where something comes in, gets processed and goes out: shipping, freight, mailboxes, repair shops, labs, equipment rental.',
+    visual: 'integraciones',
+    seoTitle: 'Software for shipping, freight and mailbox companies | EME Dev',
     seoDesc:
-      'Sales management systems, quoting tools, buyer portals and AI agents for sales offices and receivables.',
-    title: 'Technology for construction companies that want to sell more and keep tighter control of their projects.',
+      'Quotes, service orders, tracking and collections for couriers, mailbox services, repair shops and equipment rental.',
+    title: 'Software for businesses where something comes in, moves and gets delivered.',
     subtitle:
-      'Sales management systems, quoting tools, buyer portals and AI agents for sales offices and receivables.',
+      'Quotes, service orders, tracking, deliveries and collections in a single system. We built it for Rapibox, Importex and Cargonet.',
     problems: [
-      'Leads that get lost between the sales office, the agent and the CRM.',
-      'Receivables and collections managed by hand.',
-      'Buyers calling to ask about their account balance or construction progress.',
-      'Unit inventory out of sync across channels.',
+      'Quoting every shipment by hand, with rates that change by weight, volume, origin and destination.',
+      'Customers who call or text to ask where their package is.',
+      'Operations scattered across WhatsApp, Excel and email.',
+      'Payments that get lost between delivery and invoicing.',
+      'Incidents (delays, customs, damage) that nobody logs and that surface when the customer complains.',
     ],
     solutionsTitle: 'Solutions for the industry',
     solutions: [
-      'Online quoting tool and unit availability.',
-      'Buyer portal: payments, documents and construction progress.',
-      'AI agent for lead handling and receivables follow-up.',
-      'Integration between CRM, ERP and the trust company.',
+      'A quote calculator with your rates, by weight, volume and route.',
+      'Service orders and tracking from pickup to delivery.',
+      'A portal and app so customers can check their shipment without calling.',
+      'Mailbox management: pre-alerts, receiving, consolidation and dispatch.',
+      'Incident logging and receivables control.',
+      // TODO: confirm with EME the scope of the carrier and customs integration.
+      'Integration with carriers and customs processes.',
     ],
-    caseSlug: 'constructora-litoral',
+    sectors: [
+      { title: 'If you run a courier, mailbox service or freight agency.', text: 'Pre-alerts, receiving, consolidation, dispatch and tracking all the way to delivery.' },
+      { title: 'If you run a repair shop or technical service.', text: 'The order comes in, moves through stages, a quote gets approved and it’s delivered with an invoice.' },
+      { title: 'If you rent equipment or machinery.', text: 'Check-out, usage time, return, equipment condition and billing by period.' },
+      { title: 'If you operate an asset with check-in and check-out.', text: 'Parking lots, warehouses, yards: occupancy, length of stay and billing.' },
+      { title: 'If you process samples or parts.', text: 'Labs and diagnostic centers: intake, processing, results and delivery.' },
+    ],
+    // TODO: pending case study (Rapibox, Importex or Cargonet). Do not use fictional cases.
+    caseSlug: null,
+    trust: {
+      title: 'Industry backing',
+      names: ['Puerto de Barranquilla', 'Zona Franca La Cayena', 'ProBarranquilla'],
+    },
   },
   {
-    slug: 'salud',
-    name: 'Healthcare',
-    visual: 'agentes',
-    seoTitle: 'Software for clinics and medical centers | EME Dev',
-    seoDesc:
-      'Scheduling, reminders, patient portals and AI agents that reduce no-shows and take work off your administrative team.',
-    title: 'Software for clinics, medical centers and specialists.',
+    slug: 'distribucion-y-mayoristas',
+    name: 'Orders and receivables',
+    line: 'Distributors, trading companies, wholesalers, importers',
+    card: 'For businesses that sell to other businesses and have field sales reps: distributors, trading companies, wholesalers, importers.',
+    visual: 'erp',
+    seoTitle: 'Software for distributors and wholesalers | EME Dev',
+    seoDesc: 'Orders, receivables, field sales reps and product turnover in a single system.',
+    title: 'Software for businesses that sell, ship and collect every day.',
     subtitle:
-      'Scheduling, reminders, patient portals and AI agents that reduce no-shows and take work off your administrative team.',
+      'Orders, field sales reps, receivables and product turnover in one system your sales and logistics teams use at the same time.',
     problems: [
-      'Missed appointments due to lack of confirmation.',
-      'Phone lines jammed with the same questions.',
-      'Patient information scattered across systems.',
-      'Slow authorization and billing processes.',
+      'Sales reps take orders without knowing how much the customer owes.',
+      'Overdue receivables discovered too late.',
+      'Orders that come in through WhatsApp and someone has to type in.',
+      'Nobody knows for sure which products move and which ones sit still.',
+      'Large quotes that take hours of data entry.',
+    ],
+    solutionsTitle: 'Solutions for the industry',
+    solutions: [
+      'An app for your customers: orders, status, balance and documents.',
+      'An app for your sales reps: overdue accounts, new orders and product turnover.',
+      'An operations system: orders, dispatch, inventory and invoicing.',
+      'An AI agent that reads emails with quotes and creates purchase orders automatically.',
+      'Dashboards for turnover, margins and performance by sales rep.',
+    ],
+    sectors: [
+      { title: 'If you sell food or perishable goods.', text: 'Turnover, batches, expiration dates and dispatch by route.' },
+      { title: 'If you sell raw materials or industrial supplies.', text: 'Long quotes, technical data sheets and AI-generated purchase orders.' },
+      { title: 'If you sell spare parts or equipment.', text: 'A catalog with part numbers, compatibility and real-time availability.' },
+      { title: 'If you have field sales reps.', text: 'An app that shows overdue accounts before the order is taken.' },
+      { title: 'If you sell to chains or large distributors.', text: 'A portal where your customer checks orders, balance and documents without calling.' },
+    ],
+    // TODO: pending case study (Genial Foods). Do not use fictional cases.
+    caseSlug: null,
+  },
+  {
+    slug: 'salud-y-servicios',
+    name: 'Scheduling and care',
+    line: 'Clinics, aesthetic centers, gyms, medical offices',
+    card: 'For businesses that sell time and appointments: clinics, aesthetic centers, gyms, medical offices, service shops.',
+    visual: 'agentes',
+    seoTitle: 'Software for clinics and aesthetic centers | EME Dev',
+    seoDesc: 'Scheduling, patient follow-up and session package tracking.',
+    title: 'Software for businesses that sell time and appointments.',
+    subtitle:
+      'Scheduling, patient follow-up and operations control, without your team living on the phone.',
+    problems: [
+      'A paper calendar or a spreadsheet only one person understands.',
+      'Missed appointments because nobody confirms.',
+      'Treatment history and progress scattered across several places.',
+      'Session packages and payments tracked by hand.',
     ],
     solutionsTitle: 'Solutions for the industry',
     solutions: [
       'Online and WhatsApp scheduling, with automatic reminders.',
-      'AI agent for patient service and guidance.',
-      'Patient portal: results, appointments and payments.',
-      'Integration with your electronic health record and billing systems.',
+      'History of sessions, treatments and patient progress.',
+      'Tracking of packages, used sessions and payments.',
+      'Occupancy dashboard by professional and by location.',
+      'Patient portal: appointments, results and payments.',
     ],
+    sectors: [
+      { title: 'If you run a clinic or a medical office.', text: 'Scheduling by professional and location, patient history and reminders.' },
+      { title: 'If you sell treatments by session.', text: 'Aesthetic and rehab centers: package tracking, used sessions and balances.' },
+      { title: 'If you manage memberships.', text: 'Gyms, clubs and academies: recurring billing, attendance and renewals.' },
+      { title: 'If you provide home or on-route services.', text: 'Technician assignment, arrival window and on-site service closeout.' },
+    ],
+    // TODO: confirm with EME the health-data protection practices described here.
     note: {
       title: 'Sensitive data',
-      text: 'Health data has special protection under Colombia’s Law 1581 of 2012. We design every solution with access control, encryption and query logging.',
+      text: 'Health data has special protection under Colombia’s Law 1581 of 2012. We design every solution with access controls, encryption and query logging.',
     },
-    caseSlug: 'red-medica-andina',
+    // TODO: pending case study (Quirulaser). Do not use fictional cases.
+    caseSlug: null,
+    trust: {
+      title: 'They also trust us',
+      names: ['Clínica La Asunción', 'Sociedad Colombiana de Pediatría', 'Cajacopi'],
+    },
   },
   {
-    slug: 'restaurantes',
-    name: 'Restaurants',
+    slug: 'educacion-y-formacion',
+    name: 'Education and students',
+    line: 'Universities, technical schools, academies, clubs',
+    card: 'For institutions that educate people: universities, technical schools, academies, clubs.',
     visual: 'apps',
-    seoTitle: 'Software for restaurants | EME Dev',
-    seoDesc:
-      'Direct ordering, reservations, loyalty and WhatsApp automation, connected to your point of sale.',
-    title:
-      'Technology for restaurants and food businesses that want to sell more without relying on third parties.',
+    seoTitle: 'Platforms for academies and universities | EME Dev',
+    seoDesc: 'Your students see classes, grades, progress and payments on their phone.',
+    title: 'Platforms for institutions that educate people.',
     subtitle:
-      'Direct ordering, reservations, loyalty and WhatsApp automation, connected to your point of sale.',
+      'Your students see their classes, grades, progress and payments on their phone. Your team sees everything else.',
     problems: [
-      'High commissions on delivery platforms.',
-      'Customers who don’t come back because nobody reaches out.',
-      'Reservations and WhatsApp orders handled by hand.',
-      'Inventory and sales in systems that don’t talk to each other.',
+      'Students who ask on WhatsApp for their schedule, grade or balance.',
+      'Student receivables kept in spreadsheets.',
+      'Only the teacher knows how each student is progressing.',
+      'Enrollment and seats managed by hand.',
     ],
     solutionsTitle: 'Solutions for the industry',
     solutions: [
-      'Your own web and WhatsApp ordering channel.',
-      'AI agent for reservations and orders.',
-      'Loyalty program and automated campaigns for your customer base.',
-      'Integration with your point of sale and inventory.',
+      'A student app: courses, classes, syllabus, grades, progress and payments.',
+      'Management of programs, cohorts, schedules and seats.',
+      'Student receivables control and online payments.',
+      'A teacher dashboard to record attendance and progress.',
+      'Automatic certificates and letters.',
     ],
-    caseSlug: 'grupo-fogon',
-  },
-  {
-    slug: 'corporativo',
-    name: 'Corporate',
-    visual: 'integraciones',
-    seoTitle: 'Enterprise systems modernization | EME Dev',
-    seoDesc:
-      'Systems modernization, governed AI agents, integrations and dedicated teams that work to your standards.',
-    title: 'An engineering team for the projects your IT department can’t get to.',
-    subtitle:
-      'Systems modernization, governed AI agents, integrations and dedicated teams that work to your standards.',
-    problems: [
-      'Legacy systems that hold back new projects.',
-      'AI pilots that never make it to production.',
-      'A shortage of developers with AI experience.',
-      'Vendors that deliver and disappear.',
+    sectors: [
+      { title: 'If you are a university or technical school.', text: 'Programs, cohorts, seats, grades and student receivables.' },
+      { title: 'If you run an academy or language school.', text: 'Levels, progress by student, certificates and online payments.' },
+      { title: 'If you teach a practice or a sport.', text: 'Syllabus, progress by skill and attendance, as at Watertown.' },
+      { title: 'If you train your own team.', text: 'Corporate training: learning paths, assessments and internal certification.' },
     ],
-    solutionsTitle: 'How we work with large companies',
-    solutions: [
-      'Dedicated teams or fixed-scope projects.',
-      'Non-disclosure agreements, service level agreements and technical documentation.',
-      'Work on your cloud and under your security policies.',
-      'Knowledge transfer to your in-house team.',
-    ],
-    caseSlug: 'distribuidora-nexo',
-    logos: ['Almar', 'Brilla', 'PRB', 'FIU', 'Cajacopi', 'Monark', 'B-inner', 'Secosa'],
+    // TODO: pending case study (Academia Sandra or Watertown). Do not use fictional cases.
+    caseSlug: null,
+    trust: {
+      title: 'They also trust us',
+      names: ['ICSA', 'Universidad Metropolitana', 'Befuturo'],
+    },
   },
 ];
 
@@ -550,7 +609,7 @@ export const diagnosticPage = {
 export const casesPage = {
   seoTitle: 'Software and AI case studies | EME Dev',
   seoDesc:
-    'Real projects with measurable results in construction, healthcare, restaurants and corporate companies.',
+    'Real projects with measurable results in operations and logistics, distribution, healthcare and education.',
   title: 'Projects with measurable results',
   subtitle: 'Filter by industry or by solution type.',
 };
