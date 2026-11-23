@@ -1,6 +1,6 @@
 import { clientLogos, clients } from '../data/content';
 import { industryPages, industryProjects, type IndustryPage as I } from '../data/pages';
-import { PageHero, NumberedList, Callout, FeaturedCase, RelatedLinks, BlockHead } from '../components/page/blocks';
+import { PageHero, NumberedList, FeaturedCase, RelatedLinks, BlockHead } from '../components/page/blocks';
 import { CTASection } from '../components/CTASection';
 import { useMeta } from '../lib/router';
 import { t } from '../lib/i18n';
@@ -79,9 +79,9 @@ export function IndustryPage({ page }: { page: I }) {
       <NumberedList
         index="02"
         label={page.solutionsTitle}
-        title={[t('Soluciones para', 'Solutions for'), { t: t('el sector.', 'the industry.'), cls: 'mark' }]}
+        title={[t('Soluciones para', 'Solutions for'), { t: t('el sector.', 'the industry.'), cls: 'hl' }]}
         items={page.solutions}
-        surface="on-lime"
+        surface="on-dark"
         id="isolutions-title"
       />
 
@@ -100,13 +100,12 @@ export function IndustryPage({ page }: { page: I }) {
         </div>
       </section>
 
-      {page.note && <Callout label={page.note.title} text={page.note.text} tone="ink" />}
-
       {/* Sin caso real documentado, el bloque no se muestra */}
       {page.caseSlug && <FeaturedCase index="04" visual={page.visual} slug={page.caseSlug} />}
 
       <RelatedLinks
         title={t('Otras industrias', 'Other industries')}
+        surface="on-light"
         items={industryPages
           .filter((s) => s.slug !== page.slug)
           .map((s) => ({ label: s.name, text: s.line, href: `/dev/industrias/${s.slug}` }))}

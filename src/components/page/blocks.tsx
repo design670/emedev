@@ -275,20 +275,24 @@ export function FeaturedCase({
 export function RelatedLinks({
   title,
   items,
+  surface = 'on-dark',
 }: {
   title: string;
   items: { label: string; href: string; text?: string }[];
+  surface?: 'on-dark' | 'on-light';
 }) {
   return (
-    <section className="related on-dark">
+    <section className={`related ${surface}`}>
       <div className="container">
-        <p className="t-label related__title">{title}</p>
+        <h2 className="related__title">{title}</h2>
         <ul className="related__list">
           {items.map((it) => (
             <li key={it.href}>
               <a href={it.href} className="related__item">
-                <span className="related__name">{it.label}</span>
-                {it.text && <span className="related__text">{it.text}</span>}
+                <span className="related__body">
+                  <span className="related__name">{it.label}</span>
+                  {it.text && <span className="related__text">{it.text}</span>}
+                </span>
                 <ArrowUpRight strokeWidth={1.5} aria-hidden="true" />
               </a>
             </li>

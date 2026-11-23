@@ -625,12 +625,12 @@ export interface IndustryProject {
 
 export const industryProjects: Record<string, IndustryProject[]> = {
   'operacion-y-logistica': [
-    { client: 'Rapibox', what: 'Shipping between Nicaragua and the United States', work: 'Operations software + app', software: true },
-    { client: 'Importex', what: 'Personal shopper, mailbox and international shipping', work: 'Operations software', software: true },
-    { client: 'CargoNet', what: 'Import, export and mailbox services', work: 'Operations software', software: true },
-    { client: 'Genial Foods', what: 'Meat exports to distributors worldwide', work: 'Operations software + app', software: true },
+    { client: 'Rapibox', what: 'Logistics and transportation services', work: 'Operations software + app', software: true },
+    { client: 'Importex', what: 'Logistics and transportation services', work: 'Operations software', software: true },
+    { client: 'CargoNet', what: 'Logistics and transportation services', work: 'Operations software', software: true },
+    { client: 'Genial Foods', what: 'Logistics and transportation services', work: 'Operations software + app', software: true },
     { client: 'Puerto de Barranquilla', what: 'Port operations', work: 'Website', software: false },
-    { client: 'Zona Franca La Cayena', what: 'Free trade zone', work: 'Website', software: false },
+    { client: 'Zona Franca La Cayena', what: 'Commercial, logistics and foreign trade operations', work: 'Website', software: false },
     { client: 'ProBarranquilla', what: 'Investment promotion', work: 'Website', software: false },
   ],
   'distribucion-y-mayoristas': [
