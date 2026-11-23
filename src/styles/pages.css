@@ -345,18 +345,37 @@
 }
 
 /* ---------- Industria: problemas ---------- */
+/* Retícula de 6 columnas: 3 por fila; con 5 problemas quedan 3 arriba y 2 abajo (a media fila),
+   con 4 quedan 2 y 2. Tarjetas del mismo alto; al pasar el cursor se ponen lima. */
 .iproblems__grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-auto-rows: 1fr;
   gap: var(--col-gap);
 }
 .iproblem {
+  grid-column: span 2;
   display: grid;
   align-content: start;
   gap: var(--s-7);
   min-height: 240px;
-  padding: var(--s-5);
-  border-top: 1px solid var(--ink);
+  padding: var(--s-6) var(--s-5);
+  border-radius: var(--r-md);
+  background: var(--paper);
+  box-shadow: inset 0 0 0 1px var(--ink-12);
+  transition:
+    background-color var(--t-base) var(--ease-out),
+    box-shadow var(--t-base) var(--ease-out);
+}
+.iproblems__grid--n5 .iproblem:nth-child(n + 4),
+.iproblems__grid--n4 .iproblem {
+  grid-column: span 3;
+}
+@media (hover: hover) {
+  .iproblem:hover {
+    background: var(--lime);
+    box-shadow: inset 0 0 0 1px var(--lime);
+  }
 }
 .iproblem__num {
   font-size: clamp(2.5rem, 2rem + 2vw, 4rem);
@@ -365,17 +384,21 @@
   color: var(--ink);
 }
 .iproblem p {
-  font-size: 1.125rem;
-  line-height: 1.35;
+  font-size: clamp(1.3rem, 1.05rem + 0.6vw, 1.55rem);
+  font-weight: 500;
+  line-height: 1.3;
   letter-spacing: -0.015em;
 }
 /* Bloques por sector (industrias v3): tarjetas alineadas, mismo alto, encabezado h3 propio */
+/* Igual que los problemas: 3 por fila; con 5 quedan 3 arriba y 2 abajo, con 4 quedan 2 y 2 */
 .isectors__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-auto-rows: 1fr;
   gap: var(--col-gap);
 }
 .isector {
+  grid-column: span 2;
   display: grid;
   align-content: start;
   gap: var(--s-3);
@@ -383,15 +406,32 @@
   border-radius: var(--r-md);
   background: var(--paper);
   box-shadow: inset 0 0 0 1px var(--ink-12);
+  transition:
+    background-color var(--t-base) var(--ease-out),
+    box-shadow var(--t-base) var(--ease-out);
+}
+.isectors__grid--n5 .isector:nth-child(n + 4),
+.isectors__grid--n4 .isector {
+  grid-column: span 3;
+}
+@media (hover: hover) {
+  .isector:hover {
+    background: var(--lime);
+    box-shadow: inset 0 0 0 1px var(--lime);
+  }
+  .isector:hover .isector__text {
+    color: var(--ink-80);
+  }
 }
 .isector__title {
-  font-size: clamp(1.15rem, 1rem + 0.5vw, 1.4rem);
+  font-size: clamp(1.3rem, 1.05rem + 0.6vw, 1.55rem);
   font-weight: 500;
   line-height: 1.2;
   letter-spacing: -0.02em;
 }
 .isector__text {
   color: var(--ink-64);
+  font-size: 1.125rem;
   line-height: 1.45;
 }
 
@@ -416,6 +456,10 @@
   max-width: 62%;
   height: 34px;
   object-fit: contain;
+}
+/* Logo apilado y casi cuadrado: necesita más alto para leerse */
+.ilogos__img[src*="sociedad-colombiana"] {
+  height: 64px;
 }
 
 /* ---------- Casos: filtros y listado ---------- */
@@ -1007,6 +1051,15 @@
    Responsive
    ========================================================================== */
 @media (max-width: 1023.98px) {
+  .isectors__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .isectors__grid .isector:nth-child(n) {
+    grid-column: auto;
+  }
+  .iproblems__grid .iproblem:nth-child(n) {
+    grid-column: auto;
+  }
   .phero.has-visual .phero__copy,
   .phero__visual,
   .phero__aside {
@@ -1087,6 +1140,9 @@
 }
 
 @media (max-width: 767.98px) {
+  .isectors__grid {
+    grid-template-columns: 1fr;
+  }
   .phero__ctas .btn {
     flex: 1 1 100%;
     justify-content: space-between;

@@ -100,6 +100,12 @@ export const clientLogos: Record<string, string> = {
   Brilla: '/clientes/color/brilla.png',
   PRB: '/clientes/color/probarranquilla.svg',
   FIU: '/clientes/color/fiu.png',
+  ICSA: '/clientes/color/icsa.png',
+  'Universidad Metropolitana': '/clientes/color/universidad-metropolitana.png',
+  Befuturo: '/clientes/color/befuturo.png',
+  'Zona Franca La Cayena': '/clientes/color/zona-franca-la-cayena.png',
+  'Clínica La Asunción': '/clientes/color/clinica-la-asuncion.png',
+  'Sociedad Colombiana de Pediatría': '/clientes/color/sociedad-colombiana-de-pediatria.png',
 };
 
 // Clientes de desarrollo (cinta bajo las cifras).

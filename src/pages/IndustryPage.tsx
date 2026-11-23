@@ -31,7 +31,7 @@ export function IndustryPage({ page }: { page: I }) {
       <section className="iproblems section on-light" aria-labelledby="iproblems-title">
         <div className="container">
           <BlockHead index="01" label={t('Problemas que resolvemos', 'Problems we solve')} title={[t('Lo que', 'What'), { t: t('frena', 'holds back'), cls: 'mark' }, t('al sector.', 'the industry.')]} id="iproblems-title" />
-          <ol className="iproblems__grid" data-reveal="stagger">
+          <ol className={`iproblems__grid iproblems__grid--n${page.problems.length}`} data-reveal="stagger">
             {page.problems.map((p, i) => (
               <li key={p} className="iproblem">
                 <span className="iproblem__num">{String(i + 1).padStart(2, '0')}</span>
@@ -55,7 +55,7 @@ export function IndustryPage({ page }: { page: I }) {
       <section className="isectors section on-light" aria-labelledby="isectors-title">
         <div className="container">
           <BlockHead index="03" label={t('Por sector', 'By sector')} title={[t('Según tu', 'Depending on'), { t: t('tipo de negocio.', 'your business.'), cls: 'mark' }]} id="isectors-title" />
-          <ul className="isectors__grid" data-reveal="stagger">
+          <ul className={`isectors__grid isectors__grid--n${page.sectors.length}`} data-reveal="stagger">
             {page.sectors.map((s) => (
               <li key={s.title} className="isector">
                 <h3 className="isector__title">{s.title}</h3>
