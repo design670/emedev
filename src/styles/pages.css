@@ -1256,27 +1256,24 @@
 .iprojects__list {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  /* líneas con sombras internas: sin relleno gris cuando la última fila queda incompleta */
-  background: var(--ink);
-  border: 1px solid var(--paper-14);
-  border-radius: var(--r-md);
-  overflow: hidden;
+  /* tarjetas separadas */
+  gap: var(--col-gap);
 }
 .iproject {
-  box-shadow:
-    1px 0 0 var(--paper-14),
-    0 1px 0 var(--paper-14);
+  border: 1px solid var(--paper-14);
+  border-radius: var(--r-md);
+  background: #111111;
   position: relative;
   display: grid;
   align-content: space-between;
   gap: var(--s-6);
   min-height: 190px;
   padding: var(--s-5);
-  background: var(--ink);
   transition: background-color var(--t-base);
 }
 .iproject:hover {
-  background: #141414;
+  background: #181818;
+  border-color: var(--paper-40);
 }
 .iproject__logo {
   display: grid;
