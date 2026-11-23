@@ -1338,8 +1338,9 @@
 }
 /* Recuadro rectangular: casi todos los logos son horizontales y en el cuadrado se encogían */
 .iproject__logo {
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 136px;
   height: 84px;
   border-radius: var(--r-sm);
@@ -1347,8 +1348,11 @@
   overflow: hidden;
 }
 .iproject__logo img {
-  width: 76%;
-  height: 66%;
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 76%;
+  max-height: 66%;
   object-fit: contain;
 }
 .iproject__logo span {
