@@ -110,6 +110,7 @@ export const clientLogos: Record<string, string> = {
   Retri: '/clientes/color/retri.svg',
   'HYK Colombia': '/clientes/color/hyk.png',
   Pintumax: '/clientes/color/pintumax.svg',
+  'Estrategia LTDA': '/clientes/color/estrategias.png',
   Befuturo: '/clientes/color/befuturo.png',
   'Zona Franca La Cayena': '/clientes/color/zona-franca-la-cayena.png',
   'Clínica La Asunción': '/clientes/color/clinica-la-asuncion.png',

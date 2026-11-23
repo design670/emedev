@@ -72,7 +72,12 @@ export function CustomCursor() {
       const t = (e.target as HTMLElement).closest<HTMLElement>(
         '[data-cursor-label], [data-cursor], a, button, [role="button"], input, textarea, select, label',
       );
-      el.classList.remove('is-link', 'is-label', 'is-text');
+      el.classList.remove('is-link', 'is-label', 'is-text', 'is-nav');
+      // En el encabezado y su menú: punto pequeño y sólido (el anillo tapaba el texto)
+      if ((e.target as HTMLElement).closest('.header')) {
+        el.classList.add('is-nav');
+        return;
+      }
       if (!t) return;
       const label = t.dataset.cursorLabel;
       if (label) {
