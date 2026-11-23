@@ -292,6 +292,10 @@
 }
 
 /* ---------- 05 · Problema ---------- */
+/* Título más arriba: menos aire superior que el resto de secciones */
+.problem.section {
+  padding-top: calc(var(--section-y) * 0.55);
+}
 .problem__grid {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -314,6 +318,7 @@
 .problem__stats {
   display: grid;
   gap: var(--s-4);
+  margin-top: var(--s-6);
   padding-block: var(--s-2);
 }
 .stat {
