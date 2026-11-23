@@ -159,11 +159,11 @@ export const solutionPages: SolutionPage[] = [
     ],
     faqs: [
       {
-        q: '¿Cuánto cuesta una app?',
+        q: '¿Cuánto cuesta una App?',
         a: 'Depende de las funciones. Una primera versión parte de $35.000.000 COP y toma entre 2 y 3 meses.',
       },
       {
-        q: '¿Necesito app o basta una aplicación web?',
+        q: '¿Necesito App o basta una aplicación web?',
         a: 'Si no necesitas cámara, GPS continuo o uso sin conexión, una aplicación web suele bastar y cuesta menos. Lo revisamos en el diagnóstico.',
       },
     ],
@@ -306,7 +306,7 @@ export const industryPages: IndustryPage[] = [
     solutions: [
       'Cotizador con tus tarifas, por peso, volumen y ruta.',
       'Órdenes de servicio y trazabilidad desde la recolección hasta la entrega.',
-      'Portal y app para que el cliente consulte su envío sin llamar.',
+      'Portal y App para que el cliente consulte su envío sin llamar.',
       'Gestión de casillero: prealertas, recepción, consolidación y despacho.',
       'Registro de novedades y control de cartera.',
       // TODO: confirmar con EME el alcance de la integración con transportadoras y aduana.
@@ -577,7 +577,7 @@ export const resourcesPage = {
   seoDesc: 'Guías para decidir mejor sobre tecnología: costos, software a la medida, agentes de IA y ERP.',
   title: 'Guías para decidir mejor sobre tecnología',
   articles: [
-    { title: '¿Cuánto cuesta desarrollar una app en Colombia en 2026?', tag: 'Apps móviles' },
+    { title: '¿Cuánto cuesta desarrollar una App en Colombia en 2026?', tag: 'Apps móviles' },
     { title: 'Software a la medida o SaaS: cómo decidir.', tag: 'Software a la medida' },
     { title: 'Qué es un agente de IA y en qué se diferencia de un chatbot.', tag: 'Agentes de IA' },
     {
@@ -634,9 +634,9 @@ export interface IndustryProject {
 
 export const industryProjects: Record<string, IndustryProject[]> = {
   'operacion-y-logistica': [
-    { client: 'Rapibox', what: 'Servicios logísticos y de transporte', work: 'Software operativo + app', software: true },
+    { client: 'Rapibox', what: 'Servicios logísticos y de transporte', work: 'Software operativo + App', software: true },
     { client: 'Importex', what: 'Servicios logísticos y de transporte', work: 'Software operativo', software: true },
-    { client: 'CargoNet', what: 'Servicios logísticos y de transporte', work: 'Software operativo + app', software: true },
+    { client: 'CargoNet', what: 'Servicios logísticos y de transporte', work: 'Software operativo + App', software: true },
     { client: 'Genial Foods', what: 'Comercialización global de productos cárnicos', work: 'Software + App', software: true },
     { client: 'Puerto de Barranquilla', what: 'Operación portuaria', work: 'Web', software: false },
     { client: 'Zona Franca La Cayena', what: 'Operaciones comerciales, logísticas y de comercio exterior', work: 'Web', software: false },

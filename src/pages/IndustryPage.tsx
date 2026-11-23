@@ -48,7 +48,7 @@ export function IndustryPage({ page }: { page: I }) {
               />
               <p className="iprojects__count" data-reveal="up">
                 <strong>{projects.length}</strong> {t('proyectos', 'projects')} ·{' '}
-                <strong>{projects.filter((p) => p.software).length}</strong> {t('con software o app', 'with software or an app')}
+                <strong>{projects.filter((p) => p.software).length}</strong> {t('con software o App', 'with software or an App')}
               </p>
             </div>
             <ul className="iprojects__list" data-reveal="stagger">

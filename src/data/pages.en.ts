@@ -625,9 +625,9 @@ export interface IndustryProject {
 
 export const industryProjects: Record<string, IndustryProject[]> = {
   'operacion-y-logistica': [
-    { client: 'Rapibox', what: 'Logistics and transportation services', work: 'Operations software + app', software: true },
+    { client: 'Rapibox', what: 'Logistics and transportation services', work: 'Operations software + App', software: true },
     { client: 'Importex', what: 'Logistics and transportation services', work: 'Operations software', software: true },
-    { client: 'CargoNet', what: 'Logistics and transportation services', work: 'Operations software + app', software: true },
+    { client: 'CargoNet', what: 'Logistics and transportation services', work: 'Operations software + App', software: true },
     { client: 'Genial Foods', what: 'Global meat products trading', work: 'Software + App', software: true },
     { client: 'Puerto de Barranquilla', what: 'Port operations', work: 'Website', software: false },
     { client: 'Zona Franca La Cayena', what: 'Commercial, logistics and foreign trade operations', work: 'Website', software: false },
