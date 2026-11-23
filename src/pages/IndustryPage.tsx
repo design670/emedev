@@ -52,10 +52,10 @@ export function IndustryPage({ page }: { page: I }) {
               </p>
             </div>
             <ul className="iprojects__list" data-reveal="stagger">
-              {projects.map((p) => {
+              {projects.map((p, i) => {
                 const logo = listLogo(p.client);
                 return (
-                  <li key={p.client} className={`iproject${p.software ? ' is-software' : ''}`}>
+                  <li key={p.client + i} className={`iproject${p.software ? ' is-software' : ''}`}>
                     <span className="iproject__logo">
                       {logo ? <img src={logo} alt="" loading="lazy" /> : <span>{p.client.slice(0, 2)}</span>}
                     </span>

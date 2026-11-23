@@ -111,6 +111,7 @@ export const clientLogos: Record<string, string> = {
   'HYK Colombia': '/clientes/color/hyk.png',
   Pintumax: '/clientes/color/pintumax.svg',
   'Estrategia LTDA': '/clientes/color/estrategias.png',
+  'Almacén Sandra': '/clientes/color/academia-sandra.png',
   Befuturo: '/clientes/color/befuturo.png',
   'Zona Franca La Cayena': '/clientes/color/zona-franca-la-cayena.png',
   'Clínica La Asunción': '/clientes/color/clinica-la-asuncion.png',
