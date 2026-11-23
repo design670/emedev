@@ -557,7 +557,7 @@ export const teamPage = {
     'OpenAI',
     'Meta Business Partner',
     'Shopify Partners',
-    'Pinterest Partners',
+    'Claude Code',
   ],
   parent:
     'EME Dev is the technology unit of EME, a company with 12 years in business and more than 783 clients.',

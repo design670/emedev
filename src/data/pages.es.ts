@@ -566,7 +566,7 @@ export const teamPage = {
     'OpenAI',
     'Meta Business Partner',
     'Shopify Partners',
-    'Pinterest Partners',
+    'Claude Code',
   ],
   parent:
     'EME Dev es la unidad de tecnología de EME, compañía con 12 años de trayectoria y más de 783 clientes.',

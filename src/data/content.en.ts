@@ -338,7 +338,7 @@ export const partners = [
   'Meta Business Partner',
   'WhatsApp Business',
   'Shopify Partners',
-  'Pinterest Partners',
+  'Claude Code',
 ];
 
 // Sample testimonials (provisional): replace with real testimonials before publishing.
