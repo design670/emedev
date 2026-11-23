@@ -1847,12 +1847,35 @@
 .cases.on-dark .case__result-note {
   color: var(--paper-56);
 }
+/* Al pasar o enfocar, la tarjeta se vuelve blanca con texto negro */
 .cases.on-dark :is(.case--slide, .case--sm) .case__link:focus-visible {
-  background: #161616;
+  background: var(--paper);
+  color: var(--ink);
+}
+.cases.on-dark :is(.case--slide, .case--sm) .case__link:focus-visible .case__result-note,
+.cases.on-dark :is(.case--slide, .case--sm) .case__link:focus-visible .muted {
+  color: var(--ink-64);
+}
+.cases.on-dark :is(.case--slide, .case--sm) .case__link:focus-visible .case__dl {
+  border-top-color: var(--ink-12);
+}
+.cases.on-dark :is(.case--slide, .case--sm) .case__link:focus-visible .case__dl dt {
+  color: var(--ink-48);
 }
 @media (hover: hover) {
   .cases.on-dark :is(.case--slide, .case--sm) .case__link:hover {
-    background: #161616;
+    background: var(--paper);
+    color: var(--ink);
+  }
+  .cases.on-dark :is(.case--slide, .case--sm) .case__link:hover .case__result-note,
+  .cases.on-dark :is(.case--slide, .case--sm) .case__link:hover .muted {
+    color: var(--ink-64);
+  }
+  .cases.on-dark :is(.case--slide, .case--sm) .case__link:hover .case__dl {
+    border-top-color: var(--ink-12);
+  }
+  .cases.on-dark :is(.case--slide, .case--sm) .case__link:hover .case__dl dt {
+    color: var(--ink-48);
   }
 }
 .cases.on-dark .circle-btn {
