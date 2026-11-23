@@ -179,6 +179,20 @@
   line-height: 1.35;
 }
 
+/* Lista sobre fondo lima (soluciones en las páginas de industria) */
+.nlist.on-lime {
+  background: var(--lime);
+  color: var(--ink);
+}
+.nlist.on-lime .mark {
+  background: var(--ink);
+  color: var(--lime);
+}
+.nlist.on-lime .nlist__items,
+.nlist.on-lime .nlist__items li {
+  border-color: var(--ink-24, rgba(0, 0, 0, 0.24));
+}
+
 /* ---------- Casos de uso ---------- */
 .ucases__list {
   border-top: 1px solid var(--paper-14);

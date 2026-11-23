@@ -47,7 +47,7 @@ export function IndustryPage({ page }: { page: I }) {
         label={page.solutionsTitle}
         title={[t('Soluciones para', 'Solutions for'), { t: t('el sector.', 'the industry.'), cls: 'mark' }]}
         items={page.solutions}
-        surface="on-surface"
+        surface="on-lime"
         id="isolutions-title"
       />
 
