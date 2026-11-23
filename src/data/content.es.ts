@@ -130,8 +130,8 @@ export const clients: { name: string; logo?: string }[] = [
 ];
 
 export const metrics = [
-  { value: 200, prefix: '+', suffix: '', label: 'Proyectos web' },
-  { value: 65, prefix: '+', suffix: '', label: 'Proyectos de desarrollo a la medida' },
+  { value: 287, prefix: '+', suffix: '', label: 'Proyectos web' },
+  { value: 92, prefix: '+', suffix: '', label: 'Proyectos de desarrollo a la medida' },
   { value: 7, prefix: '+', suffix: '', label: 'Aplicaciones móviles' },
   { value: 2, prefix: '', suffix: '', label: 'Herramientas propias\n(Apex y Get Transcribe)' },
 ] as const;

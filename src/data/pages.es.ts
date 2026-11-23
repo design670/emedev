@@ -247,7 +247,7 @@ export const solutionPages: SolutionPage[] = [
     ],
     packages: [
       { name: 'Landing', text: 'Una página para una campaña o servicio. Desde $2.000.000 COP, en 3 días.' },
-      { name: 'Sitio corporativo', text: 'Hasta 10 páginas. Desde $8.500.000 COP, en 6 semanas.' },
+      { name: 'Sitio corporativo', text: 'Hasta 15 páginas. Desde $8.500.000 COP, en 6 semanas.' },
       { name: 'Tienda en línea', text: 'Catálogo, pagos y envíos. Desde $8.000.000 COP, en 4 semanas.' },
     ],
   },

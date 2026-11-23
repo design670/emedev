@@ -19,7 +19,6 @@ export function Header() {
     setMobile(false);
   }, [path]);
   const ref = useRef<HTMLElement>(null);
-  const closeTimer = useRef<number>();
 
   // Estado según scroll: sólido al bajar, se oculta al bajar y vuelve al subir
   useEffect(() => {
@@ -63,17 +62,9 @@ export function Header() {
     };
   }, []);
 
-  const openMenu = (k: MenuKey) => {
-    window.clearTimeout(closeTimer.current);
-    setMenu(k);
-  };
-  const scheduleClose = () => {
-    window.clearTimeout(closeTimer.current);
-    closeTimer.current = window.setTimeout(() => setMenu(null), 180);
-  };
 
   const trigger = (k: Exclude<MenuKey, null>, label: string) => (
-    <li onPointerEnter={(e) => e.pointerType === 'mouse' && openMenu(k)}>
+    <li>
       <button
         className={`nav__link${menu === k ? ' is-open' : ''}${path.startsWith(`/dev/${k}`) ? ' is-current' : ''}`}
         aria-expanded={menu === k}
@@ -96,7 +87,7 @@ export function Header() {
     .join(' ');
 
   return (
-    <header className={cls} ref={ref} onPointerLeave={scheduleClose} onPointerEnter={() => window.clearTimeout(closeTimer.current)}>
+    <header className={cls} ref={ref}>
       <div className="header__bar container">
         <a href={HOME} className="header__logo" aria-label={t('EME Dev, inicio', 'EME Dev, home')} onClick={(e) => { e.preventDefault(); setMenu(null); setMobile(false); navigate(HOME); }}>
           <Logo />
@@ -107,7 +98,7 @@ export function Header() {
             {trigger('soluciones', t('Soluciones', 'Solutions'))}
             {trigger('industrias', t('Industrias', 'Industries'))}
             {navLinks.map((l) => (
-              <li key={l.label} onPointerEnter={() => setMenu(null)}>
+              <li key={l.label}>
                 <a
                   className={`nav__link${path.startsWith(l.href) ? ' is-current' : ''}`}
                   href={l.href}

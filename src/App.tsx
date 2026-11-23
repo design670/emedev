@@ -12,7 +12,6 @@ import { Metrics } from './components/Metrics';
 import { Problem } from './components/Problem';
 import { ServiceList } from './components/ServiceList';
 import { IndustriesSection } from './components/IndustriesSection';
-import { CompanySize } from './components/CompanySize';
 import { CaseStudies } from './components/CaseStudies';
 import { ProcessSection } from './components/ProcessSection';
 import { Trust } from './components/Trust';
@@ -57,7 +56,6 @@ function HomePage() {
       <Problem />
       <ServiceList />
       <IndustriesSection />
-      <CompanySize />
       <CaseStudies />
       <ProcessSection />
       <Trust />

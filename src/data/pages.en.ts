@@ -247,7 +247,7 @@ export const solutionPages: SolutionPage[] = [
     ],
     packages: [
       { name: 'Landing page', text: 'A single page for a campaign or service. From COP 2,000,000, in 3 days.' },
-      { name: 'Corporate site', text: 'Up to 10 pages. From COP 8,500,000, in 6 weeks.' },
+      { name: 'Corporate site', text: 'Up to 15 pages. From COP 8,500,000, in 6 weeks.' },
       { name: 'Online store', text: 'Catalog, payments and shipping. From COP 8,000,000, in 4 weeks.' },
     ],
   },

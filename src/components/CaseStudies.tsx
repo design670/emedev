@@ -80,14 +80,14 @@ export function CaseStudies() {
   };
 
   return (
-    <section className="cases section on-light" id="casos" aria-labelledby="cases-title">
+    <section className="cases section on-dark" id="casos" aria-labelledby="cases-title">
       <div className="container">
         <div className="cases__head">
           <SectionHeading
             index="05"
             label={t('Casos destacados', 'Featured case studies')}
             id="cases-title"
-            parts={[t('Resultados que puedes', 'Results you can'), { t: t('verificar.', 'verify.'), cls: 'mark' }]}
+            parts={[t('Resultados que puedes', 'Results you can'), { t: t('verificar.', 'verify.'), cls: 'hl' }]}
           />
           <div className="cases__cta" data-reveal="up">
             <div className="cases__nav">
@@ -98,7 +98,7 @@ export function CaseStudies() {
                 <ArrowRight strokeWidth={1.5} />
               </button>
             </div>
-            <Button href="/dev/casos" variant="ink">
+            <Button href="/dev/casos">
               {t('Ver todos los casos', 'View all case studies')}
             </Button>
           </div>

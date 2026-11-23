@@ -525,78 +525,6 @@
 }
 /* Imagen flotante */
 
-/* ---------- 07 · Tamaño de empresa ---------- */
-.sizes__head {
-  margin-bottom: var(--s-8);
-}
-.sizes__grid {
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  column-gap: var(--col-gap);
-  row-gap: var(--s-6);
-  align-items: start;
-}
-.size {
-  display: grid;
-  gap: var(--s-4);
-  padding: clamp(1.5rem, 1rem + 1.4vw, 2.25rem);
-  border-radius: var(--r-lg);
-  align-content: start;
-}
-.size--pequenas {
-  grid-column: 1 / 5;
-  background: var(--paper);
-  color: var(--ink);
-}
-.size--medianas {
-  grid-column: 5 / 9;
-  margin-top: var(--s-9);
-  background: transparent;
-  box-shadow: inset 0 0 0 1px var(--paper-14);
-}
-.size--grandes {
-  grid-column: 9 / 13;
-  margin-top: calc(var(--s-9) * 2);
-  background: var(--lime);
-  color: var(--ink);
-}
-.size__top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.size__idx {
-  font-size: var(--fs-label);
-  letter-spacing: var(--ls-label);
-}
-.size__dots {
-  display: flex;
-  gap: 5px;
-}
-.size__dots i {
-  width: 22px;
-  height: 6px;
-  border-radius: 3px;
-  background: currentColor;
-  opacity: 0.18;
-}
-.size__dots i.on {
-  opacity: 1;
-}
-.size__visual {
-  display: grid;
-  place-items: center;
-  min-height: 200px;
-  margin-block: var(--s-4);
-}
-.size__title {
-  letter-spacing: -0.035em;
-}
-.size__text {
-  font-size: var(--fs-small);
-  opacity: 0.78;
-}
-
 /* ---------- 08 · Casos ---------- */
 .cases__head {
   display: flex;
@@ -1907,4 +1835,32 @@
   .hindustries__grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* Casos destacados sobre fondo negro (Home) */
+.cases.on-dark .case__dl {
+  border-top-color: var(--paper-14);
+}
+.cases.on-dark .case__dl dt {
+  color: var(--paper-40);
+}
+.cases.on-dark .case__result-note {
+  color: var(--paper-56);
+}
+.cases.on-dark :is(.case--slide, .case--sm) .case__link:focus-visible {
+  background: #161616;
+}
+@media (hover: hover) {
+  .cases.on-dark :is(.case--slide, .case--sm) .case__link:hover {
+    background: #161616;
+  }
+}
+.cases.on-dark .circle-btn {
+  border-color: var(--paper-14);
+  color: var(--paper);
+}
+.cases.on-dark .circle-btn:hover:not(:disabled) {
+  background: var(--paper);
+  border-color: var(--paper);
+  color: var(--ink);
 }

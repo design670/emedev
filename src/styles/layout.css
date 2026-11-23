@@ -531,6 +531,44 @@ button.lang__opt:hover {
   font-size: 0.75rem;
   color: var(--paper-72);
 }
+/* Botón para cerrar el menú a mano */
+.mega__inner {
+  position: relative;
+  /* espacio arriba para el botón Cerrar sin tapar la imagen */
+  padding-top: calc(var(--s-4) * 2 + 38px) !important;
+}
+.mega__close {
+  position: absolute;
+  top: var(--s-4);
+  right: var(--gutter);
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 38px;
+  padding: 0 8px 0 14px;
+  border-radius: var(--r-pill);
+  background: var(--paper-08);
+  color: var(--paper-72);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition:
+    background-color var(--t-fast),
+    color var(--t-fast);
+}
+.mega__close svg {
+  width: 22px;
+  height: 22px;
+  padding: 4px;
+  border-radius: 50%;
+  background: var(--paper);
+  color: var(--ink);
+}
+.mega__close:hover,
+.mega__close:focus-visible {
+  background: var(--paper-14);
+  color: var(--paper);
+}
 .mega__foot {
   display: flex;
   justify-content: space-between;

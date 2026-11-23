@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, X } from 'lucide-react';
 import { services, industries, DIAGNOSTICO_HREF } from '../data/content';
 import { ServiceVisual, ImagePlaceholder } from './ServiceVisual';
 import { t as tr } from '../lib/i18n';
@@ -23,6 +23,16 @@ export function NavigationMenu({
   return (
     <div className={`mega${open ? ' is-open' : ''}`} aria-hidden={!open}>
       <div className="mega__inner container">
+        <button
+          type="button"
+          className="mega__close"
+          onClick={onClose}
+          tabIndex={open ? 0 : -1}
+          aria-label={tr('Cerrar menú', 'Close menu')}
+        >
+          <span>{tr('Cerrar', 'Close')}</span>
+          <X strokeWidth={1.75} aria-hidden="true" />
+        </button>
         <div
           id="menu-soluciones"
           className={`mega__panel mega__panel--sol${open === 'soluciones' ? ' is-active' : ''}`}
