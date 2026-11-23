@@ -640,7 +640,7 @@ export const industryProjects: Record<string, IndustryProject[]> = {
     { client: 'Genial Foods', what: 'Servicios logísticos y de transporte', work: 'Software operativo + app', software: true },
     { client: 'Puerto de Barranquilla', what: 'Operación portuaria', work: 'Web', software: false },
     { client: 'Zona Franca La Cayena', what: 'Operaciones comerciales, logísticas y de comercio exterior', work: 'Web', software: false },
-    { client: 'ProBarranquilla', what: 'Promoción de inversión', work: 'Web', software: false },
+    { client: 'ProBarranquilla', what: 'Servicio de promoción de inversión extranjera', work: 'Web', software: false },
   ],
   'distribucion-y-mayoristas': [
     { client: 'Genial Foods', what: 'Cárnicos para grandes distribuidores', work: 'Software + app (clientes y vendedores)', software: true },
