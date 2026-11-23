@@ -29,7 +29,40 @@ export function IndustryPage({ page }: { page: I }) {
         secondary={{ label: t('Ver casos', 'View case studies'), href: '/dev/casos' }}
       />
 
-      <section className="iproblems section on-light" aria-labelledby="iproblems-title">
+      {/* Proyectos que ya hicimos en esta industria (documento v3) */}
+      {projects.length > 0 && (
+        <section className="iprojects section on-light" aria-labelledby="iprojects-title">
+          <div className="container">
+            <div className="iprojects__head">
+              <BlockHead
+                title={[t('Proyectos en', 'Projects in'), { t: t('esta industria.', 'this industry.'), cls: 'mark' }]}
+                id="iprojects-title"
+              />
+              <p className="iprojects__count" data-reveal="up">
+                <strong>{projects.length}</strong> {t('proyectos', 'projects')} ·{' '}
+                <strong>{projects.filter((p) => p.software).length}</strong> {t('con software o app', 'with software or an app')}
+              </p>
+            </div>
+            <ul className="iprojects__list" data-reveal="stagger">
+              {projects.map((p) => {
+                const logo = logoFor(p.client);
+                return (
+                  <li key={p.client} className={`iproject${p.software ? ' is-software' : ''}`}>
+                    <span className="iproject__logo">
+                      {logo ? <img src={logo} alt="" loading="lazy" /> : <span>{p.client.slice(0, 2)}</span>}
+                    </span>
+                    <span className="iproject__client">{p.client}</span>
+                    <span className="iproject__what">{p.what}</span>
+                    <span className="iproject__work">{p.work}</span>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </section>
+      )}
+
+      <section className="iproblems section on-surface" aria-labelledby="iproblems-title">
         <div className="container">
           <BlockHead index="01" label={t('Problemas que resolvemos', 'Problems we solve')} title={[t('Lo que', 'What'), { t: t('frena', 'holds back'), cls: 'mark' }, t('al sector.', 'the industry.')]} id="iproblems-title" />
           <ol className={`iproblems__grid iproblems__grid--n${page.problems.length}`} data-reveal="stagger">
@@ -67,61 +100,10 @@ export function IndustryPage({ page }: { page: I }) {
         </div>
       </section>
 
-      {/* Proyectos que ya hicimos en esta industria (documento v3) */}
-      {projects.length > 0 && (
-        <section className="iprojects section on-dark" aria-labelledby="iprojects-title">
-          <div className="container">
-            <div className="iprojects__head">
-              <BlockHead
-                title={[t('Proyectos en', 'Projects in'), { t: t('esta industria.', 'this industry.'), cls: 'hl' }]}
-                id="iprojects-title"
-              />
-              <p className="iprojects__count" data-reveal="up">
-                <strong>{projects.length}</strong> {t('proyectos', 'projects')} ·{' '}
-                <strong>{projects.filter((p) => p.software).length}</strong> {t('con software o app', 'with software or an app')}
-              </p>
-            </div>
-            <ul className="iprojects__list" data-reveal="stagger">
-              {projects.map((p) => {
-                const logo = logoFor(p.client);
-                return (
-                  <li key={p.client} className={`iproject${p.software ? ' is-software' : ''}`}>
-                    <span className="iproject__logo">
-                      {logo ? <img src={logo} alt="" loading="lazy" /> : <span>{p.client.slice(0, 2)}</span>}
-                    </span>
-                    <span className="iproject__client">{p.client}</span>
-                    <span className="iproject__what">{p.what}</span>
-                    <span className="iproject__work">{p.work}</span>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        </section>
-      )}
-
       {page.note && <Callout label={page.note.title} text={page.note.text} tone="ink" />}
 
       {/* Sin caso real documentado, el bloque no se muestra */}
       {page.caseSlug && <FeaturedCase index="04" visual={page.visual} slug={page.caseSlug} />}
-
-      {page.trust && (
-        <section className="ilogos section on-light" aria-labelledby="ilogos-title">
-          <div className="container">
-            <BlockHead index="05" label={page.trust.title} title={[page.trust.title + '.']} id="ilogos-title" />
-            <ul className="ilogos__grid" data-reveal="stagger">
-              {page.trust.names.map((name) => {
-                const logo = logoFor(name);
-                return (
-                  <li key={name}>
-                    {logo ? <img className="ilogos__img" src={logo} alt={name} loading="lazy" /> : name}
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        </section>
-      )}
 
       <RelatedLinks
         title={t('Otras industrias', 'Other industries')}
