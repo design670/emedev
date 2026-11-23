@@ -286,7 +286,7 @@ export const industryPages: IndustryPage[] = [
       'Quotes, service orders, tracking and collections for couriers, mailbox services, repair shops and equipment rental.',
     title: 'Software for businesses where something comes in, moves and gets delivered.',
     subtitle:
-      'Quotes, service orders, tracking, deliveries and collections in a single system. We built it for Rapibox, Importex and Cargonet.',
+      'Quotes, service orders, tracking, deliveries and collections in a single system.',
     problems: [
       'Quoting every shipment by hand, with rates that change by weight, volume, origin and destination.',
       'Customers who call or text to ask where their package is.',
@@ -657,6 +657,7 @@ export const industryProjects: Record<string, IndustryProject[]> = {
   'educacion-y-formacion': [
     { client: 'Academia Sandra', what: 'Beauty academic programs', work: 'App: courses, grades, payments', software: true },
     { client: 'Watertown', what: 'Swimming lessons', work: 'App: scheduling, syllabus, progress, payments', software: true },
+    { client: 'Universidad de la Costa', what: 'University', work: 'AI student management', software: true },
     { client: 'ICSA', what: 'Technical, technological and professional programs', work: 'Website', software: false },
     { client: 'Universidad Metropolitana', what: 'University', work: 'Website', software: false },
     { client: 'Befuturo', what: 'Academic courses', work: 'Website', software: false },

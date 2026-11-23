@@ -294,7 +294,7 @@ export const industryPages: IndustryPage[] = [
       'Cotización, órdenes de servicio, seguimiento y cobros para couriers, casilleros, talleres y alquiler de equipos.',
     title: 'Software para empresas donde algo entra, se mueve y se entrega.',
     subtitle:
-      'Cotización, órdenes de servicio, seguimiento, entregas y cobros en un solo sistema. Lo construimos para Rapibox, Importex y Cargonet.',
+      'Cotización, órdenes de servicio, seguimiento, entregas y cobros en un solo sistema.',
     problems: [
       'Cotizar a mano cada envío, con tarifas que cambian por peso, volumen, origen y destino.',
       'Clientes que llaman o escriben para preguntar dónde va su paquete.',
@@ -666,6 +666,7 @@ export const industryProjects: Record<string, IndustryProject[]> = {
   'educacion-y-formacion': [
     { client: 'Academia Sandra', what: 'Programas académicos de belleza', work: 'App: materias, calificaciones, pagos', software: true },
     { client: 'Watertown', what: 'Clases de natación', work: 'App: agendamiento, temario, avances, pagos', software: true },
+    { client: 'Universidad de la Costa', what: 'Universidad', work: 'Gestión estudiantil con IA', software: true },
     { client: 'ICSA', what: 'Programas técnicos, tecnológicos y profesionales', work: 'Web', software: false },
     { client: 'Universidad Metropolitana', what: 'Universidad', work: 'Web', software: false },
     { client: 'Befuturo', what: 'Cursos académicos', work: 'Web', software: false },

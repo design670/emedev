@@ -1252,77 +1252,56 @@
   color: var(--lime);
   font-weight: 500;
 }
-/* Retícula como la de «Respaldo técnico»: logo arriba, nombre y descripción abajo */
+/* Lista: una fila por proyecto con logo grande, nombre, descripción y tipo de trabajo */
 .iprojects__list {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  /* tarjetas separadas */
-  gap: var(--col-gap);
+  border-top: 1px solid var(--paper-14);
 }
 .iproject {
-  border: 1px solid var(--paper-14);
-  border-radius: var(--r-md);
-  background: #111111;
-  position: relative;
   display: grid;
-  align-content: space-between;
-  gap: var(--s-6);
-  min-height: 190px;
-  padding: var(--s-5);
-  transition: background-color var(--t-base);
-}
-.iproject:hover {
-  background: #181818;
-  border-color: var(--paper-40);
+  grid-template-columns: 72px minmax(0, 3fr) minmax(0, 5fr) minmax(0, 4fr);
+  align-items: center;
+  column-gap: var(--col-gap);
+  padding: var(--s-5) 0;
+  border-bottom: 1px solid var(--paper-14);
 }
 .iproject__logo {
   display: grid;
   place-items: center;
-  width: 56px;
-  height: 56px;
+  width: 72px;
+  height: 72px;
   border-radius: var(--r-sm);
   background: var(--paper);
   overflow: hidden;
 }
 .iproject__logo img {
-  width: 80%;
-  height: 80%;
+  width: 84%;
+  height: 84%;
   object-fit: contain;
 }
 .iproject__logo span {
   color: var(--ink);
   font-weight: 600;
-  font-size: 0.9375rem;
+  font-size: 1.0625rem;
   letter-spacing: -0.02em;
 }
-.iproject__text {
-  display: grid;
-  gap: 6px;
-}
 .iproject__client {
-  font-size: 1.125rem;
-  font-weight: 500;
+  font-size: clamp(1.2rem, 1rem + 0.7vw, 1.6rem);
   letter-spacing: -0.02em;
   line-height: 1.2;
 }
 .iproject__what {
-  color: var(--paper-56);
-  font-size: var(--fs-small);
-  line-height: 1.45;
+  color: var(--paper-72);
+  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.1875rem);
+  line-height: 1.4;
 }
-/* Tipo de trabajo, arriba a la derecha; lima cuando hay software o app */
 .iproject__work {
-  position: absolute;
-  top: var(--s-5);
-  right: var(--s-5);
-  max-width: calc(100% - 56px - var(--s-5) * 2 - var(--s-3));
-  padding: 4px 10px;
+  justify-self: end;
+  text-align: right;
+  padding: 6px 14px;
   border-radius: var(--r-pill);
   border: 1px solid var(--paper-14);
   color: var(--paper-72);
-  font-size: 0.75rem;
-  line-height: 1.3;
-  text-align: right;
+  font-size: 0.875rem;
 }
 .iproject.is-software .iproject__work {
   background: var(--lime);
@@ -1330,16 +1309,24 @@
   color: var(--ink);
   font-weight: 500;
 }
-@media (max-width: 1023.98px) {
-  .iprojects__list {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-@media (max-width: 599.98px) {
-  .iprojects__list {
-    grid-template-columns: 1fr;
-  }
+@media (max-width: 767.98px) {
   .iproject {
-    min-height: 0;
+    grid-template-columns: 56px minmax(0, 1fr);
+    row-gap: 6px;
+  }
+  .iproject__logo {
+    grid-row: 1 / 4;
+    width: 56px;
+    height: 56px;
+    align-self: start;
+  }
+  .iproject__client,
+  .iproject__what,
+  .iproject__work {
+    grid-column: 2;
+  }
+  .iproject__work {
+    justify-self: start;
+    text-align: left;
   }
 }
