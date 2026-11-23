@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import { ArrowRight, ArrowUpRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { services, industries, DIAGNOSTICO_HREF } from '../data/content';
-import { ServiceVisual } from './ServiceVisual';
+import { ServiceVisual, ImagePlaceholder } from './ServiceVisual';
 import { t as tr } from '../lib/i18n';
 
 export type MenuKey = 'soluciones' | 'industrias' | null;
 
 /* Panel desplegable. Soluciones: índice numerado + vista previa de la solución
-   activa. Industrias: tarjetas por sector y un acceso lima a los casos. */
+   activa. Industrias: misma estructura, con su imagen (Image 018–021). */
 export function NavigationMenu({
   open,
   onClose,
@@ -17,6 +17,8 @@ export function NavigationMenu({
 }) {
   const [active, setActive] = useState(0);
   const s = services[active];
+  const [activeInd, setActiveInd] = useState(0);
+  const ind = industries[activeInd];
 
   return (
     <div className={`mega${open ? ' is-open' : ''}`} aria-hidden={!open}>
@@ -63,41 +65,50 @@ export function NavigationMenu({
 
         <div
           id="menu-industrias"
-          className={`mega__panel mega__panel--ind${open === 'industrias' ? ' is-active' : ''}`}
+          className={`mega__panel mega__panel--sol mega__panel--ind${open === 'industrias' ? ' is-active' : ''}`}
           role="region"
           aria-label={tr('Industrias', 'Industries')}
         >
-          <ul className="mega__ind">
+          <ol className="mega__list">
             {industries.map((item, i) => (
               <li key={item.name} style={{ ['--i' as string]: i }}>
                 <a
                   href={item.href}
-                  className="mega__ind-card"
+                  className={`mega__item${i === activeInd ? ' is-active' : ''}`}
+                  onPointerEnter={() => setActiveInd(i)}
+                  onFocus={() => setActiveInd(i)}
                   onClick={onClose}
                   tabIndex={open === 'industrias' ? 0 : -1}
                 >
                   <span className="mega__num">{String(i + 1).padStart(2, '0')}</span>
-                  <span className="mega__ind-name">{item.name}</span>
-                  <span className="mega__ind-text">{item.short}</span>
-                  <ArrowUpRight className="mega__ind-arrow" strokeWidth={1.5} aria-hidden="true" />
+                  {/* Nombre general + línea de apoyo en letra pequeña (sin ella no se entiende) */}
+                  <span className="mega__name mega__name--stack">
+                    {item.name}
+                    <small className="mega__line">{item.line}</small>
+                  </span>
+                  <ArrowRight className="mega__arrow" strokeWidth={1.5} aria-hidden="true" />
                 </a>
               </li>
             ))}
-          </ul>
-          <a
-            href="/dev/casos"
-            className="mega__aside"
-            onClick={onClose}
-            tabIndex={open === 'industrias' ? 0 : -1}
-          >
-            <span className="t-label">{tr('Casos por sector', 'Cases by sector')}</span>
-            <span className="mega__aside-title">
-              {tr('Filtra los casos por industria o por tipo de solución.', 'Filter cases by industry or by type of solution.')}
-            </span>
-            <span className="mega__aside-link">
-              {tr('Ver casos', 'See cases')} <ArrowRight strokeWidth={1.5} aria-hidden="true" />
-            </span>
-          </a>
+          </ol>
+
+          <div className="mega__preview">
+            <div className="mega__visual" key={ind.name}>
+              <div className="service-visual" aria-hidden="true">
+                <ImagePlaceholder n={18 + activeInd} />
+              </div>
+            </div>
+            <div className="mega__meta">
+              <p className="mega__desc">{ind.short}</p>
+              {ind.tags.length > 0 && (
+                <ul className="mega__tags">
+                  {ind.tags.map((t) => (
+                    <li key={t}>{t}</li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </div>
         </div>
 
         <div className="mega__foot">
