@@ -613,3 +613,52 @@ export const casesPage = {
   title: 'Projects with measurable results',
   subtitle: 'Filter by industry or by solution type.',
 };
+
+/* Projects by industry (v3 document, client inventory by industry).
+   software = true when the work includes software or an app (highlighted in the table). */
+export interface IndustryProject {
+  client: string;
+  what: string;
+  work: string;
+  software: boolean;
+}
+
+export const industryProjects: Record<string, IndustryProject[]> = {
+  'operacion-y-logistica': [
+    { client: 'Rapibox', what: 'Shipping between Nicaragua and the United States', work: 'Operations software + app', software: true },
+    { client: 'Importex', what: 'Personal shopper, mailbox and international shipping', work: 'Operations software', software: true },
+    { client: 'CargoNet', what: 'Import, export and mailbox services', work: 'Operations software', software: true },
+    { client: 'Genial Foods', what: 'Meat exports to distributors worldwide', work: 'Operations software + app', software: true },
+    { client: 'Puerto de Barranquilla', what: 'Port operations', work: 'Website', software: false },
+    { client: 'Zona Franca La Cayena', what: 'Free trade zone', work: 'Website', software: false },
+    { client: 'ProBarranquilla', what: 'Investment promotion', work: 'Website', software: false },
+  ],
+  'distribucion-y-mayoristas': [
+    { client: 'Genial Foods', what: 'Meat products for large distributors', work: 'Software + app (customers and sales reps)', software: true },
+    { client: 'Estrategia LTDA', what: 'HORECA products', work: 'Operations software', software: true },
+    { client: 'Tusim', what: 'Worldwide SIM card and eSIM sales', work: 'Operations software', software: true },
+    { client: 'Avantika', what: 'Chemical products distribution', work: 'Software + AI agent', software: true },
+    { client: 'Carnes Santacruz', what: 'Meat products', work: 'Sales app', software: true },
+    { client: 'Quidem', what: 'Raw materials and chemical solutions for coatings and mortars', work: 'Website', software: false },
+    { client: 'GSM', what: 'Heavy machinery spare parts', work: 'Website', software: false },
+    { client: 'Retri', what: 'Heavy machinery rental', work: 'Website', software: false },
+    { client: 'HYK Colombia', what: 'Technology', work: 'Website + store', software: false },
+    { client: 'Soluzioni', what: 'Office furniture', work: 'Website + store', software: false },
+    { client: 'Pintumax', what: 'Paints', work: 'Online store', software: false },
+  ],
+  'salud-y-servicios': [
+    { client: 'Quirulaser', what: 'Aesthetic services', work: 'Scheduling and follow-up software', software: true },
+    { client: 'Watertown', what: 'Swimming lessons', work: 'Scheduling, payments and progress app', software: true },
+    { client: 'Clínica La Asunción', what: 'Clinic', work: 'Website', software: false },
+    { client: 'Issa Abuchaibe', what: 'Medical services', work: 'Website', software: false },
+    { client: 'Sociedad Colombiana de Pediatría', what: 'Medical association', work: 'Website', software: false },
+    { client: 'Cajacopi', what: 'Family compensation fund', work: 'Website', software: false },
+  ],
+  'educacion-y-formacion': [
+    { client: 'Academia Sandra', what: 'Beauty academic programs', work: 'App: courses, grades, payments', software: true },
+    { client: 'Watertown', what: 'Swimming lessons', work: 'App: scheduling, syllabus, progress, payments', software: true },
+    { client: 'ICSA', what: 'Technical, technological and professional programs', work: 'Website', software: false },
+    { client: 'Universidad Metropolitana', what: 'University', work: 'Website', software: false },
+    { client: 'Befuturo', what: 'Academic courses', work: 'Website', software: false },
+  ],
+};

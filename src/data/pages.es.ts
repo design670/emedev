@@ -622,3 +622,52 @@ export const casesPage = {
   title: 'Proyectos con resultados medibles',
   subtitle: 'Filtra por industria o por tipo de solución.',
 };
+
+/* Proyectos por industria (documento v3, «Inventario de clientes por industria»).
+   software = true cuando el trabajo incluye software o app (se resalta en la tabla). */
+export interface IndustryProject {
+  client: string;
+  what: string;
+  work: string;
+  software: boolean;
+}
+
+export const industryProjects: Record<string, IndustryProject[]> = {
+  'operacion-y-logistica': [
+    { client: 'Rapibox', what: 'Envíos entre Nicaragua y Estados Unidos', work: 'Software operativo + app', software: true },
+    { client: 'Importex', what: 'Personal shopper, casillero y envíos internacionales', work: 'Software operativo', software: true },
+    { client: 'CargoNet', what: 'Importación, exportación y casillero', work: 'Software operativo', software: true },
+    { client: 'Genial Foods', what: 'Exportación de cárnicos a distribuidores mundiales', work: 'Software operativo + app', software: true },
+    { client: 'Puerto de Barranquilla', what: 'Operación portuaria', work: 'Web', software: false },
+    { client: 'Zona Franca La Cayena', what: 'Zona franca', work: 'Web', software: false },
+    { client: 'ProBarranquilla', what: 'Promoción de inversión', work: 'Web', software: false },
+  ],
+  'distribucion-y-mayoristas': [
+    { client: 'Genial Foods', what: 'Cárnicos para grandes distribuidores', work: 'Software + app (clientes y vendedores)', software: true },
+    { client: 'Estrategia LTDA', what: 'Productos HORECA', work: 'Software operativo', software: true },
+    { client: 'Tusim', what: 'Venta mundial de simcards y eSIM', work: 'Software operativo', software: true },
+    { client: 'Avantika', what: 'Comercialización de productos químicos', work: 'Software + agente de IA', software: true },
+    { client: 'Carnes Santacruz', what: 'Productos cárnicos', work: 'App de ventas', software: true },
+    { client: 'Quidem', what: 'Materias primas y soluciones químicas para recubrimientos y morteros', work: 'Web', software: false },
+    { client: 'GSM', what: 'Repuestos de maquinaria pesada', work: 'Web', software: false },
+    { client: 'Retri', what: 'Alquiler de maquinaria pesada', work: 'Web', software: false },
+    { client: 'HYK Colombia', what: 'Tecnología', work: 'Web + tienda', software: false },
+    { client: 'Soluzioni', what: 'Mobiliario de oficina', work: 'Web + tienda', software: false },
+    { client: 'Pintumax', what: 'Pinturas', work: 'Tienda', software: false },
+  ],
+  'salud-y-servicios': [
+    { client: 'Quirulaser', what: 'Servicios estéticos', work: 'Software operativo de agendamiento y seguimiento', software: true },
+    { client: 'Watertown', what: 'Clases de natación', work: 'App de agendamiento, pagos y avances', software: true },
+    { client: 'Clínica La Asunción', what: 'Clínica', work: 'Web', software: false },
+    { client: 'Issa Abuchaibe', what: 'Servicios médicos', work: 'Web', software: false },
+    { client: 'Sociedad Colombiana de Pediatría', what: 'Gremio médico', work: 'Web', software: false },
+    { client: 'Cajacopi', what: 'Caja de compensación', work: 'Web', software: false },
+  ],
+  'educacion-y-formacion': [
+    { client: 'Academia Sandra', what: 'Programas académicos de belleza', work: 'App: materias, calificaciones, pagos', software: true },
+    { client: 'Watertown', what: 'Clases de natación', work: 'App: agendamiento, temario, avances, pagos', software: true },
+    { client: 'ICSA', what: 'Programas técnicos, tecnológicos y profesionales', work: 'Web', software: false },
+    { client: 'Universidad Metropolitana', what: 'Universidad', work: 'Web', software: false },
+    { client: 'Befuturo', what: 'Cursos académicos', work: 'Web', software: false },
+  ],
+};

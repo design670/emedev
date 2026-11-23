@@ -4,12 +4,13 @@ import { isEn } from '../lib/i18n';
 import * as es from './pages.es';
 import * as en from './pages.en';
 
-export type { QA, SolutionPage, IndustryPage } from './pages.es';
+export type { QA, SolutionPage, IndustryPage, IndustryProject } from './pages.es';
 
 const d: typeof es = isEn ? (en as unknown as typeof es) : es;
 
 export const solutionPages = d.solutionPages;
 export const industryPages = d.industryPages;
+export const industryProjects = d.industryProjects;
 export const processPage = d.processPage;
 export const securityPage = d.securityPage;
 export const teamPage = d.teamPage;

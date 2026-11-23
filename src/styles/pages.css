@@ -1231,3 +1231,94 @@
     display: none;
   }
 }
+
+/* ---------- Industria: proyectos realizados ---------- */
+.iprojects__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: var(--s-4) var(--s-6);
+  margin-bottom: var(--s-7);
+}
+.iprojects__head .bhead {
+  margin-bottom: 0;
+}
+.iprojects__count {
+  color: var(--paper-56);
+  font-size: var(--fs-small);
+}
+.iprojects__count strong {
+  color: var(--lime);
+  font-weight: 500;
+}
+.iprojects__list {
+  border-top: 1px solid var(--paper-14);
+}
+.iproject {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 3fr) minmax(0, 5fr) minmax(0, 4fr);
+  align-items: center;
+  column-gap: var(--col-gap);
+  padding: var(--s-4) 0;
+  border-bottom: 1px solid var(--paper-14);
+}
+.iproject__logo {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--r-sm);
+  background: var(--paper);
+  overflow: hidden;
+}
+.iproject__logo img {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+}
+.iproject__logo span {
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  letter-spacing: -0.02em;
+}
+.iproject__client {
+  font-size: clamp(1.1rem, 1rem + 0.5vw, 1.4rem);
+  letter-spacing: -0.02em;
+}
+.iproject__what {
+  color: var(--paper-56);
+  font-size: var(--fs-small);
+}
+.iproject__work {
+  justify-self: start;
+  padding: 6px 12px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--paper-14);
+  color: var(--paper-72);
+  font-size: 0.8125rem;
+}
+.iproject.is-software .iproject__work {
+  background: var(--lime);
+  border-color: var(--lime);
+  color: var(--ink);
+  font-weight: 500;
+}
+@media (max-width: 767.98px) {
+  .iproject {
+    grid-template-columns: 48px minmax(0, 1fr);
+    row-gap: 6px;
+  }
+  .iproject__logo {
+    grid-row: 1 / 4;
+    width: 48px;
+    height: 48px;
+    align-self: start;
+  }
+  .iproject__client,
+  .iproject__what,
+  .iproject__work {
+    grid-column: 2;
+  }
+}
