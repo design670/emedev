@@ -1330,24 +1330,25 @@
 }
 .iproject {
   display: grid;
-  grid-template-columns: 72px minmax(0, 3fr) minmax(0, 5fr) minmax(0, 4fr);
+  grid-template-columns: 136px minmax(0, 3fr) minmax(0, 5fr) minmax(0, 4fr);
   align-items: center;
   column-gap: var(--col-gap);
   padding: var(--s-5) 0;
   border-bottom: 1px solid var(--paper-14);
 }
+/* Recuadro rectangular: casi todos los logos son horizontales y en el cuadrado se encogían */
 .iproject__logo {
   display: grid;
   place-items: center;
-  width: 72px;
-  height: 72px;
+  width: 136px;
+  height: 84px;
   border-radius: var(--r-sm);
   background: var(--paper);
   overflow: hidden;
 }
 .iproject__logo img {
-  width: 84%;
-  height: 84%;
+  width: 88%;
+  height: 80%;
   object-fit: contain;
 }
 .iproject__logo span {
@@ -1383,13 +1384,13 @@
 }
 @media (max-width: 767.98px) {
   .iproject {
-    grid-template-columns: 56px minmax(0, 1fr);
+    grid-template-columns: 104px minmax(0, 1fr);
     row-gap: 6px;
   }
   .iproject__logo {
     grid-row: 1 / 4;
-    width: 56px;
-    height: 56px;
+    width: 104px;
+    height: 68px;
     align-self: start;
   }
   .iproject__client,

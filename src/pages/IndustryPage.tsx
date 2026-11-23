@@ -8,6 +8,14 @@ import { t } from '../lib/i18n';
 /* Logo de un cliente por nombre, si existe en el proyecto (si no, se muestra el nombre) */
 const logoFor = (name: string) => clients.find((c) => c.name === name)?.logo ?? clientLogos[name];
 
+/* Copias sin margen blanco interno (public/clientes/recorte) para que el logo llene el recuadro de la lista */
+const TRIMMED = ['cargonet', 'universidad-de-la-costa', 'brilla'];
+const listLogo = (name: string) => {
+  const src = logoFor(name);
+  const file = src?.split('/').pop()?.replace(/\.png$/, '');
+  return src && file && TRIMMED.includes(file) ? '/clientes/recorte/' + file + '.png' : src;
+};
+
 /* Plantilla de industria (v3): hero, problemas, soluciones, bloques por sector (cada uno con
    su propio h3), datos sensibles (si aplica), caso (solo si hay uno real), respaldo y cierre.
    El <title> y la descripción usan el nombre específico del sector; el H1, el nombre general. */
@@ -45,7 +53,7 @@ export function IndustryPage({ page }: { page: I }) {
             </div>
             <ul className="iprojects__list" data-reveal="stagger">
               {projects.map((p) => {
-                const logo = logoFor(p.client);
+                const logo = listLogo(p.client);
                 return (
                   <li key={p.client} className={`iproject${p.software ? ' is-software' : ''}`}>
                     <span className="iproject__logo">
