@@ -89,9 +89,11 @@ export function IndustryPage({ page }: { page: I }) {
                     <span className="iproject__logo">
                       {logo ? <img src={logo} alt="" loading="lazy" /> : <span>{p.client.slice(0, 2)}</span>}
                     </span>
-                    <span className="iproject__client">{p.client}</span>
-                    <span className="iproject__what">{p.what}</span>
                     <span className="iproject__work">{p.work}</span>
+                    <span className="iproject__text">
+                      <span className="iproject__client">{p.client}</span>
+                      <span className="iproject__what">{p.what}</span>
+                    </span>
                   </li>
                 );
               })}

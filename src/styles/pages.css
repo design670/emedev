@@ -1252,16 +1252,31 @@
   color: var(--lime);
   font-weight: 500;
 }
+/* Retícula como la de «Respaldo técnico»: logo arriba, nombre y descripción abajo */
 .iprojects__list {
-  border-top: 1px solid var(--paper-14);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  /* líneas con sombras internas: sin relleno gris cuando la última fila queda incompleta */
+  background: var(--ink);
+  border: 1px solid var(--paper-14);
+  border-radius: var(--r-md);
+  overflow: hidden;
 }
 .iproject {
+  box-shadow:
+    1px 0 0 var(--paper-14),
+    0 1px 0 var(--paper-14);
+  position: relative;
   display: grid;
-  grid-template-columns: 56px minmax(0, 3fr) minmax(0, 5fr) minmax(0, 4fr);
-  align-items: center;
-  column-gap: var(--col-gap);
-  padding: var(--s-4) 0;
-  border-bottom: 1px solid var(--paper-14);
+  align-content: space-between;
+  gap: var(--s-6);
+  min-height: 190px;
+  padding: var(--s-5);
+  background: var(--ink);
+  transition: background-color var(--t-base);
+}
+.iproject:hover {
+  background: #141414;
 }
 .iproject__logo {
   display: grid;
@@ -1283,21 +1298,34 @@
   font-size: 0.9375rem;
   letter-spacing: -0.02em;
 }
+.iproject__text {
+  display: grid;
+  gap: 6px;
+}
 .iproject__client {
-  font-size: clamp(1.1rem, 1rem + 0.5vw, 1.4rem);
+  font-size: 1.125rem;
+  font-weight: 500;
   letter-spacing: -0.02em;
+  line-height: 1.2;
 }
 .iproject__what {
   color: var(--paper-56);
   font-size: var(--fs-small);
+  line-height: 1.45;
 }
+/* Tipo de trabajo, arriba a la derecha; lima cuando hay software o app */
 .iproject__work {
-  justify-self: start;
-  padding: 6px 12px;
+  position: absolute;
+  top: var(--s-5);
+  right: var(--s-5);
+  max-width: calc(100% - 56px - var(--s-5) * 2 - var(--s-3));
+  padding: 4px 10px;
   border-radius: var(--r-pill);
   border: 1px solid var(--paper-14);
   color: var(--paper-72);
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
+  line-height: 1.3;
+  text-align: right;
 }
 .iproject.is-software .iproject__work {
   background: var(--lime);
@@ -1305,20 +1333,16 @@
   color: var(--ink);
   font-weight: 500;
 }
-@media (max-width: 767.98px) {
+@media (max-width: 1023.98px) {
+  .iprojects__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 599.98px) {
+  .iprojects__list {
+    grid-template-columns: 1fr;
+  }
   .iproject {
-    grid-template-columns: 48px minmax(0, 1fr);
-    row-gap: 6px;
-  }
-  .iproject__logo {
-    grid-row: 1 / 4;
-    width: 48px;
-    height: 48px;
-    align-self: start;
-  }
-  .iproject__client,
-  .iproject__what,
-  .iproject__work {
-    grid-column: 2;
+    min-height: 0;
   }
 }
