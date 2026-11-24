@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { ArrowUpRight } from 'lucide-react';
-import { cases, services, industries } from '../data/content';
-import { casesPage } from '../data/pages';
+import { cases, services, clients, clientLogos, type ServiceKey } from '../data/content';
+import { casesPage, industryPages, industryProjects } from '../data/pages';
 import { PageHero, BlockHead } from '../components/page/blocks';
 import { CaseStudyCard } from '../components/CaseStudies';
 import { ImagePlaceholder } from '../components/ServiceVisual';
@@ -10,43 +10,96 @@ import { Button, initials } from '../components/ui';
 import { useMeta } from '../lib/router';
 import { t } from '../lib/i18n';
 import { NotFoundPage } from './InfoPages';
-import { gsap, prefersReduced } from '../lib/motion';
 
-/* Listado filtrable por industria y por solución */
+const ALL = 'Todas';
+const logoFor = (name: string) => clients.find((c) => c.name === name)?.logo ?? clientLogos[name];
+const serviceName = (k: ServiceKey) => services.find((s) => s.key === k)?.name ?? k;
+
+/* Soluciones que se deducen del tipo de trabajo de cada proyecto
+   (sirve en español y en inglés). */
+function solutionsFor(client: string, work: string): string[] {
+  const keys = new Set<ServiceKey>();
+  if (/software/i.test(work)) {
+    keys.add('software');
+    keys.add('web');
+    keys.add('integraciones');
+  }
+  if (/\bapp\b/i.test(work)) keys.add('apps');
+  if (/agente|AI agent/i.test(work)) keys.add('agentes');
+  if (/integraci|integration/i.test(work)) keys.add('integraciones');
+  if (/^(web|website)\b|tienda|store|e-?commerce|landing/i.test(work)) keys.add('sitios');
+  // Genial Foods: logística, comercial, financiero y operativo en un solo sistema
+  if (client === 'Genial Foods') keys.add('erp');
+  return [...keys].map(serviceName);
+}
+
+interface Entry {
+  id: string;
+  kind: 'case' | 'project';
+  industries: string[];
+  solutions: string[];
+}
+
+/* Listado filtrable: casos documentados + proyectos de las páginas de industria */
 export function CasesPage() {
   useMeta(casesPage.seoTitle, casesPage.seoDesc);
-  const [industry, setIndustry] = useState<string>('Todas');
-  const [solution, setSolution] = useState<string>('Todas');
-  const filtered = cases.filter(
-    (c) => (industry === 'Todas' || c.industry === industry) && (solution === 'Todas' || c.solutionName === solution),
+  const [industry, setIndustry] = useState<string>(ALL);
+  const [solution, setSolution] = useState<string>(ALL);
+
+  // Proyectos de cada industria, sin repetir clientes (algunos están en dos industrias)
+  const projects = useMemo(() => {
+    const map = new Map<
+      string,
+      { client: string; what: string; work: string; software: boolean; industries: string[]; solutions: string[]; href: string }
+    >();
+    industryPages.forEach((ind) => {
+      (industryProjects[ind.slug] ?? []).forEach((p) => {
+        const sols = solutionsFor(p.client, p.work);
+        const prev = map.get(p.client);
+        if (prev) {
+          if (!prev.industries.includes(ind.name)) prev.industries.push(ind.name);
+          sols.forEach((s) => !prev.solutions.includes(s) && prev.solutions.push(s));
+          prev.software = prev.software || p.software;
+        } else {
+          map.set(p.client, { ...p, industries: [ind.name], solutions: sols, href: `/dev/industrias/${ind.slug}` });
+        }
+      });
+    });
+    // primero los que tienen software o app
+    return [...map.values()].sort((a, b) => Number(b.software) - Number(a.software));
+  }, []);
+
+  const entries: Entry[] = useMemo(
+    () => [
+      ...cases.map((c) => ({
+        id: `case-${c.id}`,
+        kind: 'case' as const,
+        industries: c.industry ? [c.industry] : [],
+        solutions: [c.solutionName],
+      })),
+      ...projects.map((p) => ({ id: `p-${p.client}`, kind: 'project' as const, industries: p.industries, solutions: p.solutions })),
+    ],
+    [projects],
   );
 
-  // Al cambiar de filtro las tarjetas se vuelven a montar: hay que mostrarlas
-  // (si no, quedan con la opacidad 0 inicial de los revelados y la lista se ve vacía)
-  const grid = useRef<HTMLDivElement>(null);
-  const firstRender = useRef(true);
-  useEffect(() => {
-    const el = grid.current;
-    if (!el) return;
-    const items = el.querySelectorAll<HTMLElement>('[data-reveal]');
-    if (firstRender.current) {
-      firstRender.current = false;
-      // en la primera carga lo anima el sistema de revelados de la página
-      return;
-    }
-    gsap.killTweensOf(items);
-    gsap.set(el.querySelectorAll('[data-reveal="mask"]'), { clipPath: 'none' });
-    if (prefersReduced()) {
-      gsap.set(items, { opacity: 1, y: 0 });
-      return;
-    }
-    gsap.fromTo(
-      el.querySelectorAll('.case'),
-      { opacity: 0, y: 24 },
-      { opacity: 1, y: 0, duration: 0.6, stagger: 0.06, ease: 'power3.out' },
-    );
-    gsap.set(el.querySelectorAll('[data-reveal="mask"]'), { opacity: 1 });
-  }, [industry, solution]);
+  const matches = (e: Entry, ind: string, sol: string) =>
+    (ind === ALL || e.industries.includes(ind)) && (sol === ALL || e.solutions.includes(sol));
+
+  // Solo se ofrecen las opciones que tienen resultados con el otro filtro elegido
+  const industryOpts = industryPages.map((i) => i.name).filter((n) => entries.some((e) => matches(e, n, solution)));
+  const solutionOpts = services.map((s) => s.name).filter((n) => entries.some((e) => matches(e, industry, n)));
+
+  const shownCases = cases.filter((c) => {
+    const e = entries.find((x) => x.id === `case-${c.id}`)!;
+    return matches(e, industry, solution);
+  });
+  const shownProjects = projects.filter((p) => matches(entries.find((x) => x.id === `p-${p.client}`)!, industry, solution));
+  const total = shownCases.length + shownProjects.length;
+
+  // Al cambiar de filtro las tarjetas se vuelven a montar. Desde el primer cambio se
+  // muestran con una animación CSS propia (si no, quedan con la opacidad 0 inicial
+  // de los revelados y la lista se ve vacía).
+  const [touched, setTouched] = useState(false);
 
   const Chips = ({
     label,
@@ -62,14 +115,26 @@ export function CasesPage() {
     <div className="filters__group" role="group" aria-label={label}>
       <span className="t-label muted">{label}</span>
       <div className="filters__chips">
-        {['Todas', ...options].map((o) => (
+        {[ALL, ...options].map((o) => (
           <button key={o} className={`chip${value === o ? ' is-on' : ''}`} aria-pressed={value === o} onClick={() => onChange(o)}>
-            {o === 'Todas' ? t('Todas', 'All') : o}
+            {o === ALL ? t('Todas', 'All') : o}
           </button>
         ))}
       </div>
     </div>
   );
+
+  // Al elegir un filtro, si el otro deja de tener resultados vuelve a «Todas»
+  const pickIndustry = (v: string) => {
+    setTouched(true);
+    setIndustry(v);
+    if (solution !== ALL && !entries.some((e) => matches(e, v, solution))) setSolution(ALL);
+  };
+  const pickSolution = (v: string) => {
+    setTouched(true);
+    setSolution(v);
+    if (industry !== ALL && !entries.some((e) => matches(e, industry, v))) setIndustry(ALL);
+  };
 
   return (
     <>
@@ -83,29 +148,38 @@ export function CasesPage() {
       <section className="caselist section on-light" aria-label={t('Listado de casos', 'Case study list')}>
         <div className="container">
           <div className="filters" data-reveal="up">
-            <Chips label={t('Industria', 'Industry')} options={industries.map((i) => i.name)} value={industry} onChange={setIndustry} />
-            <Chips label={t('Solución', 'Solution')} options={services.map((s) => s.name)} value={solution} onChange={setSolution} />
+            <Chips label={t('Industria', 'Industry')} options={industryOpts} value={industry} onChange={pickIndustry} />
+            <Chips label={t('Solución', 'Solution')} options={solutionOpts} value={solution} onChange={pickSolution} />
           </div>
-          {filtered.length ? (
-            <div className="caselist__grid" ref={grid} key={`${industry}-${solution}`}>
-              {filtered.map((c) => (
-                <CaseStudyCard key={c.id} c={c} size="sm" />
-              ))}
-            </div>
-          ) : (
-            <div className="caselist__empty" aria-live="polite">
-              <p className="t-h3">{t('Aún no hay casos publicados con este filtro.', 'No case studies published for this filter yet.')}</p>
-              <button
-                className="link-line"
-                onClick={() => {
-                  setIndustry('Todas');
-                  setSolution('Todas');
-                }}
-              >
-                {t('Ver todos los casos', 'View all case studies')}
-              </button>
-            </div>
-          )}
+          <p className="caselist__count muted t-small" aria-live="polite">
+            {total} {total === 1 ? t('resultado', 'result') : t('resultados', 'results')}
+          </p>
+          <div className={`caselist__grid${touched ? ' is-filtered' : ''}`} key={`${industry}-${solution}`}>
+            {shownCases.map((c) => (
+              <CaseStudyCard key={c.id} c={c} size="sm" />
+            ))}
+            {shownProjects.map((p) => {
+              const logo = logoFor(p.client);
+              return (
+                <a key={p.client} href={p.href} className={`pcard${p.software ? ' is-software' : ''}`} data-reveal="up">
+                  <span className="pcard__top">
+                    <span className="pcard__logo">
+                      {logo ? <img src={logo} alt="" loading="lazy" /> : <span>{p.client.slice(0, 2)}</span>}
+                    </span>
+                    <span className="pcard__work">{p.work}</span>
+                  </span>
+                  <span className="pcard__body">
+                    <span className="pcard__client">{p.client}</span>
+                    <span className="pcard__what">{p.what}</span>
+                  </span>
+                  <span className="pcard__foot">
+                    <span>{p.industries.join(' · ')}</span>
+                    <ArrowUpRight strokeWidth={1.5} aria-hidden="true" />
+                  </span>
+                </a>
+              );
+            })}
+          </div>
         </div>
       </section>
       <CTASection />
