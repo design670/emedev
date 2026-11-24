@@ -160,23 +160,45 @@ export function CasesPage() {
             ))}
             {shownProjects.map((p) => {
               const logo = logoFor(p.client);
+              // Misma tarjeta que los casos: bloque negro arriba (con el logo), cliente,
+              // trabajo realizado, qué hace y la ficha industria / soluciones
               return (
-                <a key={p.client} href={p.href} className={`pcard${p.software ? ' is-software' : ''}`} data-reveal="up">
-                  <span className="pcard__top">
-                    <span className="pcard__logo">
-                      {logo ? <img src={logo} alt="" loading="lazy" /> : <span>{p.client.slice(0, 2)}</span>}
-                    </span>
-                    <span className="pcard__work">{p.work}</span>
-                  </span>
-                  <span className="pcard__body">
-                    <span className="pcard__client">{p.client}</span>
-                    <span className="pcard__what">{p.what}</span>
-                  </span>
-                  <span className="pcard__foot">
-                    <span>{p.industries.join(' · ')}</span>
-                    <ArrowUpRight strokeWidth={1.5} aria-hidden="true" />
-                  </span>
-                </a>
+                <article key={p.client} className="case case--sm case--project" data-reveal="up">
+                  <a
+                    href={p.href}
+                    className="case__link"
+                    data-cursor-label={t('VER', 'VIEW')}
+                    aria-label={t(`Ver la industria de ${p.client}`, `View the ${p.client} industry`)}
+                  >
+                    <div className="case__media">
+                      <div className="case__media-inner case__media-logo">
+                        <span className="case__logo">
+                          {logo ? <img src={logo} alt="" loading="lazy" /> : <span>{p.client}</span>}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="case__body">
+                      <p className="case__meta">{p.client}</p>
+                      <div className="case__result">
+                        <span className="case__result-num">{p.work}</span>
+                        <span className="case__result-note muted t-small">{p.what}</span>
+                      </div>
+                      <dl className="case__dl">
+                        <div>
+                          <dt>{t('Industria', 'Industry')}</dt>
+                          <dd>{p.industries.join(' · ')}</dd>
+                        </div>
+                        <div>
+                          <dt>{t('Soluciones', 'Solutions')}</dt>
+                          <dd>{p.solutions.join(' · ')}</dd>
+                        </div>
+                      </dl>
+                      <span className="link-line case__more">
+                        {t('Ver la industria', 'View the industry')} <ArrowUpRight strokeWidth={1.5} aria-hidden="true" />
+                      </span>
+                    </div>
+                  </a>
+                </article>
               );
             })}
           </div>
