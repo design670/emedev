@@ -1591,6 +1591,18 @@
 .pcase-gallery {
   padding-bottom: var(--section-y);
 }
+/* Cards que siguen a una sección de otro color: aire arriba también */
+.pcase-solution + .pcase-gallery,
+.pcase-process + .pcase-gallery {
+  padding-top: var(--section-y);
+}
+.pcase-gallery--first {
+  padding-top: clamp(24px, 3vw, 48px);
+  padding-bottom: 0;
+}
+.pcase-gallery + .pcase-gallery {
+  padding-top: 0;
+}
 .pcase__shot {
   margin: 0;
   border-radius: var(--r-lg);

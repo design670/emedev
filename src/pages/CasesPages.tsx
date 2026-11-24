@@ -46,19 +46,49 @@ const thumbs: Record<string, string> = {
 };
 const thumbFor = (name: string) => (thumbs[name] ? `/casos/${thumbs[name]}.jpg` : undefined);
 
-/* Segunda imagen de la página interna: mockup del Figma «Eme 2.0» */
-const GALLERY = new Set([
-  'almacen-sandra',
-  'cargonet',
-  'estrategias',
-  'hyk',
-  'importex',
-  'issa-abuchaibe',
-  'probarranquilla',
-  'quidem',
-  'zona-franca-la-cayena',
-]);
-const galleryFor = (name: string) => (GALLERY.has(thumbs[name]) ? `/casos/galeria/${thumbs[name]}.jpg` : undefined);
+/* Cards grandes de imagen de la página interna, exportadas en 2x de las mesas
+   de cada cliente en el Figma «Eme 2.0» (página Aprobada), en el mismo orden. */
+const SHOTS: Record<string, number> = {
+  avantika: 4,
+  cajacopi: 2,
+  'carnes-santacruz': 3,
+  'clinica-la-asuncion': 4,
+  estrategias: 3,
+  hyk: 4,
+  importex: 4,
+  'issa-abuchaibe': 4,
+  pintumax: 4,
+  probarranquilla: 4,
+  'puerto-barranquilla': 4,
+  quidem: 3,
+  quirulaser: 4,
+  rapibox: 4,
+  'sociedad-colombiana-de-pediatria': 2,
+  soluzioni: 4,
+  watertown: 1,
+  'zona-franca-la-cayena': 4,
+};
+/* Clientes que aún no tienen sus cards: una sola imagen de mockup */
+const LEGACY_SHOT = new Set(['almacen-sandra', 'cargonet']);
+const shotsFor = (name: string): string[] => {
+  const slug = thumbs[name];
+  if (!slug) return [];
+  if (SHOTS[slug]) return Array.from({ length: SHOTS[slug] }, (_, i) => `/casos/galeria/${slug}-${i + 1}.jpg`);
+  return LEGACY_SHOT.has(slug) ? [`/casos/galeria/${slug}.jpg`] : [];
+};
+
+function Shot({ src, first }: { src?: string; first?: boolean }) {
+  if (!src) return null;
+  return (
+    <section className={`pcase-gallery on-light${first ? ' pcase-gallery--first' : ''}`} aria-hidden="true">
+      <div className="container">
+        <figure className="pcase__shot" data-reveal="up">
+          <img src={src} alt="" loading={first ? 'eager' : 'lazy'} decoding="async" />
+        </figure>
+      </div>
+    </section>
+  );
+}
 
 /* Soluciones que se deducen del tipo de trabajo de cada proyecto
    (sirve en español y en inglés). */
@@ -280,7 +310,10 @@ function ProjectPage({ p, all }: { p: Project; all: Project[] }) {
   );
   const logo = logoFor(p.client);
   const thumb = thumbFor(p.client);
-  const gallery = galleryFor(p.client);
+  const shots = shotsFor(p.client);
+  /* Con historia, la primera card va después del hero y las demás entre secciones;
+     sin historia, todas van seguidas después del hero. */
+  const lead = s ? shots.slice(0, 1) : shots;
   const indSlugs = p.industries.map((i) => i.slug);
   const others = all.filter((o) => o.client !== p.client && o.industries.some((i) => indSlugs.includes(i.slug))).slice(0, 6);
   const steps = s ? processByKind[s.kind] : [];
@@ -311,6 +344,10 @@ function ProjectPage({ p, all }: { p: Project; all: Project[] }) {
         cta={t('Quiero algo parecido', 'I want something similar')}
         compact
       />
+
+      {lead.map((src, i) => (
+        <Shot key={src} src={src} first={i === 0} />
+      ))}
 
       {/* Portada y ficha */}
       <section className="pcase section on-light" aria-label={t('Resumen del caso', 'Case summary')}>
@@ -352,15 +389,7 @@ function ProjectPage({ p, all }: { p: Project; all: Project[] }) {
             </div>
           </section>
 
-          {gallery && (
-            <section className="pcase-gallery on-light" aria-hidden="true">
-              <div className="container">
-                <figure className="pcase__shot" data-reveal="up">
-                  <img src={gallery} alt="" loading="lazy" />
-                </figure>
-              </div>
-            </section>
-          )}
+          <Shot src={shots[1]} />
 
           {/* La solución */}
           <section className="pcase-solution section on-surface" aria-labelledby="pcase-solution">
@@ -382,6 +411,8 @@ function ProjectPage({ p, all }: { p: Project; all: Project[] }) {
             </div>
           </section>
 
+          <Shot src={shots[2]} />
+
           {/* El proceso */}
           <section className="pcase-process section on-dark" aria-labelledby="pcase-process">
             <div className="container">
@@ -399,6 +430,8 @@ function ProjectPage({ p, all }: { p: Project; all: Project[] }) {
               </ol>
             </div>
           </section>
+
+          <Shot src={shots[3]} />
 
           {/* El resultado */}
           <section className="pcase-result section on-light" aria-labelledby="pcase-result">
