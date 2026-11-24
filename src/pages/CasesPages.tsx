@@ -1,6 +1,7 @@
 import { useMemo, useState, type ReactNode } from 'react';
-import { ArrowUpRight } from 'lucide-react';
-import { cases, services, clients, clientLogos, type ServiceKey } from '../data/content';
+import { ArrowUpRight, Check } from 'lucide-react';
+import { cases, services, clients, clientLogos, DIAGNOSTICO_HREF, type ServiceKey } from '../data/content';
+import { caseStories, processByKind } from '../data/caseStories';
 import { casesPage, industryPages, industryProjects } from '../data/pages';
 import { PageHero, BlockHead, RelatedLinks } from '../components/page/blocks';
 import { ImagePlaceholder } from '../components/ServiceVisual';
@@ -44,6 +45,20 @@ const thumbs: Record<string, string> = {
   Befuturo: 'befuturo',
 };
 const thumbFor = (name: string) => (thumbs[name] ? `/casos/${thumbs[name]}.jpg` : undefined);
+
+/* Segunda imagen de la página interna: mockup del Figma «Eme 2.0» */
+const GALLERY = new Set([
+  'almacen-sandra',
+  'cargonet',
+  'estrategias',
+  'hyk',
+  'importex',
+  'issa-abuchaibe',
+  'probarranquilla',
+  'quidem',
+  'zona-franca-la-cayena',
+]);
+const galleryFor = (name: string) => (GALLERY.has(thumbs[name]) ? `/casos/galeria/${thumbs[name]}.jpg` : undefined);
 
 /* Soluciones que se deducen del tipo de trabajo de cada proyecto
    (sirve en español y en inglés). */
@@ -221,19 +236,21 @@ export function CasesPage() {
                       )}
                     </div>
                     <div className="case__body">
-                      <p className="case__meta">{p.client}</p>
+                      <p className="case__meta">
+                        {p.client} · {p.industries.map((i) => i.name).join(' · ')}
+                      </p>
                       <div className="case__result">
                         <span className="case__result-num">{p.work}</span>
                         <span className="case__result-note muted t-small">{p.what}</span>
                       </div>
                       <dl className="case__dl">
                         <div>
-                          <dt>{t('Industria', 'Industry')}</dt>
-                          <dd>{p.industries.map((i) => i.name).join(' · ')}</dd>
+                          <dt>{t('El problema', 'The problem')}</dt>
+                          <dd>{caseStories[p.client]?.problem}</dd>
                         </div>
                         <div>
-                          <dt>{t('Soluciones', 'Solutions')}</dt>
-                          <dd>{p.solutions.join(' · ')}</dd>
+                          <dt>{t('Lo que construimos', 'What we built')}</dt>
+                          <dd>{caseStories[p.client]?.built}</dd>
                         </div>
                       </dl>
                       <span className="link-line case__more">
@@ -252,23 +269,26 @@ export function CasesPage() {
   );
 }
 
-/* Página interna de cada proyecto de cliente. Solo usa datos reales del listado
-   (cliente, a qué se dedica, qué construimos, industria y soluciones). */
+/* Página interna de cada proyecto, armada como un proyecto de portafolio:
+   portada, ficha, el reto, el impacto, la solución, el proceso, el resultado
+   y la invitación a empresas con un problema parecido. */
 function ProjectPage({ p, all }: { p: Project; all: Project[] }) {
+  const s = caseStories[p.client];
   useMeta(
-    t(`${p.client}: ${p.work} | EME Dev`, `${p.client}: ${p.work} | EME Dev`),
-    t(`${p.work} para ${p.client}. ${p.what}.`, `${p.work} for ${p.client}. ${p.what}.`),
+    t(`${p.client}: ${p.work} | Caso EME Dev`, `${p.client}: ${p.work} | EME Dev case study`),
+    s?.problem ?? `${p.work} · ${p.what}`,
   );
   const logo = logoFor(p.client);
   const thumb = thumbFor(p.client);
-  const sols = services.filter((s) => p.solutions.includes(s.name));
+  const gallery = galleryFor(p.client);
+  const sols = services.filter((x) => p.solutions.includes(x.name));
   const indSlugs = p.industries.map((i) => i.slug);
   const others = all.filter((o) => o.client !== p.client && o.industries.some((i) => indSlugs.includes(i.slug))).slice(0, 6);
+  const steps = s ? processByKind[s.kind] : [];
 
-  const ficha: [string, ReactNode][] = [
+  const facts: [string, ReactNode][] = [
     [t('Cliente', 'Client'), p.client],
     [t('A qué se dedica', 'What they do'), p.what],
-    [t('Lo que construimos', 'What we built'), p.work],
     [
       t('Industria', 'Industry'),
       p.industries.map((i, n) => (
@@ -280,6 +300,7 @@ function ProjectPage({ p, all }: { p: Project; all: Project[] }) {
         </span>
       )),
     ],
+    [t('Lo que construimos', 'What we built'), p.work],
   ];
 
   return (
@@ -287,50 +308,140 @@ function ProjectPage({ p, all }: { p: Project; all: Project[] }) {
       <PageHero
         crumbs={[{ label: t('Casos', 'Case studies'), href: '/dev/casos' }, { label: p.client }]}
         title={[{ t: p.client, cls: 'hl' }]}
-        subtitle={`${p.work} · ${p.what}`}
+        subtitle={s?.built ?? `${p.work} · ${p.what}`}
         cta={t('Quiero algo parecido', 'I want something similar')}
         compact
       />
 
-      <section className="cdetail section on-light" aria-label={t('Detalle del caso', 'Case study details')}>
-        <div className="container cdetail__grid">
-          <dl className="cdetail__ficha" data-reveal="stagger">
-            {ficha.map(([k, v]) => (
+      {/* Portada y ficha */}
+      <section className="pcase section on-light" aria-label={t('Resumen del caso', 'Case summary')}>
+        <div className="container">
+          <figure className={`pcase__cover${thumb ? '' : ' is-logo'}`} data-reveal="up">
+            {thumb ? (
+              <img src={thumb} alt={t(`Proyecto de ${p.client}`, `${p.client} project`)} />
+            ) : (
+              <span className="case__logo pcase__logo">{logo ? <img src={logo} alt={p.client} /> : <span>{p.client}</span>}</span>
+            )}
+          </figure>
+          <dl className="pcase__facts" data-reveal="stagger">
+            {facts.map(([k, v]) => (
               <div key={k}>
                 <dt className="t-label muted">{k}</dt>
                 <dd>{v}</dd>
               </div>
             ))}
           </dl>
-          <div className="cdetail__body">
-            <div className={`cdetail__media cdetail__media--project${thumb ? '' : ' is-logo'}`} data-reveal="up">
-              <div className="cdetail__media-inner">
-                {thumb ? (
-                  <img className="case__thumb" src={thumb} alt={t(`Proyecto de ${p.client}`, `${p.client} project`)} />
-                ) : (
-                  <span className="case__logo cdetail__logo">
-                    {logo ? <img src={logo} alt={p.client} /> : <span>{p.client}</span>}
-                  </span>
-                )}
-              </div>
-            </div>
-            {sols.length > 0 && (
-              <article className="cdetail__block" data-reveal="up">
-                <h2 className="t-h3">{t('Soluciones aplicadas', 'Solutions applied')}</h2>
-                <ul className="cdetail__sols">
-                  {sols.map((s) => (
-                    <li key={s.key}>
-                      <a href={s.href} className="cdetail__sol">
-                        <span className="cdetail__sol-name">{s.name}</span>
-                        <span className="muted">{s.short}</span>
-                        <ArrowUpRight strokeWidth={1.5} aria-hidden="true" />
-                      </a>
-                    </li>
-                  ))}
-                </ul>
+        </div>
+      </section>
+
+      {s && (
+        <>
+          {/* El reto y el impacto */}
+          <section className="pcase-story section on-light" aria-label={t('El reto', 'The challenge')}>
+            <div className="container pcase-story__grid">
+              <article className="pcase-story__row" data-reveal="up">
+                <h2 className="pcase-story__title">{t('El reto', 'The challenge')}</h2>
+                <p className="pcase-story__lead">{s.problem}</p>
               </article>
+              <article className="pcase-story__row" data-reveal="up">
+                <h2 className="pcase-story__title">{t('El impacto', 'The impact')}</h2>
+                <p className="pcase-story__text">{s.impact}</p>
+              </article>
+            </div>
+          </section>
+
+          {gallery && (
+            <section className="pcase-gallery on-light" aria-hidden="true">
+              <div className="container">
+                <figure className="pcase__shot" data-reveal="up">
+                  <img src={gallery} alt="" loading="lazy" />
+                </figure>
+              </div>
+            </section>
+          )}
+
+          {/* La solución */}
+          <section className="pcase-solution section on-surface" aria-labelledby="pcase-solution">
+            <div className="container pcase-story__grid">
+              <article className="pcase-story__row" data-reveal="up">
+                <h2 className="pcase-story__title" id="pcase-solution">
+                  {t('La solución', 'The solution')}
+                </h2>
+                <p className="pcase-story__lead">{s.solution}</p>
+              </article>
+              <ol className="pcase-features" data-reveal="stagger">
+                {s.features.map((f, i) => (
+                  <li key={f} className="pcase-feature">
+                    <span className="pcase-feature__num">{String(i + 1).padStart(2, '0')}</span>
+                    <span className="pcase-feature__name">{f}</span>
+                  </li>
+                ))}
+              </ol>
+              {sols.length > 0 && (
+                <div className="pcase-sols" data-reveal="up">
+                  {sols.map((x) => (
+                    <a key={x.key} href={x.href} className="chip pcase-sols__chip">
+                      {x.name} <ArrowUpRight strokeWidth={1.5} aria-hidden="true" />
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
+          </section>
+
+          {/* El proceso */}
+          <section className="pcase-process section on-dark" aria-labelledby="pcase-process">
+            <div className="container">
+              <h2 className="pcase-story__title" id="pcase-process" data-reveal="up">
+                {t('El proceso', 'The process')}
+              </h2>
+              <ol className="pcase-steps" data-reveal="stagger">
+                {steps.map((st, i) => (
+                  <li key={st.title} className="pcase-step">
+                    <span className="pcase-step__num">{String(i + 1).padStart(2, '0')}</span>
+                    <h3 className="pcase-step__title">{st.title}</h3>
+                    <p className="pcase-step__text">{st.text}</p>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </section>
+
+          {/* El resultado */}
+          <section className="pcase-result section on-light" aria-labelledby="pcase-result">
+            <div className="container pcase-story__grid">
+              <article className="pcase-story__row" data-reveal="up">
+                <h2 className="pcase-story__title" id="pcase-result">
+                  {t('El resultado', 'The result')}
+                </h2>
+                <p className="pcase-story__lead">{s.result}</p>
+              </article>
+              <ul className="pcase-outcomes" data-reveal="stagger">
+                {s.outcomes.map((o) => (
+                  <li key={o} className="pcase-outcome">
+                    <Check strokeWidth={2} aria-hidden="true" />
+                    <span>{o}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
+        </>
+      )}
+
+      {/* Invitación a empresas con un problema parecido */}
+      <section className="pcase-invite section on-dark" aria-labelledby="pcase-invite">
+        <div className="container pcase-invite__inner" data-reveal="up">
+          <h2 className="pcase-invite__title" id="pcase-invite">
+            {t('¿Tu empresa tiene un reto parecido?', 'Does your company face a similar challenge?')}
+          </h2>
+          <p className="pcase-invite__text">
+            {t(
+              `Construimos para ${p.client} una solución a la medida de su operación. En 30 minutos revisamos tu caso y te decimos si podemos ayudarte y cómo.`,
+              `We built ${p.client} a solution tailored to its operation. In 30 minutes we review your case and tell you whether we can help and how.`,
             )}
-          </div>
+          </p>
+          <Button href={DIAGNOSTICO_HREF}>{t('Diagnóstico Gratuito', 'Free Diagnostic')}</Button>
         </div>
       </section>
 
@@ -338,9 +449,9 @@ function ProjectPage({ p, all }: { p: Project; all: Project[] }) {
         <RelatedLinks
           title={t('Otros casos de la industria', 'Other cases in this industry')}
           items={others.map((o) => ({ label: o.client, href: `/dev/casos/${o.slug}`, text: o.work }))}
+          surface="on-light"
         />
       )}
-      <CTASection />
     </>
   );
 }

@@ -13,7 +13,8 @@ Ya no quedan corchetes en el sitio: todo lo que faltaba se llenó con datos de e
 
 - [ ] Métricas: +120 proyectos de software, +25 personas en el equipo
 - [ ] Equipo: Santiago Mejía, Daniela Ortiz, Andrés Villalba, Valentina Cárdenas (nombres, cargos, bios y LinkedIn ficticios); cifras 16 desarrolladores · 4 diseñadores · 5 líderes de proyecto · 12 certificaciones
-- [ ] Casos ficticios: Constructora Litoral, Red Médica Andina, Distribuidora Nexo, Grupo Fogón (resultados, ficha técnica y testimonio inventados) — `cases` en `src/data/content.ts`
+- [ ] Casos ficticios: Constructora Litoral, Red Médica Andina, Distribuidora Nexo, Grupo Fogón (resultados, ficha técnica y testimonio inventados) — `cases` en `src/data/content.ts` (ya no se muestran en el sitio desde 2026-11-24)
+- [ ] Historias de los 29 casos reales (`src/data/caseStories.es.ts` / `.en.ts`, 2026-11-24): problema, impacto, solución y módulos salen del inventario del brief; el impacto, el resultado y los logros están redactados de forma cualitativa y sin cifras. Validar con cada cliente y sumar cifras reales cuando las aprueben. Webs sin módulos en el brief (Puerto, Cajacopi, SCP, Universidad Metropolitana, ICSA, Retri, Clínica La Asunción) se describieron con el alcance típico de un sitio corporativo
 - [ ] Testimonios: los 4 de los casos + Laura Castaño (Textiles Marea) y Felipe Herrera (Logística Caribe Express), todos ficticios
 - [ ] Clientes en la franja del Hero: Cajacopi, Constructora H3, Brilla, Almar, Monark (los tres últimos vienen de la lista corporativa del brief; confirmar que contrataron desarrollo)
 - [ ] Precios y plazos: landing $3,5 M COP (3 sem.), sitio corporativo $9 M (6 sem.), tienda $14 M (8 sem.), agente de IA $18 M (6–10 sem.), integración $12 M (4–8 sem.), app $35 M (3–5 meses), software/ERP $45 M (4–8 meses), garantía 3 meses; rangos de presupuesto del formulario
