@@ -1537,11 +1537,30 @@
   .hero {
     min-height: auto;
   }
-  /* Móvil: globo arriba a la derecha, encima del título */
-  .hero__visual {
+  /* Móvil: primero el título y debajo el globo, centrado */
+  .hero__grid {
+    grid-template-rows: auto auto auto auto;
+  }
+  .hero__title {
     grid-row: 1;
+  }
+  .hero__visual {
+    grid-row: 2;
     align-self: start;
-    width: min(56%, 220px);
+    justify-self: center;
+    /* El globo se ajusta a la altura de la pantalla para que todo el hero quepa sin cortarse */
+    width: min(60%, 24svh, 240px);
+    margin: var(--s-2) 0 var(--s-5);
+  }
+  /* Móvil: título, globo, texto y botones en una sola pantalla */
+  .hero {
+    padding-top: calc(var(--header-h) + var(--s-3));
+  }
+  .hero__title {
+    padding-block: var(--s-3) var(--s-4);
+  }
+  .hero__bottom {
+    padding-block: var(--s-5) var(--s-4);
   }
   .hero__chip {
     display: none;
@@ -1610,6 +1629,19 @@
   }
   .cta__badge {
     display: none;
+  }
+}
+/* Celulares bajos: un poco más compacto para que el hero siga cabiendo en una pantalla */
+@media (max-width: 767.98px) and (max-height: 800px) {
+  .hero__title {
+    font-size: min(var(--fs-display), 6.2svh);
+  }
+  .hero__visual {
+    width: min(50%, 19svh, 200px);
+    margin-bottom: var(--s-4);
+  }
+  .hero__sub {
+    font-size: 0.95rem;
   }
 }
 
