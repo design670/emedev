@@ -95,7 +95,7 @@ export function Hero() {
           </p>
           <div className="hero__ctas" data-intro="up">
             <Button href={DIAGNOSTICO_HREF}>{t('Diagnóstico Gratuito', 'Free Diagnostic')}</Button>
-            <Button href="/dev/casos" variant="ghost" icon={false}>
+            <Button href="#casos" variant="ghost" icon={false}>
               {t('Ver casos', 'View case studies')}
             </Button>
           </div>

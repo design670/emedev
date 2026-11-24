@@ -5,6 +5,7 @@ import { Button, SectionHeading, WithPlaceholders } from './ui';
 import { ImagePlaceholder } from './ServiceVisual';
 import type { ServiceKey } from '../data/content';
 import { t } from '../lib/i18n';
+import { ProjectCard } from '../pages/CasesPages';
 
 type Case = (typeof cases)[number];
 
@@ -49,6 +50,9 @@ export function CaseStudyCard({ c, size }: { c: Case; visual?: ServiceKey; size:
     </article>
   );
 }
+
+/* Casos reales del carrusel del Home (software, apps y agentes de IA) */
+const HOME_CASES = ['Rapibox', 'Genial Foods', 'Avantika', 'Watertown', 'Flexxi', 'Carnes Santacruz', 'Estrategia LTDA', 'Quirulaser'];
 
 export function CaseStudies() {
   const track = useRef<HTMLDivElement>(null);
@@ -104,8 +108,8 @@ export function CaseStudies() {
           </div>
         </div>
         <div className="cases__track" ref={track} onScroll={update} aria-label={t('Casos destacados', 'Featured case studies')} tabIndex={0}>
-          {cases.map((c) => (
-            <CaseStudyCard key={c.id} c={c} size="slide" />
+          {HOME_CASES.map((client) => (
+            <ProjectCard key={client} client={client} size="slide" />
           ))}
         </div>
       </div>

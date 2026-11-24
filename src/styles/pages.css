@@ -1875,3 +1875,7 @@ body:has(.phero.has-media) .header::before {
 .case--project .case__link {
   background: #f9f9f9;
 }
+/* En secciones oscuras (carrusel del Home) las tarjetas no llevan el fondo gris claro */
+.on-dark .case--project .case__link {
+  background: transparent;
+}
