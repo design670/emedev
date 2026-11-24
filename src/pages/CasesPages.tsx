@@ -311,9 +311,7 @@ function ProjectPage({ p, all }: { p: Project; all: Project[] }) {
   const logo = logoFor(p.client);
   const thumb = thumbFor(p.client);
   const shots = shotsFor(p.client);
-  /* Con historia, la primera card va después del hero y las demás entre secciones;
-     sin historia, todas van seguidas después del hero. */
-  const lead = s ? shots.slice(0, 1) : shots;
+  /* La primera card va dentro del hero; las demás, entre secciones */
   const indSlugs = p.industries.map((i) => i.slug);
   const others = all.filter((o) => o.client !== p.client && o.industries.some((i) => indSlugs.includes(i.slug))).slice(0, 6);
   const steps = s ? processByKind[s.kind] : [];
@@ -343,11 +341,8 @@ function ProjectPage({ p, all }: { p: Project; all: Project[] }) {
         subtitle={s?.built ?? `${p.work} · ${p.what}`}
         cta={t('Quiero algo parecido', 'I want something similar')}
         compact
+        media={shots[0] ? { src: shots[0], alt: t(`Proyecto de ${p.client}`, `${p.client} project`) } : undefined}
       />
-
-      {lead.map((src, i) => (
-        <Shot key={src} src={src} first={i === 0} />
-      ))}
 
       {/* Portada y ficha */}
       <section className="pcase section on-light" aria-label={t('Resumen del caso', 'Case summary')}>

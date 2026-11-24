@@ -1,4 +1,4 @@
-import { useEffect, useRef, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { DIAGNOSTICO_HREF, cases, type ServiceKey } from '../../data/content';
 import { Button, RevealText, WithPlaceholders, type Part } from '../ui';
@@ -40,6 +40,7 @@ export function PageHero({
   ctaHref = DIAGNOSTICO_HREF,
   secondary,
   compact = false,
+  media,
 }: {
   crumbs: { label: string; href?: string }[];
   label?: string;
@@ -51,8 +52,45 @@ export function PageHero({
   ctaHref?: string;
   secondary?: { label: string; href: string };
   compact?: boolean;
+  /** Imagen horizontal a todo el ancho dentro del hero (páginas de caso) */
+  media?: { src: string; alt: string };
 }) {
   const ref = useRef<HTMLElement>(null);
+  /* Color de fondo de la imagen del hero (esquina superior derecha) para fundir
+     el lado izquierdo, y si es claro u oscuro para elegir el color del texto */
+  const [tone, setTone] = useState<{ bg: string; light: boolean } | null>(null);
+  useEffect(() => {
+    if (!media) return;
+    const img = new Image();
+    img.onload = () => {
+      try {
+        const w = 48;
+        const h = Math.max(4, Math.round((w * img.naturalHeight) / img.naturalWidth));
+        const c = document.createElement('canvas');
+        c.width = w;
+        c.height = h;
+        const ctx = c.getContext('2d');
+        if (!ctx) return;
+        ctx.drawImage(img, 0, 0, w, h);
+        const x0 = Math.floor(w * 0.82);
+        const d = ctx.getImageData(x0, 0, w - x0, Math.max(1, Math.floor(h * 0.18))).data;
+        let r = 0, g = 0, b = 0;
+        const n = d.length / 4;
+        for (let i = 0; i < d.length; i += 4) {
+          r += d[i];
+          g += d[i + 1];
+          b += d[i + 2];
+        }
+        r = Math.round(r / n);
+        g = Math.round(g / n);
+        b = Math.round(b / n);
+        setTone({ bg: `rgb(${r} ${g} ${b})`, light: 0.299 * r + 0.587 * g + 0.114 * b > 150 });
+      } catch {
+        /* sin acceso a los píxeles: se queda el fondo negro */
+      }
+    };
+    img.src = media.src;
+  }, [media?.src]);
 
   useEffect(() => {
     const el = ref.current!;
@@ -89,11 +127,17 @@ export function PageHero({
 
   return (
     <section
-      className={`phero on-dark${visual || aside ? ' has-visual' : ''}${compact ? ' is-compact' : ''}`}
+      className={`phero ${tone?.light ? 'on-light is-media-light' : 'on-dark'}${visual || aside ? ' has-visual' : ''}${compact ? ' is-compact' : ''}${media ? ' has-media' : ''}`}
+      style={tone ? { background: tone.bg } : undefined}
       ref={ref}
       data-intro-scope
       aria-labelledby="page-title"
     >
+      {media && (
+        <figure className="phero__bg" data-intro="fade">
+          <img src={media.src} alt={media.alt} decoding="async" />
+        </figure>
+      )}
       <div className="container phero__grid">
         <div className="phero__copy">
           <Breadcrumb items={crumbs} />

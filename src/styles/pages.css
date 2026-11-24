@@ -1782,3 +1782,88 @@
   font-size: 1.25rem;
   line-height: 1.35;
 }
+/* Hero de las páginas de caso: la imagen va de fondo a la derecha y se funde
+   con su propio color de fondo; el texto queda a la izquierda */
+.phero.has-media {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  min-height: clamp(460px, 62vh, 640px);
+  transition: background-color 0.4s var(--ease-out);
+}
+.phero.has-media .phero__grid {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+.phero.has-media .phero__copy {
+  grid-column: 1 / 6;
+}
+.phero__bg {
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: 64%;
+  margin: 0;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 45%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 45%);
+}
+.phero__bg img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+/* Sobre fondos claros: texto negro y botón blanco */
+.phero.is-media-light,
+.phero.is-media-light .phero__title,
+.phero.is-media-light .phero__sub,
+.phero.is-media-light .crumbs a,
+.phero.is-media-light .crumbs span {
+  color: var(--ink);
+}
+.phero.is-media-light .phero__title .hl {
+  color: var(--ink);
+}
+.phero.is-media-light .btn:not(.btn--ghost) {
+  background: var(--paper);
+  color: var(--ink);
+}
+@media (max-width: 767.98px) {
+  .phero.has-media {
+    flex-direction: column;
+    align-items: stretch;
+    min-height: 0;
+    padding-bottom: 0;
+  }
+  .phero.has-media .phero__copy {
+    grid-column: 1 / -1;
+  }
+  .phero__bg {
+    order: 2;
+    position: relative;
+    inset: auto;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    margin-top: var(--s-6);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 30%);
+    mask-image: linear-gradient(to bottom, transparent 0%, #000 30%);
+  }
+}
+/* Páginas de caso con imagen en el hero: el menú siempre con su barra negra */
+body:has(.phero.has-media) .header::before {
+  opacity: 1;
+}
+/* Hero con imagen sobre fondo oscuro o de color: todo el texto y el botón en blanco */
+.phero.has-media:not(.is-media-light) .phero__title,
+.phero.has-media:not(.is-media-light) .phero__title .hl,
+.phero.has-media:not(.is-media-light) .phero__sub,
+.phero.has-media:not(.is-media-light) .crumbs a,
+.phero.has-media:not(.is-media-light) .crumbs span {
+  color: var(--paper);
+}
+.phero.has-media:not(.is-media-light) .btn:not(.btn--ghost) {
+  background: var(--paper);
+  color: var(--ink);
+}
