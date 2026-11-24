@@ -498,6 +498,89 @@ function ProjectPage({ p, all }: { p: Project; all: Project[] }) {
   );
 }
 
+/* Caso destacado de cada página de solución: un proyecto real de clientes */
+const FEATURED_BY_SOLUTION: Partial<Record<ServiceKey, string>> = {
+  agentes: 'Avantika',
+  software: 'Rapibox',
+  erp: 'Genial Foods',
+  apps: 'Watertown',
+  web: 'Flexxi',
+  integraciones: 'Carnes Santacruz',
+  sitios: 'Zona Franca La Cayena',
+};
+
+export function FeaturedProject({ solution, index }: { solution: ServiceKey; index: string }) {
+  const all = useMemo(buildProjects, []);
+  const name = serviceName(solution);
+  const p =
+    all.find((x) => x.client === FEATURED_BY_SOLUTION[solution]) ??
+    all.find((x) => x.solutions.includes(name) && thumbFor(x.client)) ??
+    all[0];
+  const s = caseStories[p.client];
+  const thumb = thumbFor(p.client);
+  const logo = logoFor(p.client);
+  return (
+    <section className="fcase section on-surface" aria-labelledby={`fcase-${index}`}>
+      <div className="container">
+        <div className="cases__head">
+          <BlockHead
+            index={index}
+            label={t('Caso', 'Case study')}
+            title={[t('Un caso', 'A real'), { t: t('real.', 'case study.'), cls: 'mark' }]}
+            id={`fcase-${index}`}
+          />
+          <div className="cases__cta" data-reveal="up">
+            <Button href="/dev/casos" variant="ink">
+              {t('Ver todos los casos', 'View all case studies')}
+            </Button>
+          </div>
+        </div>
+        <div className="fcase__card">
+          <article className="case case--lg case--project" data-reveal="up">
+            <a href={`/dev/casos/${p.slug}`} className="case__link" data-cursor-label={t('VER', 'VIEW')}>
+              <div className="case__media">
+                {thumb ? (
+                  <div className="case__media-inner">
+                    <img className="case__thumb" src={thumb} alt="" loading="lazy" />
+                  </div>
+                ) : (
+                  <div className="case__media-inner case__media-logo">
+                    <span className="case__logo">{logo ? <img src={logo} alt="" loading="lazy" /> : <span>{p.client}</span>}</span>
+                  </div>
+                )}
+              </div>
+              <div className="case__body">
+                <p className="case__meta">{p.industries.map((i) => i.name).join(' · ')}</p>
+                <div className="case__result">
+                  <span className="case__result-num">{p.client}</span>
+                  <span className="case__result-note muted t-small">
+                    {p.work} · {p.what}
+                  </span>
+                </div>
+                {s && (
+                  <dl className="case__dl">
+                    <div>
+                      <dt>{t('El problema', 'The problem')}</dt>
+                      <dd>{s.problem}</dd>
+                    </div>
+                    <div>
+                      <dt>{t('Lo que construimos', 'What we built')}</dt>
+                      <dd>{s.built}</dd>
+                    </div>
+                  </dl>
+                )}
+                <span className="link-line case__more">
+                  {t('Ver caso', 'View case')} <ArrowUpRight strokeWidth={1.5} aria-hidden="true" />
+                </span>
+              </div>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* Caso individual: primero los proyectos de clientes; si no, los casos documentados */
 export function CasePage({ slug }: { slug: string }) {
   const all = useMemo(buildProjects, []);

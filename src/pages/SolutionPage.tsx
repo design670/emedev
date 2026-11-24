@@ -10,6 +10,7 @@ import {
   BlockHead,
 } from '../components/page/blocks';
 import { FAQAccordion } from '../components/FAQAccordion';
+import { FeaturedProject } from './CasesPages';
 import { CTASection } from '../components/CTASection';
 import { WithPlaceholders } from '../components/ui';
 import { useMeta } from '../lib/router';
@@ -96,6 +97,7 @@ export function SolutionPage({ page }: { page: S }) {
         </section>
       )}
 
+      <FeaturedProject solution={page.key} index={idx()} />
       <FAQAccordion index={idx()} items={page.faqs ?? generalFaqs} title={[t('Preguntas', 'Frequently asked'), t('frecuentes.', 'questions.')]} surface="on-surface" />
       <RelatedLinks
         title={t('Otras soluciones', 'Other solutions')}
