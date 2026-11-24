@@ -634,9 +634,9 @@ export interface IndustryProject {
 
 export const industryProjects: Record<string, IndustryProject[]> = {
   'operacion-y-logistica': [
-    { client: 'Rapibox', what: 'Servicios logísticos y de transporte', work: 'Software operativo + App', software: true },
-    { client: 'Importex', what: 'Servicios logísticos y de transporte', work: 'Software operativo', software: true },
-    { client: 'CargoNet', what: 'Servicios logísticos y de transporte', work: 'Software operativo + App', software: true },
+    { client: 'Rapibox', what: 'Servicios logísticos y de transporte', work: 'Software + App', software: true },
+    { client: 'Importex', what: 'Servicios logísticos y de transporte', work: 'Software', software: true },
+    { client: 'CargoNet', what: 'Servicios logísticos y de transporte', work: 'Software + App', software: true },
     { client: 'Genial Foods', what: 'Comercialización global de productos cárnicos', work: 'Software + App', software: true },
     { client: 'Puerto de Barranquilla', what: 'Operación portuaria', work: 'Web', software: false },
     { client: 'Zona Franca La Cayena', what: 'Operaciones comerciales, logísticas y de comercio exterior', work: 'Web', software: false },
@@ -644,8 +644,8 @@ export const industryProjects: Record<string, IndustryProject[]> = {
   ],
   'distribucion-y-mayoristas': [
     { client: 'Genial Foods', what: 'Comercialización global de productos cárnicos', work: 'Software + App', software: true },
-    { client: 'Estrategia LTDA', what: 'Venta de productos HORECA', work: 'Software operativo + Agente IA', software: true },
-    { client: 'Tusim', what: 'Venta mundial de simcards y eSIM', work: 'Software operativo', software: true },
+    { client: 'Estrategia LTDA', what: 'Venta de productos HORECA', work: 'Software + Agente IA', software: true },
+    { client: 'Tusim', what: 'Venta mundial de simcards y eSIM', work: 'Software', software: true },
     { client: 'Avantika', what: 'Comercialización de productos químicos', work: 'Software + Agente IA', software: true },
     { client: 'Carnes Santacruz', what: 'Venta de productos cárnicos', work: 'App Mobile + Integraciones + Agente IA', software: true },
     { client: 'Quidem', what: 'Materias primas y soluciones químicas para recubrimientos y morteros', work: 'Web', software: false },
@@ -656,7 +656,7 @@ export const industryProjects: Record<string, IndustryProject[]> = {
     { client: 'Pintumax', what: 'Venta de pinturas y acabados', work: 'E-commerce + Agente IA', software: true },
   ],
   'salud-y-servicios': [
-    { client: 'Quirulaser', what: 'Servicios estéticos', work: 'Software operativo + Agente IA', software: true },
+    { client: 'Quirulaser', what: 'Servicios estéticos', work: 'Software + Agente IA', software: true },
     { client: 'Watertown', what: 'Clases de natación', work: 'Software + Agente IA + App Mobile', software: true },
     { client: 'Clínica La Asunción', what: 'Servicios médicos', work: 'Web', software: false },
     { client: 'Issa Abuchaibe', what: 'Servicios médicos', work: 'Web', software: false },

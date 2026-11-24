@@ -266,23 +266,14 @@ export function CasesPage() {
                       )}
                     </div>
                     <div className="case__body">
-                      <p className="case__meta">
-                        {p.client} · {p.industries.map((i) => i.name).join(' · ')}
-                      </p>
+                      <p className="case__meta">{p.industries.map((i) => i.name).join(' · ')}</p>
+                      {/* En grande el nombre del cliente; debajo, el servicio y a qué se dedica */}
                       <div className="case__result">
-                        <span className="case__result-num">{p.work}</span>
-                        <span className="case__result-note muted t-small">{p.what}</span>
+                        <span className="case__result-num">{p.client}</span>
+                        <span className="case__result-note muted t-small">
+                          {p.work} · {p.what}
+                        </span>
                       </div>
-                      <dl className="case__dl">
-                        <div>
-                          <dt>{t('El problema', 'The problem')}</dt>
-                          <dd>{caseStories[p.client]?.problem}</dd>
-                        </div>
-                        <div>
-                          <dt>{t('Lo que construimos', 'What we built')}</dt>
-                          <dd>{caseStories[p.client]?.built}</dd>
-                        </div>
-                      </dl>
                       <span className="link-line case__more">
                         {t('Ver caso', 'View case')} <ArrowUpRight strokeWidth={1.5} aria-hidden="true" />
                       </span>

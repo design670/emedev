@@ -37,7 +37,7 @@ export const caseStories: Record<string, CaseStory> = {
   Rapibox: {
     kind: 'software',
     problem: 'Shipments between Nicaragua and the United States were quoted and tracked by hand, across chats and spreadsheets.',
-    built: 'Operations software and an App to quote shipments, create service orders and track every package.',
+    built: 'Software and an App to quote shipments, create service orders and track every package.',
     impact: 'Every quote took up the team’s time, a shipment’s information lived in several places, and customers had to ask to find out where their package was.',
     solution: 'We built Rapibox’s operating system: the customer quotes their shipment, the quote becomes a service order, and from there the team manages operations and logistics all the way to delivery.',
     features: ['Shipping quote calculator', 'Service orders', 'Tracking for every shipment', 'Customer App'],
@@ -47,7 +47,7 @@ export const caseStories: Record<string, CaseStory> = {
   Importex: {
     kind: 'software',
     problem: 'Personal shopper orders, mailbox services and international shipments were managed in spreadsheets.',
-    built: 'Operations software that manages incoming orders, tracking, deliveries and payments.',
+    built: 'Software that manages incoming orders, tracking, deliveries and payments.',
     impact: 'Knowing an order’s status or whether it had been paid meant checking several files and relying on the team’s memory.',
     solution: 'We developed software that covers an order’s full cycle: from the moment it arrives at the mailbox until it is delivered and paid, with each customer’s complete history.',
     features: ['Incoming order registration', 'Status-based tracking', 'Delivery control', 'Payments and balances by customer'],
@@ -57,7 +57,7 @@ export const caseStories: Record<string, CaseStory> = {
   CargoNet: {
     kind: 'software',
     problem: 'The import, export and mailbox operation was growing faster than its tools.',
-    built: 'Operations software and an App to manage orders, tracking, deliveries and payments.',
+    built: 'Software and an App to manage orders, tracking, deliveries and payments.',
     impact: 'With more customers and more shipments, the team spent more and more time answering status questions and reconciling payments instead of running the operation.',
     solution: 'We built CargoNet a system that logs every package on arrival, tracks it through each status until delivery and gets the payment ready, plus an App so customers can check on their shipments.',
     features: ['Mailbox and package intake', 'Shipment tracking', 'Deliveries and payments', 'Customer App'],
@@ -117,7 +117,7 @@ export const caseStories: Record<string, CaseStory> = {
   Tusim: {
     kind: 'software',
     problem: 'Selling SIM cards and eSIMs worldwide required managing orders, activations, purchasing and sales reps in one place.',
-    built: 'Operations software for service orders, activations, purchasing and sales reps.',
+    built: 'Software for service orders, activations, purchasing and sales reps.',
     impact: 'With customers in different countries, a delayed activation or a lost order meant a customer without service.',
     solution: 'We developed Tusim’s operating system: every service order is tracked through activation, with control over purchasing, inventory and each sales rep’s performance.',
     features: ['Service orders', 'Activations', 'Purchasing and inventory', 'Sales rep management'],
@@ -207,7 +207,7 @@ export const caseStories: Record<string, CaseStory> = {
   Quirulaser: {
     kind: 'software',
     problem: 'An aesthetic clinic’s scheduling, follow-up and patient records were managed by hand.',
-    built: 'Scheduling and follow-up operations software, with an AI agent.',
+    built: 'Scheduling and follow-up software, with an AI agent.',
     impact: 'Double-booked appointments, patients who didn’t come back for their next session, and session packages that were hard to keep track of.',
     solution: 'We built Quirulaser’s software to schedule appointments, follow up with every patient and track their sessions, with an AI agent that answers and books appointments on WhatsApp.',
     features: ['Scheduling by practitioner and room', 'Patient records and follow-up', 'Session package tracking', 'AI agent that books appointments'],

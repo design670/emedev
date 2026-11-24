@@ -54,7 +54,7 @@ export const caseStories: Record<string, CaseStory> = {
   Rapibox: {
     kind: 'software',
     problem: 'Los envíos entre Nicaragua y Estados Unidos se cotizaban y seguían a mano, entre chats y hojas de cálculo.',
-    built: 'Un software operativo y una App para cotizar envíos, crear órdenes de servicio y seguir cada paquete.',
+    built: 'Un software y una App para cotizar envíos, crear órdenes de servicio y seguir cada paquete.',
     impact: 'Cada cotización tomaba tiempo del equipo, la información de un envío vivía en varios lugares y el cliente tenía que preguntar para saber dónde estaba su paquete.',
     solution: 'Construimos el sistema operativo de Rapibox: el cliente cotiza su envío, la cotización se convierte en orden de servicio y desde ahí el equipo sigue la operación y la logística hasta la entrega.',
     features: ['Cotizador de envíos', 'Órdenes de servicio', 'Seguimiento de cada envío', 'App para clientes'],
@@ -64,7 +64,7 @@ export const caseStories: Record<string, CaseStory> = {
   Importex: {
     kind: 'software',
     problem: 'Pedidos de personal shopper, casillero y envíos internacionales se controlaban en hojas de cálculo.',
-    built: 'Un software operativo que controla la llegada de pedidos, el seguimiento, las entregas y los cobros.',
+    built: 'Un software que controla la llegada de pedidos, el seguimiento, las entregas y los cobros.',
     impact: 'Saber en qué estado estaba un pedido o si ya se había cobrado dependía de revisar varios archivos y de la memoria del equipo.',
     solution: 'Desarrollamos un software que recorre todo el ciclo de un pedido: desde que llega al casillero hasta que se entrega y se cobra, con el historial completo de cada cliente.',
     features: ['Registro de llegada de pedidos', 'Seguimiento por estados', 'Control de entregas', 'Cobros y saldos por cliente'],
@@ -74,7 +74,7 @@ export const caseStories: Record<string, CaseStory> = {
   CargoNet: {
     kind: 'software',
     problem: 'La operación de importación, exportación y casillero crecía más rápido que sus herramientas.',
-    built: 'Un software operativo y una App para controlar pedidos, seguimiento, entregas y cobros.',
+    built: 'Un software y una App para controlar pedidos, seguimiento, entregas y cobros.',
     impact: 'Con más clientes y más envíos, el equipo dedicaba cada vez más tiempo a responder estados y a cuadrar cobros en lugar de operar.',
     solution: 'Construimos para CargoNet un sistema que registra cada paquete desde su llegada, lo sigue por cada estado hasta la entrega y deja listo el cobro, con una App para que el cliente consulte sus envíos.',
     features: ['Casillero y llegada de paquetes', 'Seguimiento de envíos', 'Entregas y cobros', 'App para clientes'],
@@ -134,7 +134,7 @@ export const caseStories: Record<string, CaseStory> = {
   Tusim: {
     kind: 'software',
     problem: 'Vender simcards y eSIM en todo el mundo exigía controlar órdenes, activaciones, compras y vendedores en un solo lugar.',
-    built: 'Un software operativo para órdenes de servicio, activaciones, compras y vendedores.',
+    built: 'Un software para órdenes de servicio, activaciones, compras y vendedores.',
     impact: 'Con clientes en distintos países, una activación demorada o una orden perdida significaba un cliente sin servicio.',
     solution: 'Desarrollamos el sistema operativo de Tusim: cada orden de servicio se sigue hasta la activación, con control de compras e inventario y de la gestión de cada vendedor.',
     features: ['Órdenes de servicio', 'Activaciones', 'Compras e inventario', 'Gestión de vendedores'],
@@ -224,7 +224,7 @@ export const caseStories: Record<string, CaseStory> = {
   Quirulaser: {
     kind: 'software',
     problem: 'La agenda, el seguimiento y el control de pacientes de un centro estético se llevaban a mano.',
-    built: 'Un software operativo de agendamiento y seguimiento, con un agente de IA.',
+    built: 'Un software de agendamiento y seguimiento, con un agente de IA.',
     impact: 'Citas cruzadas, pacientes que no volvían a su siguiente sesión y paquetes de sesiones difíciles de controlar.',
     solution: 'Construimos el software de Quirulaser para agendar, hacer seguimiento a cada paciente y controlar sus sesiones, con un agente de IA que atiende y agenda por WhatsApp.',
     features: ['Agenda por profesional y sala', 'Historia y seguimiento de pacientes', 'Control de paquetes de sesiones', 'Agente de IA que agenda'],

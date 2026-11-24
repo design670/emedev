@@ -1768,7 +1768,7 @@
   grid-template-rows: auto 1fr;
 }
 .case--project .case__body {
-  grid-template-rows: auto auto auto 1fr;
+  grid-template-rows: auto auto 1fr;
 }
 .case--project .case__more {
   align-self: end;
@@ -1866,4 +1866,12 @@ body:has(.phero.has-media) .header::before {
 .phero.has-media:not(.is-media-light) .btn:not(.btn--ghost) {
   background: var(--paper);
   color: var(--ink);
+}
+/* Tarjetas de casos: nombre del cliente más bold */
+.case--project .case__result-num {
+  font-weight: 600;
+}
+/* Tarjetas de casos con fondo gris claro (al pasar el cursor siguen volviéndose negras) */
+.case--project .case__link {
+  background: #f9f9f9;
 }
