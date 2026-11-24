@@ -3,7 +3,6 @@ import { ArrowUpRight } from 'lucide-react';
 import { cases, services, clients, clientLogos, type ServiceKey } from '../data/content';
 import { casesPage, industryPages, industryProjects } from '../data/pages';
 import { PageHero, BlockHead } from '../components/page/blocks';
-import { CaseStudyCard } from '../components/CaseStudies';
 import { ImagePlaceholder } from '../components/ServiceVisual';
 import { CTASection } from '../components/CTASection';
 import { Button, initials } from '../components/ui';
@@ -102,12 +101,8 @@ export function CasesPage() {
 
   const entries: Entry[] = useMemo(
     () => [
-      ...cases.map((c) => ({
-        id: `case-${c.id}`,
-        kind: 'case' as const,
-        industries: c.industry ? [c.industry] : [],
-        solutions: [c.solutionName],
-      })),
+      // Los casos de ejemplo (Constructora Litoral, Red Médica Andina…) ya no se listan:
+      // solo proyectos reales de clientes
       ...projects.map((p) => ({ id: `p-${p.client}`, kind: 'project' as const, industries: p.industries, solutions: p.solutions })),
     ],
     [projects],
@@ -120,12 +115,8 @@ export function CasesPage() {
   const industryOpts = industryPages.map((i) => i.name).filter((n) => entries.some((e) => matches(e, n, solution)));
   const solutionOpts = services.map((s) => s.name).filter((n) => entries.some((e) => matches(e, industry, n)));
 
-  const shownCases = cases.filter((c) => {
-    const e = entries.find((x) => x.id === `case-${c.id}`)!;
-    return matches(e, industry, solution);
-  });
   const shownProjects = projects.filter((p) => matches(entries.find((x) => x.id === `p-${p.client}`)!, industry, solution));
-  const total = shownCases.length + shownProjects.length;
+  const total = shownProjects.length;
 
   // Al cambiar de filtro las tarjetas se vuelven a montar. Desde el primer cambio se
   // muestran con una animación CSS propia (si no, quedan con la opacidad 0 inicial
@@ -186,9 +177,6 @@ export function CasesPage() {
             {total} {total === 1 ? t('resultado', 'result') : t('resultados', 'results')}
           </p>
           <div className={`caselist__grid${touched ? ' is-filtered' : ''}`} key={`${industry}-${solution}`}>
-            {shownCases.map((c) => (
-              <CaseStudyCard key={c.id} c={c} size="sm" />
-            ))}
             {shownProjects.map((p) => {
               const logo = logoFor(p.client);
               // Misma tarjeta que los casos: bloque negro arriba (con el logo), cliente,
