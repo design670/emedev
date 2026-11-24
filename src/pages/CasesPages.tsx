@@ -18,6 +18,7 @@ const serviceName = (k: ServiceKey) => services.find((s) => s.key === k)?.name ?
 /* Miniatura de cada proyecto (tomada de las mesas de trabajo de Figma «Eme 2.0»).
    Los clientes sin miniatura muestran su logo sobre el bloque negro. */
 const thumbs: Record<string, string> = {
+  Rapibox: 'rapibox',
   Importex: 'importex',
   CargoNet: 'cargonet',
   'Puerto de Barranquilla': 'puerto-barranquilla',
@@ -40,6 +41,8 @@ const thumbs: Record<string, string> = {
   'Almacén Sandra': 'almacen-sandra',
   ICSA: 'icsa',
   'Universidad Metropolitana': 'universidad-metropolitana',
+  'Universidad de la Costa': 'universidad-de-la-costa',
+  Befuturo: 'befuturo',
 };
 const thumbFor = (name: string) => (thumbs[name] ? `/casos/${thumbs[name]}.jpg` : undefined);
 
