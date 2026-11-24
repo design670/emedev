@@ -620,6 +620,50 @@
   position: absolute;
   inset: 0;
 }
+/* Páginas internas de proyectos: miniatura cuadrada del Figma o logo sobre negro */
+.cdetail__media--project {
+  aspect-ratio: 4 / 3;
+}
+.cdetail__media--project.is-logo .cdetail__media-inner {
+  display: grid;
+  place-items: center;
+}
+.case__logo.cdetail__logo {
+  width: clamp(140px, 30%, 220px);
+  height: auto;
+  aspect-ratio: 1;
+}
+.cdetail__sols {
+  display: grid;
+  border-top: 1px solid var(--ink-12);
+}
+.cdetail__sol {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 4px var(--s-4);
+  padding: var(--s-4) 0;
+  border-bottom: 1px solid var(--ink-12);
+  color: inherit;
+  text-decoration: none;
+}
+.cdetail__sol-name {
+  font-weight: 600;
+  font-size: 1.125rem;
+}
+.cdetail__sol .muted {
+  grid-column: 1;
+}
+.cdetail__sol svg {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: center;
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s var(--ease-out);
+}
+.cdetail__sol:hover svg {
+  transform: translate(3px, -3px);
+}
 .cresults__grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

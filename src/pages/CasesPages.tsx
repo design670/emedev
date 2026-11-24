@@ -1,8 +1,8 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState, type ReactNode } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { cases, services, clients, clientLogos, type ServiceKey } from '../data/content';
 import { casesPage, industryPages, industryProjects } from '../data/pages';
-import { PageHero, BlockHead } from '../components/page/blocks';
+import { PageHero, BlockHead, RelatedLinks } from '../components/page/blocks';
 import { ImagePlaceholder } from '../components/ServiceVisual';
 import { CTASection } from '../components/CTASection';
 import { Button, initials } from '../components/ui';
@@ -70,40 +70,58 @@ interface Entry {
   solutions: string[];
 }
 
-/* Listado filtrable: casos documentados + proyectos de las páginas de industria */
+/* «Almacén Sandra» → «almacen-sandra» */
+const slugify = (s: string) =>
+  s
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+
+interface Project {
+  client: string;
+  what: string;
+  work: string;
+  software: boolean;
+  slug: string;
+  industries: { name: string; slug: string }[];
+  solutions: string[];
+}
+
+/* Proyectos de cada industria, sin repetir clientes (algunos están en dos industrias) */
+function buildProjects(): Project[] {
+  const map = new Map<string, Project>();
+  industryPages.forEach((ind) => {
+    (industryProjects[ind.slug] ?? []).forEach((p) => {
+      const sols = solutionsFor(p.client, p.work);
+      const prev = map.get(p.client);
+      if (prev) {
+        if (!prev.industries.some((i) => i.slug === ind.slug)) prev.industries.push({ name: ind.name, slug: ind.slug });
+        sols.forEach((s) => !prev.solutions.includes(s) && prev.solutions.push(s));
+        prev.software = prev.software || p.software;
+      } else {
+        map.set(p.client, { ...p, slug: slugify(p.client), industries: [{ name: ind.name, slug: ind.slug }], solutions: sols });
+      }
+    });
+  });
+  // primero los que tienen software o app
+  return [...map.values()].sort((a, b) => Number(b.software) - Number(a.software));
+}
+
+/* Listado filtrable de los proyectos de las páginas de industria */
 export function CasesPage() {
   useMeta(casesPage.seoTitle, casesPage.seoDesc);
   const [industry, setIndustry] = useState<string>(ALL);
   const [solution, setSolution] = useState<string>(ALL);
 
-  // Proyectos de cada industria, sin repetir clientes (algunos están en dos industrias)
-  const projects = useMemo(() => {
-    const map = new Map<
-      string,
-      { client: string; what: string; work: string; software: boolean; industries: string[]; solutions: string[]; href: string }
-    >();
-    industryPages.forEach((ind) => {
-      (industryProjects[ind.slug] ?? []).forEach((p) => {
-        const sols = solutionsFor(p.client, p.work);
-        const prev = map.get(p.client);
-        if (prev) {
-          if (!prev.industries.includes(ind.name)) prev.industries.push(ind.name);
-          sols.forEach((s) => !prev.solutions.includes(s) && prev.solutions.push(s));
-          prev.software = prev.software || p.software;
-        } else {
-          map.set(p.client, { ...p, industries: [ind.name], solutions: sols, href: `/dev/industrias/${ind.slug}` });
-        }
-      });
-    });
-    // primero los que tienen software o app
-    return [...map.values()].sort((a, b) => Number(b.software) - Number(a.software));
-  }, []);
+  const projects = useMemo(buildProjects, []);
 
   const entries: Entry[] = useMemo(
     () => [
       // Los casos de ejemplo (Constructora Litoral, Red Médica Andina…) ya no se listan:
       // solo proyectos reales de clientes
-      ...projects.map((p) => ({ id: `p-${p.client}`, kind: 'project' as const, industries: p.industries, solutions: p.solutions })),
+      ...projects.map((p) => ({ id: `p-${p.client}`, kind: 'project' as const, industries: p.industries.map((i) => i.name), solutions: p.solutions })),
     ],
     [projects],
   );
@@ -184,10 +202,10 @@ export function CasesPage() {
               return (
                 <article key={p.client} className="case case--sm case--project" data-reveal="up">
                   <a
-                    href={p.href}
+                    href={`/dev/casos/${p.slug}`}
                     className="case__link"
                     data-cursor-label={t('VER', 'VIEW')}
-                    aria-label={t(`Ver la industria de ${p.client}`, `View the ${p.client} industry`)}
+                    aria-label={t(`Ver el caso de ${p.client}`, `View the ${p.client} case`)}
                   >
                     <div className="case__media">
                       {thumbFor(p.client) ? (
@@ -211,7 +229,7 @@ export function CasesPage() {
                       <dl className="case__dl">
                         <div>
                           <dt>{t('Industria', 'Industry')}</dt>
-                          <dd>{p.industries.join(' · ')}</dd>
+                          <dd>{p.industries.map((i) => i.name).join(' · ')}</dd>
                         </div>
                         <div>
                           <dt>{t('Soluciones', 'Solutions')}</dt>
@@ -234,8 +252,108 @@ export function CasesPage() {
   );
 }
 
-/* Caso individual */
+/* Página interna de cada proyecto de cliente. Solo usa datos reales del listado
+   (cliente, a qué se dedica, qué construimos, industria y soluciones). */
+function ProjectPage({ p, all }: { p: Project; all: Project[] }) {
+  useMeta(
+    t(`${p.client}: ${p.work} | EME Dev`, `${p.client}: ${p.work} | EME Dev`),
+    t(`${p.work} para ${p.client}. ${p.what}.`, `${p.work} for ${p.client}. ${p.what}.`),
+  );
+  const logo = logoFor(p.client);
+  const thumb = thumbFor(p.client);
+  const sols = services.filter((s) => p.solutions.includes(s.name));
+  const indSlugs = p.industries.map((i) => i.slug);
+  const others = all.filter((o) => o.client !== p.client && o.industries.some((i) => indSlugs.includes(i.slug))).slice(0, 6);
+
+  const ficha: [string, ReactNode][] = [
+    [t('Cliente', 'Client'), p.client],
+    [t('A qué se dedica', 'What they do'), p.what],
+    [t('Lo que construimos', 'What we built'), p.work],
+    [
+      t('Industria', 'Industry'),
+      p.industries.map((i, n) => (
+        <span key={i.slug}>
+          {n > 0 && ' · '}
+          <a className="link-line" href={`/dev/industrias/${i.slug}`}>
+            {i.name}
+          </a>
+        </span>
+      )),
+    ],
+  ];
+
+  return (
+    <>
+      <PageHero
+        crumbs={[{ label: t('Casos', 'Case studies'), href: '/dev/casos' }, { label: p.client }]}
+        title={[{ t: p.client, cls: 'hl' }]}
+        subtitle={`${p.work} · ${p.what}`}
+        cta={t('Quiero algo parecido', 'I want something similar')}
+        compact
+      />
+
+      <section className="cdetail section on-light" aria-label={t('Detalle del caso', 'Case study details')}>
+        <div className="container cdetail__grid">
+          <dl className="cdetail__ficha" data-reveal="stagger">
+            {ficha.map(([k, v]) => (
+              <div key={k}>
+                <dt className="t-label muted">{k}</dt>
+                <dd>{v}</dd>
+              </div>
+            ))}
+          </dl>
+          <div className="cdetail__body">
+            <div className={`cdetail__media cdetail__media--project${thumb ? '' : ' is-logo'}`} data-reveal="up">
+              <div className="cdetail__media-inner">
+                {thumb ? (
+                  <img className="case__thumb" src={thumb} alt={t(`Proyecto de ${p.client}`, `${p.client} project`)} />
+                ) : (
+                  <span className="case__logo cdetail__logo">
+                    {logo ? <img src={logo} alt={p.client} /> : <span>{p.client}</span>}
+                  </span>
+                )}
+              </div>
+            </div>
+            {sols.length > 0 && (
+              <article className="cdetail__block" data-reveal="up">
+                <h2 className="t-h3">{t('Soluciones aplicadas', 'Solutions applied')}</h2>
+                <ul className="cdetail__sols">
+                  {sols.map((s) => (
+                    <li key={s.key}>
+                      <a href={s.href} className="cdetail__sol">
+                        <span className="cdetail__sol-name">{s.name}</span>
+                        <span className="muted">{s.short}</span>
+                        <ArrowUpRight strokeWidth={1.5} aria-hidden="true" />
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {others.length > 0 && (
+        <RelatedLinks
+          title={t('Otros casos de la industria', 'Other cases in this industry')}
+          items={others.map((o) => ({ label: o.client, href: `/dev/casos/${o.slug}`, text: o.work }))}
+        />
+      )}
+      <CTASection />
+    </>
+  );
+}
+
+/* Caso individual: primero los proyectos de clientes; si no, los casos documentados */
 export function CasePage({ slug }: { slug: string }) {
+  const all = useMemo(buildProjects, []);
+  const p = all.find((x) => x.slug === slug);
+  if (p) return <ProjectPage p={p} all={all} />;
+  return <DocumentedCase slug={slug} />;
+}
+
+function DocumentedCase({ slug }: { slug: string }) {
   const c = cases.find((x) => x.slug === slug);
   useMeta(
     c
