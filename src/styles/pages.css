@@ -1525,7 +1525,7 @@
 .pcase__cover {
   position: relative;
   margin: 0;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 4 / 3;
   border-radius: var(--r-lg);
   overflow: hidden;
   background: var(--ink);
@@ -1541,7 +1541,7 @@
   place-items: center;
 }
 .case__logo.pcase__logo {
-  width: clamp(140px, 22%, 240px);
+  width: clamp(140px, 30%, 240px);
   height: auto;
   aspect-ratio: 1;
 }
@@ -1697,9 +1697,11 @@
 }
 .pcase-invite__inner {
   display: grid;
-  justify-items: start;
+  justify-items: center;
   gap: var(--s-5);
   max-width: 900px;
+  margin-inline: auto;
+  text-align: center;
 }
 .pcase-invite__title {
   font-size: var(--fs-h2);
@@ -1758,4 +1760,13 @@
 }
 .case--project .case__more {
   align-self: end;
+}
+/* Ficha de la página interna de caso: texto más grande */
+.pcase .cdetail__ficha dt {
+  font-size: 0.875rem;
+}
+.pcase .cdetail__ficha dd {
+  margin-top: 6px;
+  font-size: 1.25rem;
+  line-height: 1.35;
 }

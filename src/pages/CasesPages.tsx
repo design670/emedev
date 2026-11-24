@@ -281,7 +281,6 @@ function ProjectPage({ p, all }: { p: Project; all: Project[] }) {
   const logo = logoFor(p.client);
   const thumb = thumbFor(p.client);
   const gallery = galleryFor(p.client);
-  const sols = services.filter((x) => p.solutions.includes(x.name));
   const indSlugs = p.industries.map((i) => i.slug);
   const others = all.filter((o) => o.client !== p.client && o.industries.some((i) => indSlugs.includes(i.slug))).slice(0, 6);
   const steps = s ? processByKind[s.kind] : [];
@@ -315,15 +314,9 @@ function ProjectPage({ p, all }: { p: Project; all: Project[] }) {
 
       {/* Portada y ficha */}
       <section className="pcase section on-light" aria-label={t('Resumen del caso', 'Case summary')}>
-        <div className="container">
-          <figure className={`pcase__cover${thumb ? '' : ' is-logo'}`} data-reveal="up">
-            {thumb ? (
-              <img src={thumb} alt={t(`Proyecto de ${p.client}`, `${p.client} project`)} />
-            ) : (
-              <span className="case__logo pcase__logo">{logo ? <img src={logo} alt={p.client} /> : <span>{p.client}</span>}</span>
-            )}
-          </figure>
-          <dl className="pcase__facts" data-reveal="stagger">
+        {/* Ficha a la izquierda, imagen a la derecha */}
+        <div className="container cdetail__grid">
+          <dl className="cdetail__ficha" data-reveal="stagger">
             {facts.map(([k, v]) => (
               <div key={k}>
                 <dt className="t-label muted">{k}</dt>
@@ -331,6 +324,15 @@ function ProjectPage({ p, all }: { p: Project; all: Project[] }) {
               </div>
             ))}
           </dl>
+          <div className="cdetail__body">
+            <figure className={`pcase__cover${thumb ? '' : ' is-logo'}`} data-reveal="up">
+              {thumb ? (
+                <img src={thumb} alt={t(`Proyecto de ${p.client}`, `${p.client} project`)} />
+              ) : (
+                <span className="case__logo pcase__logo">{logo ? <img src={logo} alt={p.client} /> : <span>{p.client}</span>}</span>
+              )}
+            </figure>
+          </div>
         </div>
       </section>
 
@@ -377,15 +379,6 @@ function ProjectPage({ p, all }: { p: Project; all: Project[] }) {
                   </li>
                 ))}
               </ol>
-              {sols.length > 0 && (
-                <div className="pcase-sols" data-reveal="up">
-                  {sols.map((x) => (
-                    <a key={x.key} href={x.href} className="chip pcase-sols__chip">
-                      {x.name} <ArrowUpRight strokeWidth={1.5} aria-hidden="true" />
-                    </a>
-                  ))}
-                </div>
-              )}
             </div>
           </section>
 
