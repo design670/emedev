@@ -2,7 +2,7 @@ import { useMemo, useState, type ReactNode } from 'react';
 import { ArrowUpRight, Check } from 'lucide-react';
 import { cases, services, clients, clientLogos, DIAGNOSTICO_HREF, type ServiceKey } from '../data/content';
 import { caseStories, processByKind } from '../data/caseStories';
-import { casesPage, industryPages, industryProjects } from '../data/pages';
+import { casesPage, industryPages, industryProjects, caseOnlyProjects } from '../data/pages';
 import { PageHero, BlockHead, RelatedLinks } from '../components/page/blocks';
 import { ImagePlaceholder } from '../components/ServiceVisual';
 import { CTASection } from '../components/CTASection';
@@ -43,6 +43,25 @@ const thumbs: Record<string, string> = {
   'Universidad Metropolitana': 'universidad-metropolitana',
   'Universidad de la Costa': 'universidad-de-la-costa',
   Befuturo: 'befuturo',
+  'Genial Foods': 'genial-foods',
+  Tusim: 'tusim',
+  Flexxi: 'flexxi',
+  Sushi2go: 'sushi2go',
+  Solutodo: 'solutodo',
+  'Torii & Ko': 'torii-ko',
+  Apparta: 'apparta',
+  Templado: 'templado',
+  Kontrola: 'kontrola',
+  Bicosa: 'bicosa',
+  "Ross D'Elen": 'ross-delen',
+  'Super Efectivo': 'super-efectivo',
+  'RBA Health Solutions': 'rba-health-solutions',
+  'Rollback Ally': 'rollbackally',
+  'Country Club': 'country-club',
+  'Fundación Country Club': 'fundacion-country-club',
+  Amalfi: 'amalfi',
+  'San Felino': 'san-felino',
+  ACF: 'acf',
 };
 const thumbFor = (name: string) => (thumbs[name] ? `/casos/${thumbs[name]}.jpg` : undefined);
 
@@ -148,6 +167,17 @@ function buildProjects(): Project[] {
       } else {
         map.set(p.client, { ...p, slug: slugify(p.client), industries: [{ name: ind.name, slug: ind.slug }], solutions: sols });
       }
+    });
+  });
+  // Clientes que solo se muestran en Casos (no en las tablas de industria)
+  caseOnlyProjects.forEach(({ industry, ...p }) => {
+    if (map.has(p.client)) return;
+    const ind = industryPages.find((i) => i.slug === industry);
+    map.set(p.client, {
+      ...p,
+      slug: slugify(p.client),
+      industries: ind ? [{ name: ind.name, slug: ind.slug }] : [],
+      solutions: solutionsFor(p.client, p.work),
     });
   });
   // primero los que tienen software o app

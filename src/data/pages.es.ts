@@ -673,3 +673,25 @@ export const industryProjects: Record<string, IndustryProject[]> = {
     { client: 'Befuturo', what: 'Cursos académicos', work: 'Web', software: false },
   ],
 };
+
+/* Proyectos que solo aparecen en la página de Casos (no en las tablas de las
+   páginas de industria). industry = slug de la industria para el filtro. */
+export const caseOnlyProjects: (IndustryProject & { industry: string })[] = [
+  { industry: 'distribucion-y-mayoristas', client: 'Flexxi', what: 'Libranzas y microcréditos', work: 'Software', software: true },
+  { industry: 'distribucion-y-mayoristas', client: 'Sushi2go', what: 'Venta de sushi a domicilio', work: 'App Mobile', software: true },
+  { industry: 'distribucion-y-mayoristas', client: 'Solutodo', what: 'Venta de juguetes y coleccionables', work: 'E-commerce', software: true },
+  { industry: 'distribucion-y-mayoristas', client: 'Torii & Ko', what: 'Aromas y cuidado para el hogar', work: 'E-commerce', software: true },
+  { industry: 'salud-y-servicios', client: 'Apparta', what: 'Reservas y recomendaciones de restaurantes', work: 'Web + App Mobile', software: true },
+  { industry: 'distribucion-y-mayoristas', client: 'Templado', what: 'Soluciones en vidrio, aluminio y acero', work: 'Web', software: false },
+  { industry: 'distribucion-y-mayoristas', client: 'Kontrola', what: 'Software contable y administrativo en la nube', work: 'Web', software: false },
+  { industry: 'distribucion-y-mayoristas', client: 'Bicosa', what: 'Confección de uniformes', work: 'Web', software: false },
+  { industry: 'distribucion-y-mayoristas', client: "Ross D'Elen", what: 'Productos de cuidado personal', work: 'Web', software: false },
+  { industry: 'distribucion-y-mayoristas', client: 'Super Efectivo', what: 'Compra y venta de oro y artículos de valor', work: 'Web', software: false },
+  { industry: 'salud-y-servicios', client: 'RBA Health Solutions', what: 'Facturación médica para consultorios en Estados Unidos', work: 'Web', software: false },
+  { industry: 'salud-y-servicios', client: 'Rollback Ally', what: 'Equipos bilingües de salud y facturación médica', work: 'Web', software: false },
+  { industry: 'salud-y-servicios', client: 'Country Club', what: 'Club social y deportivo', work: 'Web', software: false },
+  { industry: 'salud-y-servicios', client: 'Fundación Country Club', what: 'Programas sociales para colaboradores y comunidades', work: 'Web', software: false },
+  { industry: 'salud-y-servicios', client: 'Amalfi', what: 'Restaurante de cocina italiana', work: 'Web', software: false },
+  { industry: 'salud-y-servicios', client: 'San Felino', what: 'Experiencias de viaje en Cartagena', work: 'Web', software: false },
+  { industry: 'salud-y-servicios', client: 'ACF', what: 'Proyectos de vivienda', work: 'Web', software: false },
+];

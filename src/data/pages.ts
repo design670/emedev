@@ -11,6 +11,7 @@ const d: typeof es = isEn ? (en as unknown as typeof es) : es;
 export const solutionPages = d.solutionPages;
 export const industryPages = d.industryPages;
 export const industryProjects = d.industryProjects;
+export const caseOnlyProjects = d.caseOnlyProjects;
 export const processPage = d.processPage;
 export const securityPage = d.securityPage;
 export const teamPage = d.teamPage;

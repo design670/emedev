@@ -664,3 +664,25 @@ export const industryProjects: Record<string, IndustryProject[]> = {
     { client: 'Befuturo', what: 'Academic courses', work: 'Website', software: false },
   ],
 };
+
+/* Projects that only appear on the Case studies page (not in the industry page
+   tables). industry = industry slug for the filter. */
+export const caseOnlyProjects: (IndustryProject & { industry: string })[] = [
+  { industry: 'distribucion-y-mayoristas', client: 'Flexxi', what: 'Payroll loans and microcredit', work: 'Software', software: true },
+  { industry: 'distribucion-y-mayoristas', client: 'Sushi2go', what: 'Sushi delivery', work: 'Mobile App', software: true },
+  { industry: 'distribucion-y-mayoristas', client: 'Solutodo', what: 'Toys and collectibles sales', work: 'E-commerce', software: true },
+  { industry: 'distribucion-y-mayoristas', client: 'Torii & Ko', what: 'Home fragrances and care', work: 'E-commerce', software: true },
+  { industry: 'salud-y-servicios', client: 'Apparta', what: 'Restaurant bookings and recommendations', work: 'Website + Mobile App', software: true },
+  { industry: 'distribucion-y-mayoristas', client: 'Templado', what: 'Glass, aluminum and steel solutions', work: 'Website', software: false },
+  { industry: 'distribucion-y-mayoristas', client: 'Kontrola', what: 'Cloud accounting and back-office software', work: 'Website', software: false },
+  { industry: 'distribucion-y-mayoristas', client: 'Bicosa', what: 'Uniform manufacturing', work: 'Website', software: false },
+  { industry: 'distribucion-y-mayoristas', client: "Ross D'Elen", what: 'Personal care products', work: 'Website', software: false },
+  { industry: 'distribucion-y-mayoristas', client: 'Super Efectivo', what: 'Gold and valuables buying and selling', work: 'Website', software: false },
+  { industry: 'salud-y-servicios', client: 'RBA Health Solutions', what: 'Medical billing for U.S. practices', work: 'Website', software: false },
+  { industry: 'salud-y-servicios', client: 'Rollback Ally', what: 'Bilingual healthcare teams and medical billing', work: 'Website', software: false },
+  { industry: 'salud-y-servicios', client: 'Country Club', what: 'Social and sports club', work: 'Website', software: false },
+  { industry: 'salud-y-servicios', client: 'Fundación Country Club', what: 'Social programs for employees and communities', work: 'Website', software: false },
+  { industry: 'salud-y-servicios', client: 'Amalfi', what: 'Italian restaurant', work: 'Website', software: false },
+  { industry: 'salud-y-servicios', client: 'San Felino', what: 'Travel experiences in Cartagena', work: 'Website', software: false },
+  { industry: 'salud-y-servicios', client: 'ACF', what: 'Housing projects', work: 'Website', software: false },
+];
