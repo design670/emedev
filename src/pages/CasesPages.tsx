@@ -15,6 +15,34 @@ const ALL = 'Todas';
 const logoFor = (name: string) => clients.find((c) => c.name === name)?.logo ?? clientLogos[name];
 const serviceName = (k: ServiceKey) => services.find((s) => s.key === k)?.name ?? k;
 
+/* Miniatura de cada proyecto (tomada de las mesas de trabajo de Figma «Eme 2.0»).
+   Los clientes sin miniatura muestran su logo sobre el bloque negro. */
+const thumbs: Record<string, string> = {
+  Importex: 'importex',
+  CargoNet: 'cargonet',
+  'Puerto de Barranquilla': 'puerto-barranquilla',
+  'Zona Franca La Cayena': 'zona-franca-la-cayena',
+  ProBarranquilla: 'probarranquilla',
+  'Estrategia LTDA': 'estrategias',
+  Avantika: 'avantika',
+  'Carnes Santacruz': 'carnes-santacruz',
+  Quidem: 'quidem',
+  'HYK Colombia': 'hyk',
+  Soluzioni: 'soluzioni',
+  Pintumax: 'pintumax',
+  Quirulaser: 'quirulaser',
+  Watertown: 'watertown',
+  'Clínica La Asunción': 'clinica-la-asuncion',
+  'Issa Abuchaibe': 'issa-abuchaibe',
+  'Sociedad Colombiana de Pediatría': 'sociedad-colombiana-de-pediatria',
+  Cajacopi: 'cajacopi',
+  'Academia Sandra': 'academia-sandra',
+  'Almacén Sandra': 'almacen-sandra',
+  ICSA: 'icsa',
+  'Universidad Metropolitana': 'universidad-metropolitana',
+};
+const thumbFor = (name: string) => (thumbs[name] ? `/casos/${thumbs[name]}.jpg` : undefined);
+
 /* Soluciones que se deducen del tipo de trabajo de cada proyecto
    (sirve en español y en inglés). */
 function solutionsFor(client: string, work: string): string[] {
@@ -171,11 +199,17 @@ export function CasesPage() {
                     aria-label={t(`Ver la industria de ${p.client}`, `View the ${p.client} industry`)}
                   >
                     <div className="case__media">
-                      <div className="case__media-inner case__media-logo">
-                        <span className="case__logo">
-                          {logo ? <img src={logo} alt="" loading="lazy" /> : <span>{p.client}</span>}
-                        </span>
-                      </div>
+                      {thumbFor(p.client) ? (
+                        <div className="case__media-inner">
+                          <img className="case__thumb" src={thumbFor(p.client)} alt="" loading="lazy" />
+                        </div>
+                      ) : (
+                        <div className="case__media-inner case__media-logo">
+                          <span className="case__logo">
+                            {logo ? <img src={logo} alt="" loading="lazy" /> : <span>{p.client}</span>}
+                          </span>
+                        </div>
+                      )}
                     </div>
                     <div className="case__body">
                       <p className="case__meta">{p.client}</p>
