@@ -219,7 +219,7 @@ export function CasesPage() {
                         </div>
                       </dl>
                       <span className="link-line case__more">
-                        {t('Ver la industria', 'View the industry')} <ArrowUpRight strokeWidth={1.5} aria-hidden="true" />
+                        {t('Ver caso', 'View case')} <ArrowUpRight strokeWidth={1.5} aria-hidden="true" />
                       </span>
                     </div>
                   </a>

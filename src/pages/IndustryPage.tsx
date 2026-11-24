@@ -1,6 +1,6 @@
 import { clientLogos, clients } from '../data/content';
 import { industryPages, industryProjects, type IndustryPage as I } from '../data/pages';
-import { PageHero, NumberedList, FeaturedCase, RelatedLinks, BlockHead } from '../components/page/blocks';
+import { PageHero, NumberedList, RelatedLinks, BlockHead } from '../components/page/blocks';
 import { CTASection } from '../components/CTASection';
 import { useMeta } from '../lib/router';
 import { t } from '../lib/i18n';
@@ -109,7 +109,6 @@ export function IndustryPage({ page }: { page: I }) {
       </section>
 
       {/* Sin caso real documentado, el bloque no se muestra */}
-      {page.caseSlug && <FeaturedCase index="04" visual={page.visual} slug={page.caseSlug} />}
 
       <RelatedLinks
         title={t('Otras industrias', 'Other industries')}

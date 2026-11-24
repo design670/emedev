@@ -6,7 +6,6 @@ import {
   NumberedList,
   UseCases,
   Callout,
-  FeaturedCase,
   RelatedLinks,
   BlockHead,
 } from '../components/page/blocks';
@@ -17,7 +16,7 @@ import { useMeta } from '../lib/router';
 import { t } from '../lib/i18n';
 
 /* Estructura común del brief: hero, problema, qué incluye, casos de uso,
-   un caso con cifras, cómo se contrata, preguntas frecuentes y cierre. */
+   cómo se contrata, preguntas frecuentes y cierre. */
 export function SolutionPage({ page }: { page: S }) {
   useMeta(page.seoTitle, page.seoDesc);
   let n = 0;
@@ -97,7 +96,6 @@ export function SolutionPage({ page }: { page: S }) {
         </section>
       )}
 
-      <FeaturedCase index={idx()} visual={page.key} solutionName={page.name} />
       <FAQAccordion index={idx()} items={page.faqs ?? generalFaqs} title={[t('Preguntas', 'Frequently asked'), t('frecuentes.', 'questions.')]} surface="on-surface" />
       <RelatedLinks
         title={t('Otras soluciones', 'Other solutions')}
