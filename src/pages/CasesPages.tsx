@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { cases, services, industries } from '../data/content';
 import { casesPage } from '../data/pages';
@@ -10,6 +10,7 @@ import { Button, initials } from '../components/ui';
 import { useMeta } from '../lib/router';
 import { t } from '../lib/i18n';
 import { NotFoundPage } from './InfoPages';
+import { gsap, prefersReduced } from '../lib/motion';
 
 /* Listado filtrable por industria y por solución */
 export function CasesPage() {
@@ -19,6 +20,33 @@ export function CasesPage() {
   const filtered = cases.filter(
     (c) => (industry === 'Todas' || c.industry === industry) && (solution === 'Todas' || c.solutionName === solution),
   );
+
+  // Al cambiar de filtro las tarjetas se vuelven a montar: hay que mostrarlas
+  // (si no, quedan con la opacidad 0 inicial de los revelados y la lista se ve vacía)
+  const grid = useRef<HTMLDivElement>(null);
+  const firstRender = useRef(true);
+  useEffect(() => {
+    const el = grid.current;
+    if (!el) return;
+    const items = el.querySelectorAll<HTMLElement>('[data-reveal]');
+    if (firstRender.current) {
+      firstRender.current = false;
+      // en la primera carga lo anima el sistema de revelados de la página
+      return;
+    }
+    gsap.killTweensOf(items);
+    gsap.set(el.querySelectorAll('[data-reveal="mask"]'), { clipPath: 'none' });
+    if (prefersReduced()) {
+      gsap.set(items, { opacity: 1, y: 0 });
+      return;
+    }
+    gsap.fromTo(
+      el.querySelectorAll('.case'),
+      { opacity: 0, y: 24 },
+      { opacity: 1, y: 0, duration: 0.6, stagger: 0.06, ease: 'power3.out' },
+    );
+    gsap.set(el.querySelectorAll('[data-reveal="mask"]'), { opacity: 1 });
+  }, [industry, solution]);
 
   const Chips = ({
     label,
@@ -59,7 +87,7 @@ export function CasesPage() {
             <Chips label={t('Solución', 'Solution')} options={services.map((s) => s.name)} value={solution} onChange={setSolution} />
           </div>
           {filtered.length ? (
-            <div className="caselist__grid" key={`${industry}-${solution}`}>
+            <div className="caselist__grid" ref={grid} key={`${industry}-${solution}`}>
               {filtered.map((c) => (
                 <CaseStudyCard key={c.id} c={c} size="sm" />
               ))}
