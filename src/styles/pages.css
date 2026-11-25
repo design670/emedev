@@ -1825,6 +1825,22 @@
   object-fit: cover;
   object-position: center;
 }
+/* Portadas con logo (public/casos/portada): fondo liso del mismo color que el
+   hero, así que no necesitan el degradado. El logo está al 42 % del ancho para
+   quedar cerca del título, con margen amplio hacia el borde derecho. */
+.phero__bg:has(img[src*='/casos/portada/']) {
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+.phero__bg img[src*='/casos/portada/'] {
+  object-position: 30% 50%;
+}
+@media (max-width: 767.98px) {
+  /* En celular la imagen va debajo del texto: el recorte se centra en el logo */
+  .phero__bg img[src*='/casos/portada/'] {
+    object-position: 26% 50%;
+  }
+}
 /* Sobre fondos claros: texto negro y botón blanco */
 .phero.is-media-light,
 .phero.is-media-light .phero__title,

@@ -72,6 +72,7 @@ const thumbFor = (name: string) => (thumbs[name] ? `/casos/${thumbs[name]}.jpg` 
 const SHOTS: Record<string, number> = {
   acf: 4,
   'academia-sandra': 4,
+  'almacen-sandra': 3,
   amalfi: 4,
   apparta: 3,
   avantika: 4,
@@ -116,12 +117,41 @@ const SHOTS: Record<string, number> = {
   'zona-franca-la-cayena': 4,
 };
 /* Clientes que aún no tienen sus cards: una sola imagen de mockup */
-const LEGACY_SHOT = new Set(['almacen-sandra']);
+const LEGACY_SHOT = new Set<string>([]);
 const shotsFor = (name: string): string[] => {
   const slug = thumbs[name];
   if (!slug) return [];
   if (SHOTS[slug]) return Array.from({ length: SHOTS[slug] }, (_, i) => `/casos/galeria/${slug}-${i + 1}.jpg`);
   return LEGACY_SHOT.has(slug) ? [`/casos/galeria/${slug}.jpg`] : [];
+};
+/* Portada del hero con el logo del cliente sobre un fondo de su marca
+   (public/casos/portada/<slug>.jpg), para los casos cuya primera card de Figma
+   no muestra el logo. El logo va centrado en el lado derecho de la imagen. */
+const COVERS = new Set([
+  'tusim',
+  'avantika',
+  'gsm',
+  'academia-sandra',
+  'almacen-sandra',
+  'universidad-de-la-costa',
+  'torii-ko',
+  'apparta',
+  'probarranquilla',
+  'retri',
+  'universidad-metropolitana',
+  'befuturo',
+  'bicosa',
+  'rba-health-solutions',
+  'rollbackally',
+  'country-club',
+  'fundacion-country-club',
+  'amalfi',
+  'san-felino',
+]);
+const heroFor = (name: string): string | undefined => {
+  const slug = thumbs[name];
+  if (slug && COVERS.has(slug)) return `/casos/portada/${slug}.jpg`;
+  return shotsFor(name)[0];
 };
 
 function Shot({ src, first }: { src?: string; first?: boolean }) {
@@ -360,7 +390,10 @@ function ProjectPage({ p, all }: { p: Project; all: Project[] }) {
   const logo = logoFor(p.client);
   const thumb = thumbFor(p.client);
   const shots = shotsFor(p.client);
-  /* La primera card va dentro del hero; las demás, entre secciones */
+  const hero = heroFor(p.client);
+  /* La primera card va dentro del hero; las demás, entre secciones. Si el hero
+     usa una portada con logo, todas las cards de la galería van entre secciones. */
+  const gallery = hero === shots[0] ? shots.slice(1) : shots;
   const indSlugs = p.industries.map((i) => i.slug);
   const others = all.filter((o) => o.client !== p.client && o.industries.some((i) => indSlugs.includes(i.slug))).slice(0, 6);
   const steps = s ? processByKind[s.kind] : [];
@@ -391,7 +424,7 @@ function ProjectPage({ p, all }: { p: Project; all: Project[] }) {
         cta={t('Quiero algo parecido', 'I want something similar')}
         compact
         twoLineSub
-        media={shots[0] ? { src: shots[0], alt: t(`Proyecto de ${p.client}`, `${p.client} project`) } : undefined}
+        media={hero ? { src: hero, alt: t(`Proyecto de ${p.client}`, `${p.client} project`) } : undefined}
       />
 
       {/* Portada y ficha */}
@@ -434,7 +467,7 @@ function ProjectPage({ p, all }: { p: Project; all: Project[] }) {
             </div>
           </section>
 
-          <Shot src={shots[1]} />
+          <Shot src={gallery[0]} />
 
           {/* La solución */}
           <section className="pcase-solution section on-surface" aria-labelledby="pcase-solution">
@@ -456,7 +489,7 @@ function ProjectPage({ p, all }: { p: Project; all: Project[] }) {
             </div>
           </section>
 
-          <Shot src={shots[2]} />
+          <Shot src={gallery[1]} />
 
           {/* El proceso */}
           <section className="pcase-process section on-dark" aria-labelledby="pcase-process">
@@ -476,7 +509,7 @@ function ProjectPage({ p, all }: { p: Project; all: Project[] }) {
             </div>
           </section>
 
-          <Shot src={shots[3]} />
+          <Shot src={gallery[2]} />
 
           {/* El resultado */}
           <section className="pcase-result section on-light" aria-labelledby="pcase-result">
@@ -497,6 +530,8 @@ function ProjectPage({ p, all }: { p: Project; all: Project[] }) {
               </ul>
             </div>
           </section>
+
+          <Shot src={gallery[3]} />
         </>
       )}
 
