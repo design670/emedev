@@ -75,6 +75,7 @@ const SHOTS: Record<string, number> = {
   amalfi: 4,
   apparta: 3,
   avantika: 4,
+  befuturo: 4,
   bicosa: 4,
   cajacopi: 4,
   cargonet: 4,
@@ -85,7 +86,9 @@ const SHOTS: Record<string, number> = {
   flexxi: 4,
   'fundacion-country-club': 4,
   'genial-foods': 4,
+  gsm: 4,
   hyk: 4,
+  icsa: 4,
   importex: 4,
   'issa-abuchaibe': 4,
   kontrola: 4,
@@ -97,8 +100,10 @@ const SHOTS: Record<string, number> = {
   rapibox: 4,
   'rba-health-solutions': 4,
   rollbackally: 4,
+  retri: 4,
   'ross-delen': 4,
   'sociedad-colombiana-de-pediatria': 4,
+  'san-felino': 4,
   solutodo: 4,
   soluzioni: 4,
   'super-efectivo': 4,
@@ -385,6 +390,7 @@ function ProjectPage({ p, all }: { p: Project; all: Project[] }) {
         subtitle={s?.built ?? `${p.work} · ${p.what}`}
         cta={t('Quiero algo parecido', 'I want something similar')}
         compact
+        twoLineSub
         media={shots[0] ? { src: shots[0], alt: t(`Proyecto de ${p.client}`, `${p.client} project`) } : undefined}
       />
 

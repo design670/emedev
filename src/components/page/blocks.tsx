@@ -30,6 +30,17 @@ export function Breadcrumb({ items }: { items: { label: string; href?: string }[
 /* ------------------------------------------------------------------ */
 /* PageHero — misma coreografía de entrada que el Hero de la Home       */
 /* ------------------------------------------------------------------ */
+/* Parte un texto en dos líneas de largo parecido, en el espacio más cercano
+   a la mitad */
+function splitInTwo(text: string): string[] {
+  const mid = text.length / 2;
+  let cut = -1;
+  for (let i = 0; i < text.length; i++) {
+    if (text[i] === ' ' && (cut < 0 || Math.abs(i - mid) < Math.abs(cut - mid))) cut = i;
+  }
+  return cut < 0 ? [text] : [text.slice(0, cut), text.slice(cut + 1)];
+}
+
 export function PageHero({
   crumbs,
   title,
@@ -41,6 +52,7 @@ export function PageHero({
   secondary,
   compact = false,
   media,
+  twoLineSub = false,
 }: {
   crumbs: { label: string; href?: string }[];
   label?: string;
@@ -54,6 +66,8 @@ export function PageHero({
   compact?: boolean;
   /** Imagen horizontal a todo el ancho dentro del hero (páginas de caso) */
   media?: { src: string; alt: string };
+  /** Parte la descripción en 2 líneas de ancho parecido (páginas de caso) */
+  twoLineSub?: boolean;
 }) {
   const ref = useRef<HTMLElement>(null);
   /* Color de fondo de la imagen del hero (esquina superior derecha) para fundir
@@ -143,8 +157,16 @@ export function PageHero({
           <Breadcrumb items={crumbs} />
           <RevealText as="h1" id="page-title" className="phero__title" parts={title} reveal="intro" />
           {subtitle && (
-            <p className="phero__sub t-lead" data-intro="up">
-              <WithPlaceholders text={subtitle} />
+            <p className={`phero__sub t-lead${twoLineSub ? ' phero__sub--two' : ''}`} data-intro="up">
+              {twoLineSub ? (
+                splitInTwo(subtitle).map((line, i) => (
+                  <span key={i} className="phero__sub-line">
+                    <WithPlaceholders text={line} />
+                  </span>
+                ))
+              ) : (
+                <WithPlaceholders text={subtitle} />
+              )}
             </p>
           )}
           {(cta || secondary) && (

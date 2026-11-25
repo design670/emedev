@@ -93,6 +93,16 @@
   max-width: 52ch;
   color: var(--paper-72);
 }
+/* Descripción de los casos: 2 líneas de ancho parecido (PageHero parte el
+   texto en la palabra más cercana a la mitad). En pantallas angostas cada
+   línea puede volver a partirse. */
+.phero__sub--two {
+  max-width: 66ch;
+}
+.phero__sub-line {
+  display: block;
+  text-wrap: balance;
+}
 .phero__ctas {
   display: flex;
   flex-wrap: wrap;
