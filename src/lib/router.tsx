@@ -20,6 +20,15 @@ let busy = false;
 
 export const getPath = () => current;
 
+/* ---- Prerender: ruta y metadatos de la página que se genera en el build ---- */
+export type PageMeta = { title: string; description?: string; noindex?: boolean };
+let serverMeta: PageMeta | null = null;
+export function setServerPath(path: string) {
+  current = normalize(path);
+  serverMeta = null;
+}
+export const getServerMeta = () => serverMeta;
+
 function curtain(): HTMLElement | null {
   return document.querySelector('.page-curtain');
 }
@@ -143,7 +152,9 @@ export function useLinkInterceptor() {
 }
 
 /* Título y descripción por página */
-export function useMeta(title: string, description?: string) {
+export function useMeta(title: string, description?: string, { noindex = false } = {}) {
+  // en el prerender no corren los efectos: se guardan los datos para escribirlos en el <head>
+  if (typeof window === 'undefined') serverMeta = { title, description, noindex };
   useEffect(() => {
     document.title = title;
     if (description) {

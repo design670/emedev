@@ -51,8 +51,22 @@ export function CaseStudyCard({ c, size }: { c: Case; visual?: ServiceKey; size:
   );
 }
 
-/* Casos reales del carrusel del Home (software, apps y agentes de IA) */
-const HOME_CASES = ['Rapibox', 'Genial Foods', 'Avantika', 'Watertown', 'Flexxi', 'Carnes Santacruz', 'Estrategia LTDA', 'Quirulaser'];
+/* Casos reales del carrusel del Home (el nombre debe coincidir con `client` en pages.es.ts) */
+const HOME_CASES = [
+  'Rapibox',
+  'Bicosa',
+  'Templado',
+  'Importex',
+  'Carnes Santacruz',
+  'Watertown',
+  'Academia Sandra',
+  'Torii & Ko',
+  'Cajacopi',
+  'Puerto de Barranquilla',
+  'Country Club',
+  'Sushi2go',
+  'Soluzioni',
+];
 
 export function CaseStudies() {
   const track = useRef<HTMLDivElement>(null);

@@ -409,7 +409,7 @@ export function DiagnosticPage() {
 /* 404                                                                 */
 /* ------------------------------------------------------------------ */
 export function NotFoundPage() {
-  useMeta(t('Página no encontrada | EME Dev', 'Page not found | EME Dev'));
+  useMeta(t('Página no encontrada | EME Dev', 'Page not found | EME Dev'), undefined, { noindex: true });
   return (
     <PageHero
       crumbs={[{ label: t('Página no encontrada', 'Page not found') }]}

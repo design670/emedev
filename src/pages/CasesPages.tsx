@@ -62,33 +62,56 @@ const thumbs: Record<string, string> = {
   Amalfi: 'amalfi',
   'San Felino': 'san-felino',
   ACF: 'acf',
+  GSM: 'gsm',
+  Retri: 'retri',
 };
 const thumbFor = (name: string) => (thumbs[name] ? `/casos/${thumbs[name]}.jpg` : undefined);
 
 /* Cards grandes de imagen de la página interna, exportadas en 2x de las mesas
    de cada cliente en el Figma «Eme 2.0» (página Aprobada), en el mismo orden. */
 const SHOTS: Record<string, number> = {
+  acf: 4,
+  'academia-sandra': 4,
+  amalfi: 4,
+  apparta: 3,
   avantika: 4,
-  cajacopi: 2,
-  'carnes-santacruz': 3,
+  bicosa: 4,
+  cajacopi: 4,
+  cargonet: 4,
+  'carnes-santacruz': 4,
   'clinica-la-asuncion': 4,
-  estrategias: 3,
+  'country-club': 4,
+  estrategias: 4,
+  flexxi: 4,
+  'fundacion-country-club': 4,
+  'genial-foods': 4,
   hyk: 4,
   importex: 4,
   'issa-abuchaibe': 4,
+  kontrola: 4,
   pintumax: 4,
   probarranquilla: 4,
   'puerto-barranquilla': 4,
-  quidem: 3,
+  quidem: 4,
   quirulaser: 4,
   rapibox: 4,
-  'sociedad-colombiana-de-pediatria': 2,
+  'rba-health-solutions': 4,
+  rollbackally: 4,
+  'ross-delen': 4,
+  'sociedad-colombiana-de-pediatria': 4,
+  solutodo: 4,
   soluzioni: 4,
-  watertown: 1,
+  'super-efectivo': 4,
+  sushi2go: 4,
+  templado: 4,
+  'torii-ko': 4,
+  tusim: 3,
+  'universidad-metropolitana': 4,
+  watertown: 4,
   'zona-franca-la-cayena': 4,
 };
 /* Clientes que aún no tienen sus cards: una sola imagen de mockup */
-const LEGACY_SHOT = new Set(['almacen-sandra', 'cargonet']);
+const LEGACY_SHOT = new Set(['almacen-sandra']);
 const shotsFor = (name: string): string[] => {
   const slug = thumbs[name];
   if (!slug) return [];
