@@ -1905,3 +1905,22 @@ body:has(.phero.has-media) .header::before {
 .on-dark .case--project .case__link {
   background: transparent;
 }
+/* Hero de Soluciones e Industrias (con foto al lado): título un poco más pequeño,
+   descripción al mismo ancho del título y más espacio para la foto, en formato 4:3
+   para que se vea casi completa */
+@media (min-width: 1024px) {
+  .phero.has-visual .phero__copy {
+    grid-column: 1 / 7;
+  }
+  .phero.has-visual .phero__title {
+    font-size: clamp(2.6rem, 1.4rem + 3.3vw, 5rem);
+    max-width: none;
+  }
+  .phero.has-visual .phero__sub {
+    max-width: none;
+  }
+  .phero.has-visual .phero__visual {
+    grid-column: 7 / 13;
+    aspect-ratio: 4 / 3;
+  }
+}

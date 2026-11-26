@@ -15,6 +15,7 @@ import { CTASection } from '../components/CTASection';
 import { WithPlaceholders } from '../components/ui';
 import { useMeta } from '../lib/router';
 import { t } from '../lib/i18n';
+import { SERVICE_PHOTOS } from '../components/ServiceVisual';
 
 /* Estructura común del brief: hero, problema, qué incluye, casos de uso,
    cómo se contrata, preguntas frecuentes y cierre. */
@@ -34,6 +35,7 @@ export function SolutionPage({ page }: { page: S }) {
         title={[head, { t: tail, cls: 'hl' }]}
         subtitle={page.subtitle}
         visual={page.key}
+        visualSrc={SERVICE_PHOTOS[page.key]}
         secondary={{ label: t('Ver casos', 'View case studies'), href: '/dev/casos' }}
       />
 

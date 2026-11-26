@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { ArrowRight, X } from 'lucide-react';
 import { services, industries, DIAGNOSTICO_HREF } from '../data/content';
-import { ServiceVisual, ImagePlaceholder } from './ServiceVisual';
+import { ServiceVisual, ImagePlaceholder, INDUSTRY_PHOTOS } from './ServiceVisual';
 import { t as tr } from '../lib/i18n';
 
 export type MenuKey = 'soluciones' | 'industrias' | null;
 
 /* Panel desplegable. Soluciones: índice numerado + vista previa de la solución
-   activa. Industrias: misma estructura, con su imagen (Image 018–021). */
+   activa. Industrias: misma estructura, con la imagen de un caso de esa industria. */
 export function NavigationMenu({
   open,
   onClose,
@@ -60,7 +60,7 @@ export function NavigationMenu({
 
           <div className="mega__preview">
             <div className="mega__visual" key={s.key}>
-              <ServiceVisual k={s.key} />
+              <ServiceVisual k={s.key} photo />
             </div>
             <div className="mega__meta">
               <p className="mega__desc">{s.short}</p>
@@ -105,7 +105,11 @@ export function NavigationMenu({
           <div className="mega__preview">
             <div className="mega__visual" key={ind.name}>
               <div className="service-visual" aria-hidden="true">
-                <ImagePlaceholder n={18 + activeInd} />
+                {INDUSTRY_PHOTOS[ind.href.split('/').pop() ?? ''] ? (
+                  <img className="service-visual__img" src={INDUSTRY_PHOTOS[ind.href.split('/').pop() ?? '']} alt="" decoding="async" />
+                ) : (
+                  <ImagePlaceholder n={18 + activeInd} />
+                )}
               </div>
             </div>
             <div className="mega__meta">

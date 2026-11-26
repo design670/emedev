@@ -1,6 +1,7 @@
 import { clientLogos, clients } from '../data/content';
 import { industryPages, industryProjects, type IndustryPage as I } from '../data/pages';
 import { PageHero, NumberedList, RelatedLinks, BlockHead } from '../components/page/blocks';
+import { INDUSTRY_PHOTOS } from '../components/ServiceVisual';
 import { CTASection } from '../components/CTASection';
 import { useMeta } from '../lib/router';
 import { t } from '../lib/i18n';
@@ -34,6 +35,7 @@ export function IndustryPage({ page }: { page: I }) {
         title={[head, { t: tail, cls: 'hl' }]}
         subtitle={page.subtitle}
         visual={page.visual}
+        visualSrc={INDUSTRY_PHOTOS[page.slug]}
         secondary={{ label: t('Ver casos', 'View case studies'), href: '/dev/casos' }}
       />
 

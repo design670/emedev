@@ -46,6 +46,7 @@ export function PageHero({
   title,
   subtitle,
   visual,
+  visualSrc,
   aside,
   cta = t('Diagnóstico gratis', 'Free diagnostic'),
   ctaHref = DIAGNOSTICO_HREF,
@@ -59,6 +60,8 @@ export function PageHero({
   title: Part[];
   subtitle?: string;
   visual?: ServiceKey;
+  /** Foto para el recuadro de visual (si no, el espacio numerado de la solución) */
+  visualSrc?: string;
   aside?: ReactNode;
   cta?: string | null;
   ctaHref?: string;
@@ -182,7 +185,7 @@ export function PageHero({
         </div>
         {visual && (
           <div className="phero__visual" aria-hidden="true">
-            <ServiceVisual k={visual} />
+            <ServiceVisual k={visual} src={visualSrc} />
           </div>
         )}
         {aside && !visual && <div className="phero__aside" data-intro="up">{aside}</div>}
